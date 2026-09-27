@@ -1,0 +1,111 @@
+/* 路由过渡动画 */
+.tab-slide-left-enter-active,
+.tab-slide-left-leave-active,
+.tab-slide-right-enter-active,
+.tab-slide-right-leave-active {
+  position: absolute;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.tab-slide-left-enter-from {
+  transform: translateX(100%);
+}
+.tab-slide-left-leave-to {
+  transform: translateX(-30%);
+  opacity: 0.5;
+}
+
+.tab-slide-right-enter-from {
+  transform: translateX(-30%);
+  opacity: 0.5;
+}
+.tab-slide-right-leave-to {
+  transform: translateX(100%);
+}
+
+/* 弹窗淡入淡出 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* 表单淡入 */
+.form-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.form-fade-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* 页面容器 */
+.page-container {
+  min-height: 100vh;
+  padding-bottom: 60px;
+  background: #0d0d0d;
+}
+
+.page-content {
+  padding: 12px;
+}
+
+/* 卡片通用样式 */
+.card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #f0f0f0;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.card-title::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  background: linear-gradient(180deg, #e8b860, #c99a3e);
+  border-radius: 2px;
+  margin-right: 8px;
+}
+
+/* 按钮 */
+.btn-primary {
+  background: linear-gradient(135deg, #e8b860, #c99a3e) !important;
+  border: none !important;
+  color: #1a1a1a !important;
+  font-weight: 600 !important;
+  border-radius: 24px !important;
+}
+
+.btn-outline {
+  background: transparent !important;
+  border: 1px solid #e8b860 !important;
+  color: #e8b860 !important;
+  border-radius: 24px !important;
+}
+
+/* 空状态 */
+.empty-state {
+  padding: 60px 20px;
+  text-align: center;
+  color: #666;
+}
+
+.empty-state .empty-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}

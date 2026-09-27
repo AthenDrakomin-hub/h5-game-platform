@@ -1,0 +1,172 @@
+:root {
+  /* Vant 主题覆盖 - 深色金调 */
+  --van-primary-color: #e8b860;
+  --van-primary-color-dark: #c99a3e;
+  --van-success-color: #07c160;
+  --van-danger-color: #ee0a24;
+  --van-warning-color: #ff976a;
+  --van-text-color: #f0f0f0;
+  --van-text-color-2: #b0b0b0;
+  --van-text-color-3: #808080;
+  --van-background: #0d0d0d;
+  --van-background-2: #1a1a1a;
+  --van-background-3: #242424;
+  --van-border-color: #333333;
+  --van-border-color-light: #2a2a2a;
+  --van-nav-bar-background: #1a1a1a;
+  --van-nav-bar-title-text-color: #f0f0f0;
+  --van-tabbar-background: #1a1a1a;
+  --van-tabbar-item-active-color: #e8b860;
+  --van-tabbar-item-inactive-color: #808080;
+  --van-popup-background: #1a1a1a;
+  --van-cell-background: #1a1a1a;
+  --van-cell-text-color: #f0f0f0;
+  --van-field-input-text-color: #f0f0f0;
+  --van-field-label-color: #b0b0b0;
+  --van-button-primary-background: linear-gradient(135deg, #e8b860, #c99a3e);
+  --van-button-primary-border-color: transparent;
+  --van-button-danger-background: linear-gradient(135deg, #ee0a24, #c4081c);
+  --van-toast-background: rgba(0, 0, 0, 0.85);
+  --van-toast-text-color: #fff;
+  --van-dialog-background: #1a1a1a;
+  --van-dialog-header-font-weight: 600;
+  --van-overlay-background: rgba(0, 0, 0, 0.7);
+  --van-action-bar-background: #1a1a1a;
+  --van-safe-area-bottom: env(safe-area-inset-bottom);
+
+  /* Telegram 主题变量（由 JS 动态注入） */
+  --tg-bg-color: #0d0d0d;
+  --tg-text-color: #f0f0f0;
+  --tg-hint-color: #808080;
+  --tg-link-color: #e8b860;
+  --tg-button-color: #e8b860;
+  --tg-button-text-color: #1a1a1a;
+  --tg-secondary-bg-color: #1a1a1a;
+}
+
+/* Telegram Mini App 环境：用 Telegram 主题色覆盖背景/文字，保留品牌金调主色 */
+.telegram-env {
+  --van-background: var(--tg-bg-color);
+  --van-background-2: var(--tg-secondary-bg-color);
+  --van-background-3: var(--tg-secondary-bg-color);
+  --van-text-color: var(--tg-text-color);
+  --van-text-color-2: var(--tg-hint-color);
+  --van-text-color-3: var(--tg-hint-color);
+  --van-nav-bar-background: var(--tg-secondary-bg-color);
+  --van-nav-bar-title-text-color: var(--tg-text-color);
+  --van-tabbar-background: var(--tg-secondary-bg-color);
+  --van-cell-background: var(--tg-secondary-bg-color);
+  --van-cell-text-color: var(--tg-text-color);
+  --van-field-input-text-color: var(--tg-text-color);
+  --van-field-label-color: var(--tg-hint-color);
+  --van-popup-background: var(--tg-secondary-bg-color);
+  --van-dialog-background: var(--tg-secondary-bg-color);
+}
+
+.telegram-env .wap-desktop-shell {
+  background: var(--tg-bg-color);
+}
+
+.telegram-env .app-root {
+  background: var(--tg-bg-color);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  color: #f0f0f0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+/* 桌面端居中壳 */
+.wap-desktop-shell {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: #0d0d0d;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  overflow-x: hidden;
+}
+
+@media (min-width: 481px) {
+  body {
+    background: #000;
+  }
+}
+
+/* 滚动条隐藏 */
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* 通用工具类 */
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ellipsis-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-gold {
+  color: #e8b860;
+}
+
+.text-red {
+  color: #ee0a24;
+}
+
+.text-green {
+  color: #07c160;
+}
+
+.text-gray {
+  color: #808080;
+}
