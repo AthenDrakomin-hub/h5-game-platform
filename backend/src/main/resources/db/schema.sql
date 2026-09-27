@@ -316,29 +316,44 @@ INSERT INTO site_config (config_key, config_value, description) VALUES
 ('trial_balance', '2000', '试玩账号初始余额');
 
 -- 彩种配置
-INSERT INTO lotteries (name, code, category_code, category_name, draw_interval, close_time, sort) VALUES
-('极速PC28', 'jsdd', 'series28', 'PC28', 75, 15, 1),
-('极速赛车', 'jspk10', 'alliance', '赛车', 60, 10, 2),
-('极速时时彩', 'jsssc', 'ssc', '时时彩', 60, 10, 3),
-('极速六合彩', 'happy8lhc', 'marble', '六合彩', 300, 30, 4),
-('极速飞艇', 'jsft', 'alliance', '飞艇', 60, 10, 5),
-('极速运动会', 'jsydh', 'dw', '运动会', 75, 15, 6);
+INSERT INTO lotteries (name, code, category_code, category_name, draw_interval, close_time, sort, icon) VALUES
+('极速PC28', 'jsdd', 'series28', 'PC28', 75, 15, 1, '/uploads/lottery/pc28.svg'),
+('极速赛车', 'jspk10', 'alliance', '赛车', 60, 10, 2, '/uploads/lottery/pk10.svg'),
+('极速时时彩', 'jsssc', 'ssc', '时时彩', 60, 10, 3, '/uploads/lottery/ssc.svg'),
+('极速六合彩', 'happy8lhc', 'marble', '六合彩', 300, 30, 4, '/uploads/lottery/lhc.svg'),
+('极速飞艇', 'jsft', 'alliance', '飞艇', 60, 10, 5, '/uploads/lottery/pk10.svg'),
+('极速运动会', 'jsydh', 'dw', '运动会', 75, 15, 6, '/uploads/lottery/ssc.svg');
 
 -- 娱乐城平台
-INSERT INTO casino_providers (name, code, sort) VALUES
-('PG电子', 'pg', 1),
-('PP电子', 'pp', 2),
-('JDB捕鱼', 'jdb', 3),
-('AG真人', 'ag', 4),
-('BB真人', 'bb', 5),
-('BG真人', 'bg', 6);
+INSERT INTO casino_providers (name, code, sort, icon) VALUES
+('PG电子', 'pg', 1, '/uploads/casino/pg.svg'),
+('PP电子', 'pp', 2, '/uploads/casino/pp.svg'),
+('JDB捕鱼', 'jdb', 3, '/uploads/casino/jdb.svg'),
+('AG真人', 'ag', 4, '/uploads/casino/ag.svg'),
+('MG电子', 'mg', 5, '/uploads/casino/mg.svg'),
+('KM电子', 'km', 6, '/uploads/casino/km.svg');
+
+-- 娱乐城游戏
+INSERT INTO casino_games (name, game_code, provider_code, provider_name, category, icon, is_hot, is_new, status, sort) VALUES
+('老虎机经典', 'slot_classic', 'pg', 'PG电子', 'slot', '/uploads/casino/game1.svg', 1, 0, 1, 1),
+('百家乐', 'baccarat', 'ag', 'AG真人', 'live', '/uploads/casino/game2.svg', 1, 0, 1, 2),
+('轮盘', 'roulette', 'mg', 'MG电子', 'table', '/uploads/casino/game3.svg', 0, 1, 1, 3),
+('骰宝', 'sicbo', 'pp', 'PP电子', 'table', '/uploads/casino/game4.svg', 0, 0, 1, 4),
+('德州扑克', 'poker', 'pg', 'PG电子', 'card', '/uploads/casino/game5.svg', 1, 0, 1, 5),
+('捕鱼达人', 'fishing', 'jdb', 'JDB捕鱼', 'fish', '/uploads/casino/game6.svg', 0, 1, 1, 6),
+('麻将', 'mahjong', 'km', 'KM电子', 'card', '/uploads/casino/game7.svg', 0, 0, 1, 7),
+('棋牌合集', 'chess', 'pp', 'PP电子', 'card', '/uploads/casino/game8.svg', 0, 0, 1, 8),
+('电子竞技', 'esports', 'mg', 'MG电子', 'esport', '/uploads/casino/game9.svg', 1, 1, 1, 9),
+('真人视讯', 'live_dealer', 'ag', 'AG真人', 'live', '/uploads/casino/game10.svg', 0, 0, 1, 10),
+('彩票游戏', 'lottery_game', 'pg', 'PG电子', 'lottery', '/uploads/casino/game11.svg', 0, 0, 1, 11),
+('竞技天地', 'arena', 'km', 'KM电子', 'esport', '/uploads/casino/game12.svg', 0, 1, 1, 12);
 
 -- 活动
-INSERT INTO promotions (title, category, category_name, description, status, sort) VALUES
-('新人注册送88元彩金', 'newbie', '新人专享', '新用户注册即送88元彩金，可用于所有游戏。', 1, 1),
-('每日签到领红包', 'daily', '每日活动', '每日签到可领取随机红包，连续签到奖励翻倍。', 1, 2),
-('首充100%赠送', 'deposit', '充值优惠', '首次充值享受100%赠送，最高赠送888元。', 1, 3),
-('VIP专属返水', 'vip', 'VIP特权', 'VIP会员享受高额返水，最高可达1.5%。', 1, 4);
+INSERT INTO promotions (title, category, category_name, description, status, sort, image) VALUES
+('新人注册送88元彩金', 'newbie', '新人专享', '新用户注册即送88元彩金，可用于所有游戏。', 1, 1, '/uploads/promo/promo1.svg'),
+('每日签到领红包', 'daily', '每日活动', '每日签到可领取随机红包，连续签到奖励翻倍。', 1, 2, '/uploads/promo/promo2.svg'),
+('首充100%赠送', 'deposit', '充值优惠', '首次充值享受100%赠送，最高赠送888元。', 1, 3, '/uploads/promo/promo3.svg'),
+('VIP专属返水', 'vip', 'VIP特权', 'VIP会员享受高额返水，最高可达1.5%。', 1, 4, '/uploads/promo/promo4.svg');
 
 -- 公告
 INSERT INTO notices (title, content, type, sort) VALUES
@@ -347,6 +362,6 @@ INSERT INTO notices (title, content, type, sort) VALUES
 
 -- Banner
 INSERT INTO banners (title, image, link, position, sort) VALUES
-('新人专享', '/uploads/banner/banner1.jpg', '/promo/detail/1', 'home', 1),
-('每日签到', '/uploads/banner/banner2.jpg', '/promo/detail/2', 'home', 2),
-('娱乐城狂欢', '/uploads/banner/banner3.jpg', '/casino', 'home', 3);
+('新人专享', '/uploads/banners/banner1.svg', '/promo/detail/1', 'home', 1),
+('每日签到', '/uploads/banners/banner2.svg', '/promo/detail/2', 'home', 2),
+('娱乐城狂欢', '/uploads/banners/banner3.svg', '/casino', 'home', 3);
