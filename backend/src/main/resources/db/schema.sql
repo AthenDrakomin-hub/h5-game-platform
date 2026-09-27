@@ -365,3 +365,58 @@ INSERT INTO banners (title, image, link, position, sort) VALUES
 ('新人专享', '/uploads/banners/banner1.svg', '/promo/detail/1', 'home', 1),
 ('每日签到', '/uploads/banners/banner2.svg', '/promo/detail/2', 'home', 2),
 ('娱乐城狂欢', '/uploads/banners/banner3.svg', '/casino', 'home', 3);
+
+-- ============================================================
+-- Telegram Bot 相关表
+-- ============================================================
+
+-- Telegram 用户绑定表
+CREATE TABLE IF NOT EXISTS bot_telegram_user (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    telegram_id BIGINT NOT NULL UNIQUE COMMENT 'Telegram用户ID',
+    user_id BIGINT NOT NULL COMMENT '关联平台用户ID',
+    username VARCHAR(64) DEFAULT '' COMMENT 'Telegram用户名',
+    first_name VARCHAR(64) DEFAULT '' COMMENT '名',
+    last_name VARCHAR(64) DEFAULT '' COMMENT '姓',
+    photo_url VARCHAR(500) DEFAULT '' COMMENT '头像URL',
+    language_code VARCHAR(10) DEFAULT '' COMMENT '语言',
+    is_premium TINYINT DEFAULT 0 COMMENT '是否Premium用户',
+    invite_code VARCHAR(32) DEFAULT '' COMMENT '注册时使用的邀请码',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_user_id (user_id),
+    INDEX idx_telegram_id (telegram_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Telegram用户绑定表';
+
+-- Bot 通知记录表
+CREATE TABLE IF NOT EXISTS bot_notification (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL COMMENT '用户ID',
+    telegram_id BIGINT NOT NULL COMMENT 'Telegram用户ID',
+    type VARCHAR(32) NOT NULL COMMENT '通知类型 recharge/withdraw/win/signin/promo/system',
+    title VARCHAR(128) DEFAULT '' COMMENT '标题',
+    content TEXT COMMENT '内容',
+    data JSON COMMENT '附加数据',
+    status TINYINT DEFAULT 0 COMMENT '0待发送 1已发送 2失败',
+    retry_count INT DEFAULT 0 COMMENT '重试次数',
+    sent_at DATETIME DEFAULT NULL COMMENT '发送时间',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_user_status (user_id, status),
+    INDEX idx_type (type),
+    INDEX idx_created_at (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Bot通知记录表';
+
+-- Bot 客服会话表
+CREATE TABLE IF NOT EXISTS bot_support_session (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL COMMENT '用户ID',
+    telegram_id BIGINT NOT NULL COMMENT 'Telegram用户ID',
+    status TINYINT DEFAULT 0 COMMENT '0待处理 1处理中 2已关闭',
+    admin_id BIGINT DEFAULT NULL COMMENT '处理客服ID',
+    last_message TEXT COMMENT '最后一条消息',
+    last_message_at DATETIME DEFAULT NULL COMMENT '最后消息时间',
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    closed_at DATETIME DEFAULT NULL,
+    INDEX idx_status (status),
+    INDEX idx_user_id (user_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Bot客服会话表';

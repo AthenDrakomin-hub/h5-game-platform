@@ -1,6 +1,6 @@
 # H5 Game Platform - 全栈娱乐平台
 
-> 一站式 H5 娱乐平台 monorepo，包含**前端用户端**、**后端服务**、**运营管理后台**三个子项目。前端 Vue3 + Vant4，后端 Spring Boot 3 + MySQL 8，管理后台 Vue3 + Element Plus。**190+ API 接口，支持 Telegram Mini App，可直接部署运行。**
+> 一站式 H5 娱乐平台 monorepo，包含**前端用户端**、**后端服务**、**运营管理后台**、**Telegram Bot** 四个子项目。前端 Vue3 + Vant4，后端 Spring Boot 3 + MySQL 8，管理后台 Vue3 + Element Plus，Bot Telegraf + TypeScript。**190+ API 接口，支持 Telegram Mini App，可直接部署运行。**
 
 ## 项目结构
 
@@ -16,33 +16,42 @@ h5-game-platform/
 │
 ├── backend/               # 后端服务（Spring Boot 3 + MyBatis-Plus + MySQL 8）
 │   ├── src/main/java/com/h5/
-│   │   ├── controller/    # 31 个控制器（用户端 24 + 管理端 7）
-│   │   ├── entity/        # 15 个实体类
-│   │   └── mapper/        # 15 个 Mapper
-│   ├── src/main/resources/db/schema.sql  # 建表脚本 + 初始化数据
+│   │   ├── controller/    # 32 个控制器（用户端 24 + 管理端 7 + Bot 1）
+│   │   ├── entity/        # 16 个实体类
+│   │   └── mapper/        # 16 个 Mapper
+│   ├── src/main/resources/db/schema.sql  # 建表脚本（18张表）+ 初始化数据
 │   └── pom.xml
 │
-└── admin/                 # 运营管理后台（Vue3 + Element Plus + vue-pure-admin）
+├── admin/                 # 运营管理后台（Vue3 + Element Plus + vue-pure-admin）
+│   ├── src/
+│   │   ├── api/admin.ts   # 50+ 管理端 API 方法
+│   │   └── views/admin/   # 6 个管理页面
+│   └── package.json
+│
+└── bot/                   # Telegram Bot（Telegraf + TypeScript）
     ├── src/
-    │   ├── api/admin.ts   # 50+ 管理端 API 方法
-    │   └── views/admin/   # 6 个管理页面
+    │   ├── handlers/      # 8 个处理器（start/menu/wallet/game/promo/support/notify）
+    │   ├── services/      # API 封装 + 用户会话管理
+    │   ├── middlewares/   # 自动注册鉴权中间件
+    │   └── keyboards/     # Inline Keyboard 定义
     └── package.json
 ```
 
 ## 技术栈总览
 
-| 层级 | 前端用户端 | 后端服务 | 管理后台 |
-|---|---|---|---|
-| 框架 | Vue 3.5+ | Spring Boot 3.2.5 | Vue 3.4+ |
-| 语言 | JavaScript | Java 17+ | TypeScript 5.3+ |
-| UI 库 | Vant 4.9+ | - | Element Plus 2.5+ |
-| 状态管理 | Pinia 2.2+ | - | Pinia 2.1+ |
-| 路由 | vue-router 4.6+ | - | vue-router 4.2+ |
-| HTTP | Axios 1.7+ | - | Axios 1.6+ |
-| ORM/数据库 | - | MyBatis-Plus 3.5.5 + MySQL 8 | - |
-| 鉴权 | - | JWT + BCrypt | - |
-| 构建 | Vite 5.4+ | Maven 3.6+ | Vite 5.0+ |
-| 基础框架 | - | - | vue-pure-admin 5.0+ |
+| 层级 | 前端用户端 | 后端服务 | 管理后台 | Telegram Bot |
+|---|---|---|---|---|
+| 框架 | Vue 3.5+ | Spring Boot 3.2.5 | Vue 3.4+ | Telegraf 4.16+ |
+| 语言 | JavaScript | Java 17+ | TypeScript 5.3+ | TypeScript 5.4+ |
+| UI 库 | Vant 4.9+ | - | Element Plus 2.5+ | Inline Keyboard |
+| 状态管理 | Pinia 2.2+ | - | Pinia 2.1+ | 内存缓存 |
+| 路由 | vue-router 4.6+ | - | vue-router 4.2+ | - |
+| HTTP | Axios 1.7+ | - | Axios 1.6+ | Axios 1.7+ |
+| Web 服务 | - | Spring MVC | - | Express 4.19+ |
+| ORM/数据库 | - | MyBatis-Plus 3.5.5 + MySQL 8 | - | - |
+| 鉴权 | - | JWT + BCrypt | - | Telegram ID 自动绑定 |
+| 构建 | Vite 5.4+ | Maven 3.6+ | Vite 5.0+ | tsc 5.4+ |
+| 基础框架 | - | - | vue-pure-admin 5.0+ | - |
 
 ## 功能模块
 
