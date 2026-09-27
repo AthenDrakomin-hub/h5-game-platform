@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-  <circle cx="100" cy="100" r="100" fill="#98D8C8"/>
+  <circle cx="100" cy="100" r="100" fill="#C9A227"/>
   <circle cx="100" cy="80" r="35" fill="#fff" opacity="0.9"/>
   <ellipse cx="100" cy="155" rx="50" ry="35" fill="#fff" opacity="0.9"/>
-  <text x="100" y="115" font-family="Arial" font-size="40" font-weight="bold" fill="#98D8C8" text-anchor="middle">G</text>
+  <text x="100" y="115" font-family="Arial" font-size="40" font-weight="bold" fill="#C9A227" text-anchor="middle">G</text>
 </svg>

@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
-  <defs><linearGradient id="casino_ag" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#43e97b"/><stop offset="100%" stop-color="#38f9d7"/></linearGradient></defs>
+  <defs><linearGradient id="casino_ag" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FF6B35"/><stop offset="100%" stop-color="#0D1F35"/></linearGradient></defs>
   <rect width="120" height="120" rx="20" fill="url(#casino_ag)"/>
-  <text x="60" y="72" font-family="Arial" font-size="36" font-weight="bold" fill="#fff" text-anchor="middle">AG</text>
+  <text x="60" y="72" font-family="Arial" font-size="32" font-weight="bold" fill="#fff" text-anchor="middle">AG</text>
 </svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120">
+  <defs>
+    <linearGradient id="sx-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D4FF"/>
+      <stop offset="100%" stop-color="#7B2FF7"/>
+    </linearGradient>
+    <linearGradient id="sx-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0E27"/>
+      <stop offset="100%" stop-color="#1A1F3E"/>
+    </linearGradient>
+  </defs>
+  <!-- 图标：闪电 X -->
+  <g transform="translate(15, 15)">
+    <rect x="0" y="0" width="90" height="90" rx="20" fill="url(#sx-dark)"/>
+    <!-- 闪电形状 -->
+    <path d="M52 12 L28 52 L44 52 L38 78 L62 38 L46 38 Z" fill="url(#sx-blue)"/>
+    <!-- 科技线条 -->
+    <line x1="10" y1="75" x2="25" y2="75" stroke="#00D4FF" stroke-width="1.5" opacity="0.6"/>
+    <line x1="65" y1="15" x2="80" y2="15" stroke="#7B2FF7" stroke-width="1.5" opacity="0.6"/>
+  </g>
+  <!-- 品牌名 -->
+  <text x="125" y="58" font-family="'Arial Black',Arial,sans-serif" font-size="38" font-weight="900" fill="url(#sx-blue)" letter-spacing="2">极速</text>
+  <text x="125" y="88" font-family="'Courier New',monospace" font-size="18" font-weight="bold" fill="#00D4FF" letter-spacing="5">SPEED X</text>
+</svg>

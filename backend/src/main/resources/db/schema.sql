@@ -306,7 +306,7 @@ CREATE TABLE IF NOT EXISTS site_config (
 
 -- 站点配置
 INSERT INTO site_config (config_key, config_value, description) VALUES
-('site_name', 'H5 Game', '站点名称'),
+('site_name', 'NOVA 新星娱乐', '站点名称'),
 ('customer_service_url', 'https://t.me/cs_bot', '客服链接'),
 ('telegram_group_url', 'https://t.me/h5_group', 'Telegram群组'),
 ('recharge_min_amount', '100', '充值最小金额'),

@@ -1,11 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 300">
-  <defs><linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f093fb
-#4facfe"/><stop offset="100%" stop-color="#f5576c
-#00f2fe"/></linearGradient></defs>
-  <rect width="750" height="300" fill="url(#bg1)"/>
+  <defs><linearGradient id="b1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00D4AA"/><stop offset="100%" stop-color="#00A896"/></linearGradient></defs>
+  <rect width="750" height="300" fill="url(#b1)"/>
   <circle cx="650" cy="80" r="120" fill="#fff" opacity="0.1"/>
   <circle cx="100" cy="250" r="80" fill="#fff" opacity="0.08"/>
-  <text x="60" y="140" font-family="Arial,sans-serif" font-size="42" font-weight="bold" fill="#fff">新人专享 注册送88
-首充翻倍 最高赠188</text>
+  <text x="60" y="140" font-family="Arial,sans-serif" font-size="42" font-weight="bold" fill="#fff">新人专享 注册送88</text>
   <text x="60" y="190" font-family="Arial,sans-serif" font-size="20" fill="#fff" opacity="0.9">立即参与 →</text>
 </svg>

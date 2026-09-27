@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120">
+  <defs>
+    <linearGradient id="jp-orange" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B35"/>
+      <stop offset="100%" stop-color="#F7931E"/>
+    </linearGradient>
+    <linearGradient id="jp-red" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF4757"/>
+      <stop offset="100%" stop-color="#FF6B81"/>
+    </linearGradient>
+  </defs>
+  <!-- 图标：圆形笑脸 + 骰子点 -->
+  <g transform="translate(15, 15)">
+    <circle cx="45" cy="45" r="45" fill="url(#jp-orange)"/>
+    <!-- 笑脸 -->
+    <circle cx="32" cy="38" r="5" fill="#fff"/>
+    <circle cx="58" cy="38" r="5" fill="#fff"/>
+    <path d="M30 55 Q45 70 60 55" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- 装饰小点 -->
+    <circle cx="45" cy="12" r="4" fill="#FFD93D"/>
+  </g>
+  <!-- 品牌名 -->
+  <text x="125" y="58" font-family="'Arial Rounded MT Bold','Arial',sans-serif" font-size="38" font-weight="bold" fill="url(#jp-red)" letter-spacing="2">欢娱</text>
+  <text x="125" y="88" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#FF6B35" letter-spacing="4">JOY PLAY</text>
+</svg>

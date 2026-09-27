@@ -1,47 +1,47 @@
 :root {
   /* Vant 主题覆盖 - 深色金调 */
-  --van-primary-color: #e8b860;
-  --van-primary-color-dark: #c99a3e;
+  --van-primary-color: #00D4AA;
+  --van-primary-color-dark: #00A896;
   --van-success-color: #07c160;
   --van-danger-color: #ee0a24;
   --van-warning-color: #ff976a;
-  --van-text-color: #f0f0f0;
-  --van-text-color-2: #b0b0b0;
-  --van-text-color-3: #808080;
-  --van-background: #0d0d0d;
-  --van-background-2: #1a1a1a;
-  --van-background-3: #242424;
-  --van-border-color: #333333;
-  --van-border-color-light: #2a2a2a;
-  --van-nav-bar-background: #1a1a1a;
-  --van-nav-bar-title-text-color: #f0f0f0;
-  --van-tabbar-background: #1a1a1a;
-  --van-tabbar-item-active-color: #e8b860;
-  --van-tabbar-item-inactive-color: #808080;
-  --van-popup-background: #1a1a1a;
-  --van-cell-background: #1a1a1a;
-  --van-cell-text-color: #f0f0f0;
-  --van-field-input-text-color: #f0f0f0;
-  --van-field-label-color: #b0b0b0;
-  --van-button-primary-background: linear-gradient(135deg, #e8b860, #c99a3e);
+  --van-text-color: #FFFFFF;
+  --van-text-color-2: #8B949E;
+  --van-text-color-3: #6E7681;
+  --van-background: #0A1628;
+  --van-background-2: #0D1F35;
+  --van-background-3: #142844;
+  --van-border-color: #1E3A5F;
+  --van-border-color-light: #162D4A;
+  --van-nav-bar-background: #0D1F35;
+  --van-nav-bar-title-text-color: #FFFFFF;
+  --van-tabbar-background: #0D1F35;
+  --van-tabbar-item-active-color: #00D4AA;
+  --van-tabbar-item-inactive-color: #6E7681;
+  --van-popup-background: #0D1F35;
+  --van-cell-background: #0D1F35;
+  --van-cell-text-color: #FFFFFF;
+  --van-field-input-text-color: #FFFFFF;
+  --van-field-label-color: #8B949E;
+  --van-button-primary-background: linear-gradient(135deg, #00D4AA, #00A896);
   --van-button-primary-border-color: transparent;
   --van-button-danger-background: linear-gradient(135deg, #ee0a24, #c4081c);
   --van-toast-background: rgba(0, 0, 0, 0.85);
   --van-toast-text-color: #fff;
-  --van-dialog-background: #1a1a1a;
+  --van-dialog-background: #0D1F35;
   --van-dialog-header-font-weight: 600;
   --van-overlay-background: rgba(0, 0, 0, 0.7);
-  --van-action-bar-background: #1a1a1a;
+  --van-action-bar-background: #0D1F35;
   --van-safe-area-bottom: env(safe-area-inset-bottom);
 
   /* Telegram 主题变量（由 JS 动态注入） */
-  --tg-bg-color: #0d0d0d;
-  --tg-text-color: #f0f0f0;
-  --tg-hint-color: #808080;
-  --tg-link-color: #e8b860;
-  --tg-button-color: #e8b860;
-  --tg-button-text-color: #1a1a1a;
-  --tg-secondary-bg-color: #1a1a1a;
+  --tg-bg-color: #0A1628;
+  --tg-text-color: #FFFFFF;
+  --tg-hint-color: #6E7681;
+  --tg-link-color: #00D4AA;
+  --tg-button-color: #00D4AA;
+  --tg-button-text-color: #0D1F35;
+  --tg-secondary-bg-color: #0D1F35;
 }
 
 /* Telegram Mini App 环境：用 Telegram 主题色覆盖背景/文字，保留品牌金调主色 */
@@ -82,7 +82,7 @@ html, body {
   width: 100%;
   height: 100%;
   background: #000;
-  color: #f0f0f0;
+  color: #FFFFFF;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 14px;
   line-height: 1.5;
@@ -111,7 +111,7 @@ img {
   max-width: 480px;
   min-height: 100vh;
   margin: 0 auto;
-  background: #0d0d0d;
+  background: #0A1628;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
   overflow-x: hidden;
 }
@@ -156,7 +156,7 @@ img {
 }
 
 .text-gold {
-  color: #e8b860;
+  color: #F0C75E;
 }
 
 .text-red {
@@ -168,5 +168,5 @@ img {
 }
 
 .text-gray {
-  color: #808080;
+  color: #6E7681;
 }

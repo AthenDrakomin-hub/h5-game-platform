@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>品牌方案 · 基于海外趋势设计</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0D1117; color: #E6EDF3; padding: 40px 20px; }
+  .header { text-align: center; margin-bottom: 40px; }
+  .header h1 { font-size: 30px; margin-bottom: 8px; background: linear-gradient(135deg, #00D4AA, #A855F7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .header p { color: #8B949E; font-size: 15px; }
+  .trends { max-width: 1200px; margin: 0 auto 40px; background: #161B22; border-radius: 12px; padding: 25px 30px; border: 1px solid #30363D; }
+  .trends h2 { font-size: 18px; margin-bottom: 15px; color: #00D4AA; }
+  .trend-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+  .trend-item { background: #0D1117; border-radius: 8px; padding: 15px; border-left: 3px solid #A855F7; }
+  .trend-item h4 { font-size: 14px; margin-bottom: 6px; color: #E6EDF3; }
+  .trend-item p { font-size: 12px; color: #8B949E; line-height: 1.5; }
+  .trend-item .ref { font-size: 11px; color: #A855F7; margin-top: 6px; }
+  .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 25px; max-width: 1400px; margin: 0 auto; }
+  .plan { background: #161B22; border-radius: 16px; overflow: hidden; border: 1px solid #30363D; transition: transform 0.3s, border-color 0.3s; }
+  .plan:hover { transform: translateY(-4px); }
+  .plan-header { padding: 30px; text-align: center; }
+  .plan-header img { max-width: 100%; height: 100px; object-fit: contain; }
+  .plan-tag { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; margin-top: 15px; }
+  .plan-body { padding: 25px 30px 30px; }
+  .plan-body h3 { font-size: 20px; margin-bottom: 6px; }
+  .plan-body .en { font-size: 13px; color: #8B949E; margin-bottom: 12px; letter-spacing: 2px; }
+  .plan-body .desc { color: #8B949E; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+  .section-title { font-size: 12px; font-weight: bold; color: #6E7681; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; margin-top: 20px; }
+  .colors { display: flex; gap: 6px; }
+  .color-item { text-align: center; flex: 1; min-width: 40px; }
+  .color-swatch { width: 100%; height: 36px; border-radius: 6px; margin-bottom: 4px; }
+  .color-name { font-size: 10px; color: #6E7681; font-family: monospace; }
+  .preview { background: #0D1117; border-radius: 10px; padding: 18px; margin-top: 15px; border: 1px solid #21262D; }
+  .preview-nav { display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid #21262D; margin-bottom: 12px; }
+  .preview-nav .mini-logo { height: 26px; }
+  .preview-nav span { font-size: 13px; font-weight: bold; }
+  .preview-btn { display: inline-block; padding: 9px 20px; border-radius: 8px; color: #fff; font-size: 13px; font-weight: bold; margin-right: 8px; margin-bottom: 8px; }
+  .preview-card { background: #161B22; border-radius: 8px; padding: 12px; margin-top: 10px; border: 1px solid #21262D; }
+  .preview-card h4 { font-size: 13px; margin-bottom: 4px; }
+  .preview-card p { font-size: 11px; color: #6E7681; }
+  .preview-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; color: #fff; font-weight: bold; }
+  .p1 .plan-header { background: linear-gradient(135deg, #0A1628, #0D1F35); }
+  .p1 .plan-tag { background: rgba(0,212,170,0.15); color: #00D4AA; }
+  .p1 .preview-btn { background: linear-gradient(135deg, #00D4AA, #00A896); }
+  .p1 .preview-btn.secondary { background: transparent; border: 1.5px solid #F0C75E; color: #F0C75E; }
+  .p1 .preview-badge { background: linear-gradient(135deg, #F0C75E, #C9A227); color: #0A1628; }
+  .p1 .preview-nav span { color: #00D4AA; }
+  .p1:hover { border-color: #00D4AA; }
+  .p2 .plan-header { background: linear-gradient(135deg, #1A1A1A, #0D0D0D); }
+  .p2 .plan-tag { background: rgba(198,255,0,0.15); color: #C6FF00; }
+  .p2 .preview-btn { background: linear-gradient(135deg, #C6FF00, #76FF03); color: #0D0D0D; }
+  .p2 .preview-btn.secondary { background: transparent; border: 1.5px solid #C6FF00; color: #C6FF00; }
+  .p2 .preview-badge { background: #C6FF00; color: #0D0D0D; }
+  .p2 .preview-nav span { color: #C6FF00; }
+  .p2:hover { border-color: #C6FF00; }
+  .p3 .plan-header { background: linear-gradient(135deg, #1E1B4B, #0F0D24); }
+  .p3 .plan-tag { background: rgba(168,85,247,0.15); color: #A855F7; }
+  .p3 .preview-btn { background: linear-gradient(135deg, #A855F7, #EC4899); }
+  .p3 .preview-btn.secondary { background: transparent; border: 1.5px solid #A855F7; color: #A855F7; }
+  .p3 .preview-badge { background: linear-gradient(135deg, #A855F7, #EC4899); }
+  .p3 .preview-nav span { color: #A855F7; }
+  .p3:hover { border-color: #A855F7; }
+  .footer { text-align: center; margin-top: 40px; color: #6E7681; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>品牌方案 · 基于海外电子平台趋势设计</h1>
+  <p>调研 bet365 / William Hill / Betway / Betano / Spinzen / Rollbit 等海外平台趋势后设计</p>
+</div>
+
+<div class="trends">
+  <h2>海外趋势调研发现</h2>
+  <div class="trend-grid">
+    <div class="trend-item">
+      <h4>深色模式默认</h4>
+      <p>bet365、William Hill、Betway、Betano 2024 年全部转向深色大厅，参考 Netflix 视觉语法</p>
+      <div class="ref">参考：GeekTown 2026 行业报告</div>
+    </div>
+    <div class="trend-item">
+      <h4>深午夜蓝 + 青 + 金</h4>
+      <p>Spinzen Casino 配色被加拿大设计师专门称赞，冷色调传递信任，金色渐变避免俗气</p>
+      <div class="ref">参考：Yale 设计评论</div>
+    </div>
+    <div class="trend-item">
+      <h4>闪电 = 速度兴奋</h4>
+      <p>Betano 用闪电 bolt 象征极速支付和肾上腺素，可分离 B 图标，energetic 自定义字体</p>
+      <div class="ref">参考：Nomad Studio Betano 案例</div>
+    </div>
+    <div class="trend-item">
+      <h4>Web3 干净现代</h4>
+      <p>Rollbit 风格：不要满屏六边形/电路板，干净现代 + 微妙科技感，深紫 + 霓虹渐变</p>
+      <div class="ref">参考：Uberman Crypto Casino Branding</div>
+    </div>
+    <div class="trend-item">
+      <h4>极简几何 Logo</h4>
+      <p>2024-2025 主流：简单几何形状 + 粗体字体 + 负空间隐藏含义，可分离图标适配多场景</p>
+      <div class="ref">参考：Visualmodo 50 Casino Logos</div>
+    </div>
+    <div class="trend-item">
+      <h4>电影感 UI</h4>
+      <p>深色背景 + 明亮高光聚焦注意力，流畅动画 + 分层纹理，3-4 色简单配色，每页一致</p>
+      <div class="ref">参考：Movies Games & Tech 2025</div>
+    </div>
+  </div>
+</div>
+
+<div class="plans">
+
+  <div class="plan p1">
+    <div class="plan-header">
+      <img src="logo-nova.svg" alt="NOVA 新星">
+      <div class="plan-tag">方案一 · 高端信任（Spinzen 风格）</div>
+    </div>
+    <div class="plan-body">
+      <h3>新星 NOVA</h3>
+      <div class="en">NOVA ENTERTAINMENT</div>
+      <p class="desc">深午夜蓝 + 青色 + 金色渐变，参考 Spinzen Casino 被设计师称赞的配色。传递高端、信任、智能，电影感深色界面，金色点缀避免俗气。适合走精品高端路线。</p>
+      <div class="section-title">品牌色板</div>
+      <div class="colors">
+        <div class="color-item"><div class="color-swatch" style="background:#0A1628"></div><div class="color-name">#0A1628</div></div>
+        <div class="color-item"><div class="color-swatch" style="background:#00D4AA"></div><div class="color-name">#00D4AA</div></div>
+        <div class="color-item"><div class="color-swatch" style="background:#F0C75E"></div><div class="color-name">#F0C75E</div></div>
+        <div class="color-item"><div class="color-swatch" style="background:#00A896"></div><div class="color-name">#00A896</div></div>
+        <div class="color-item"><div class="color-swatch" style="background:#C9A227"></div><div class="color-name">#C9A227</div></div>
+      </div>
+      <div class="section-title">应用预览（深色模式）</div>
+      <div class="preview">
+        <div class="preview-nav">
+          <img class="mini-logo" src="logo-nova.svg">
+          <span>NOVA</span>
+        </div>
+        <span class="preview-btn">立即充值</span>
+        <span class="preview-btn secondary">VIP 特权</span>
+        <div class="preview-card">
+          <span class="preview-badge">HOT</span>
+          <h4 style="margin-top:8px;">极速赛车 · 即将开奖</h4>
+          <p>倒计时 00:45 · 距封盘 00:10</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="plan p2">
+    <div class="plan-header">
+      <img src="logo-volt.svg" alt="VOLT 闪电">
+      <div class="plan-tag">方案二 · 速度能量（Betano 风格）</div>
+    </div>
+    <div class="plan-body">
+      <h3>闪电 VOLT</h3>
+      <div class="en">VOLT GAMING</div>
+      <p class="desc">纯黑 + 电光黄绿渐变，参考 Betano 闪电 bolt 概念。传递速度、能量、兴奋，高对比度强视觉冲击，电光色在深色背景下点击率提升 30-80%。适合走年轻潮流路线。</p>
+      <div class="section-title">品牌色板</div>
+      <div class="colors">
+        <div class="color-item"><div class="color-swatch" style="background:#0D0D0D"></div><div class="color-name">#0D0D0D</div></div>
+        <div class="color-item"><div class="color-swatch" style="background:#C6FF00"></div><div class="color-name">#C6FF00</div></div>
+        <div class="color-item"><div class="color-swatch" style="background:#76FF03"></div><div class="color-name">#76FF03</div></div>
+        <div class="color-item"><div class="color-swatch" style="background:#1A1A1A"></div><div class="color-name">#1A1A1A</div></div>
+        <div class="color-item"><div class="color-swatch" style="background:#FFFFFF"></div><div class="color-name">#FFFFFF</div></div>
+      </div>
+      <div class="section-title">应用预览（深色模式）</div>
+      <div class="preview">
+        <div class="preview-nav">
+          <img class="mini-logo" src="logo-volt.svg">
+          <span>VOLT</span>
+        </div>
+        <span class="preview-btn">开始游戏</span>
+        <span class="preview-btn secondary">极速提现</span>
+        <div class="preview-card">
+          <span class="preview-badge">FAST</span>
+          <h4 style="margin-top:8px;">秒级到账 · 极速提现</h4>
+          <p>USDT 充值即时到账 · 提现 5 分钟内处理</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="plan p3">
+    <div class="plan-header">
+      <img src="logo-axia.svg" alt="AXIA 轴">
+      <div class="plan-tag">方案三 · 科技未来（Rollbit Web3 风格）</div>
+    </div>
+    <div class="plan-body">
+      <h3>轴娱 AXIA</h3>
+      <div class="en">AXIA GAMING</div>
+      <p class="desc">深紫黑 + 霓虹紫粉渐变，参考 Rollbit 干净现代 Web3 风格。不过度 crypto 化，几何 X 轴图形 + 中心点，传递科技、潮流、未来感。适合走 Web3/加密货币友好路线。</p>
+      <div class="section-title">品牌色板</div>
+      <div class="colors">
+        <div class="color-item"><div class="color-swatch" style="background:#0F0D24"></div><div class="color-name">#0F0D24</div></div>
+        <div class="color-item"><div class="color-swatch" style="background:#A855F7"></div><div class="color-name">#A855F7</div></div>
+        <div class="color-item"><div class="color-swatch" style="background:#EC4899"></div><div class="color-name">#EC4899</div></div>
+        <div class="color-item"><div class="color-swatch" style="background:#1E1B4B"></div><div class="color-name">#1E1B4B</div></div>
+        <div class="color-item"><div class="color-swatch" style="background:#FFFFFF"></div><div class="color-name">#FFFFFF</div></div>
+      </div>
+      <div class="section-title">应用预览（深色模式）</div>
+      <div class="preview">
+        <div class="preview-nav">
+          <img class="mini-logo" src="logo-axia.svg">
+          <span>AXIA</span>
+        </div>
+        <span class="preview-btn">连接钱包</span>
+        <span class="preview-btn secondary">匿名游戏</span>
+        <div class="preview-card">
+          <span class="preview-badge">WEB3</span>
+          <h4 style="margin-top:8px;">USDT 一键充值 · 无需注册</h4>
+          <p>连接钱包即玩 · 即时提现 · provably fair</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>选择方案后，将全面替换项目中的 Logo、CSS 变量配色、字体、所有素材 · 基于海外 2025-2026 行业趋势设计</p>
+</div>
+
+</body>
+</html>

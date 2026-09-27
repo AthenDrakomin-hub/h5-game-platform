@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-  <defs><linearGradient id="ssc" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f093fb"/><stop offset="100%" stop-color="#f5576c"/></linearGradient></defs>
-  <rect width="200" height="200" rx="24" fill="url(#ssc)"/>
-  <circle cx="100" cy="80" r="36" fill="#fff" opacity="0.2"/>
-  <text x="100" y="92" font-family="Arial" font-size="32" font-weight="bold" fill="#fff" text-anchor="middle">SSC</text>
+  <defs><linearGradient id="ssc" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F0C75E"/><stop offset="100%" stop-color="#0D1F35"/></linearGradient></defs>
+  <rect width="200" height="200" rx="24" fill="url(##ssc)"/>
+  <circle cx="100" cy="80" r="36" fill="#fff" opacity="0.15"/>
+  <text x="100" y="92" font-family="Arial" font-size="28" font-weight="bold" fill="#fff" text-anchor="middle">SSC</text>
   <text x="100" y="150" font-family="Arial,sans-serif" font-size="22" fill="#fff" text-anchor="middle">时时彩</text>
 </svg>

@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 400">
-  <defs><linearGradient id="promo2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="hsl(120,70%,55%)"/><stop offset="100%" stop-color="hsl(150,70%,45%)"/></linearGradient></defs>
+  <defs><linearGradient id="promo2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F0C75E"/><stop offset="100%" stop-color="#C9A227"/></linearGradient></defs>
   <rect width="750" height="400" fill="url(#promo2)"/>
   <circle cx="650" cy="100" r="100" fill="#fff" opacity="0.1"/>
   <circle cx="80" cy="320" r="70" fill="#fff" opacity="0.08"/>
   <text x="60" y="180" font-family="Arial,sans-serif" font-size="48" font-weight="bold" fill="#fff">每日签到</text>
   <text x="60" y="240" font-family="Arial,sans-serif" font-size="22" fill="#fff" opacity="0.9">精彩活动 等你来参与</text>
   <rect x="60" y="280" width="140" height="48" rx="24" fill="#fff" opacity="0.9"/>
-  <text x="130" y="312" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="hsl(120,70%,45%)" text-anchor="middle">立即参与</text>
+  <text x="130" y="312" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#F0C75E" text-anchor="middle">立即参与</text>
 </svg>
