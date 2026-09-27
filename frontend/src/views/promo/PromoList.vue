@@ -33,7 +33,7 @@
         </div>
       </div>
       <div v-if="!loading && filteredPromos.length === 0" class="empty-state">
-        <div class="empty-icon">🎁</div>
+        <img src="/empty-state.svg" alt="empty" class="empty-img" />
         <p>暂无活动</p>
       </div>
     </div>
@@ -183,10 +183,10 @@ onMounted(() => {
   padding: 60px 20px;
   text-align: center;
 }
-.empty-icon {
-  font-size: 48px;
+.empty-img {
+  width: 160px;
+  height: auto;
   margin-bottom: 12px;
-  opacity: 0.5;
 }
 .empty-state p {
   color: #666;
