@@ -43,34 +43,26 @@ export const useAuthStore = defineStore('auth', () => {
 
   /**
    * Telegram Mini App 自动登录
-   * 用 initData 中的用户信息直接创建会话（mock 环境下本地生成 token）
-   * 生产环境应将 initData 发送到后端验证后换取 token
+   * 将 initData 发送到后端验证签名后换取真实 JWT token
    */
   async function telegramLogin() {
     if (!isTelegram) return null
-    const tgUser = getTelegramUser()
-    if (!tgUser) return null
+    const initData = getInitData()
+    if (!initData) {
+      showFailToast('无法获取 Telegram 登录信息')
+      return null
+    }
     try {
-      // mock 环境：直接用 Telegram 用户信息生成会话
-      // 生产环境：await authApi.telegramLogin({ initData: getInitData() })
-      const mockToken = 'tg_' + btoa(`${tgUser.id}:${Date.now()}`).replace(/=/g, '')
-      const data = {
-        token: mockToken,
-        userInfo: {
-          id: tgUser.id,
-          username: tgUser.username,
-          nickname: tgUser.nickname,
-          avatar: tgUser.avatar,
-          loginType: 'telegram',
-          vipLevel: 1,
-          balance: 10000,
-          createTime: new Date().toISOString()
-        }
+      const data = await authApi.telegramLogin(initData)
+      if (data && data.token) {
+        setAuth(data)
+        showSuccessToast('登录成功')
+        return data
       }
-      setAuth(data)
-      return data
+      showFailToast('登录失败，请重试')
+      return null
     } catch (e) {
-      showFailToast('Telegram 登录失败')
+      showFailToast(e.message || 'Telegram 登录失败')
       return null
     }
   }

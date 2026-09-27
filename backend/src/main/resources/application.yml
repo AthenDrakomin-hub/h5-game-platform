@@ -17,6 +17,19 @@ spring:
       connection-timeout: 30000
       idle-timeout: 600000
       max-lifetime: 1800000
+  # Redis 配置（分布式限流/Bot会话，未配置时自动降级内存）
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      database: ${REDIS_DATABASE:0}
+      timeout: 3000
+      lettuce:
+        pool:
+          max-active: 16
+          max-idle: 8
+          min-idle: 2
 
 mybatis-plus:
   mapper-locations: classpath:mapper/**/*.xml
@@ -42,6 +55,36 @@ jwt:
 site:
   name: H5 Game
   domain: https://h5.lexiangim.com
+
+# 开奖调度配置
+draw:
+  scheduling:
+    enabled: true  # 是否启用自动开奖调度
+  provider:
+    marksix6:
+      enabled: false  # 是否启用第三方开奖API（生产环境建议开启）
+      api-url: https://api3.marksix6.net/lottery_api.php
+      timeout: 5000
+
+# 管理员初始化配置
+admin:
+  init:
+    username: admin
+    password: yefeng
+
+# Telegram Bot Token（用于 Mini App initData 签名验证）
+telegram:
+  bot-token: ${TELEGRAM_BOT_TOKEN:}
+
+# USDT 自动到账配置
+usdt:
+  trc20:
+    enabled: false  # 是否启用TRC20自动到账监听
+    grid-api: https://api.trongrid.io  # TronGrid API 地址
+    api-key: ""  # TronGrid API Key（可选，提高限流）
+    poll-interval: 5000  # 轮询间隔(毫秒)
+    confirmations: 1  # 确认数（TRC20一般1个确认即可）
+    min-confirmations: 1
 
 logging:
   level:

@@ -15,6 +15,12 @@ public class WebConfig implements WebMvcConfigurer {
     @Autowired
     private AuthInterceptor authInterceptor;
 
+    @Autowired
+    private AdminInterceptor adminInterceptor;
+
+    @Autowired
+    private RateLimitInterceptor rateLimitInterceptor;
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
@@ -28,13 +34,15 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        // 1. 全局鉴权拦截器（JWT 校验）
         registry.addInterceptor(authInterceptor)
                 .addPathPatterns("/**")
                 .excludePathPatterns(
-                        // 公开接口（不需要登录）
+                        // 用户端公开接口
                         "/wap/auth/login",
                         "/wap/auth/register",
                         "/wap/auth/trial-login",
+                        "/wap/auth/telegram",
                         "/wap/home/config",
                         "/wap/home/banners",
                         "/wap/home/announcements",
@@ -46,9 +54,27 @@ public class WebConfig implements WebMvcConfigurer {
                         "/wap/promotion/list",
                         "/wap/promotion/categories",
                         "/wap/promotion/detail/**",
+                        // 管理端登录（登录时无 token）
+                        "/admin/auth/login",
+                        // Bot 自动注册（Bot 内部调用）
+                        "/bot/auth/register",
                         // 静态资源
                         "/uploads/**",
                         "/error"
                 );
+
+        // 2. 管理端角色拦截器（校验 admin/superadmin 角色）
+        //    在 AuthInterceptor 之后执行，已通过 JWT 校验
+        registry.addInterceptor(adminInterceptor)
+                .addPathPatterns("/admin/**")
+                .excludePathPatterns(
+                        "/admin/auth/login"
+                );
+
+        // 3. 限流拦截器（最先执行，在鉴权之前）
+        registry.addInterceptor(rateLimitInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/error", "/uploads/**")
+                .order(0); // 最高优先级
     }
 }

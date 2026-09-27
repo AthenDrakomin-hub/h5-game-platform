@@ -1,22 +1,22 @@
 package com.h5.controller.user;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.h5.common.Result;
 import com.h5.common.UserContext;
-import com.h5.entity.User;
-import com.h5.mapper.UserMapper;
+import com.h5.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 用户中心 Controller（委托 UserService）
+ */
 @RestController
 @RequestMapping("/wap/user")
 public class UserController {
 
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
 
     /**
      * 用户信息
@@ -24,27 +24,7 @@ public class UserController {
      */
     @GetMapping("/info")
     public Result<Map<String, Object>> info() {
-        Long userId = UserContext.getUserId();
-        User user = userMapper.selectById(userId);
-        if (user == null) {
-            return Result.error(401, "用户不存在");
-        }
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("id", user.getId());
-        data.put("userId", user.getId());
-        data.put("username", user.getUsername());
-        data.put("nickname", user.getNickname());
-        data.put("avatar", user.getAvatar());
-        data.put("phone", user.getPhone());
-        data.put("email", user.getEmail());
-        data.put("balance", user.getBalance());
-        data.put("frozenBalance", user.getFrozenBalance());
-        data.put("vipLevel", user.getVipLevel());
-        data.put("isTrial", user.getIsTrial());
-        data.put("inviteCode", user.getInviteCode());
-        data.put("createTime", user.getCreateTime() != null ? user.getCreateTime().toString() : null);
-        return Result.success(data);
+        return Result.success(userService.getUserInfo(UserContext.getUserId()));
     }
 
     /**
@@ -53,47 +33,51 @@ public class UserController {
      */
     @PostMapping("/update")
     public Result<Void> update(@RequestBody Map<String, String> params) {
-        Long userId = UserContext.getUserId();
-        User user = userMapper.selectById(userId);
-        if (user == null) {
-            return Result.error(401, "用户不存在");
-        }
-        if (params.containsKey("nickname")) {
-            user.setNickname(params.get("nickname"));
-        }
-        if (params.containsKey("avatar")) {
-            user.setAvatar(params.get("avatar"));
-        }
-        if (params.containsKey("phone")) {
-            user.setPhone(params.get("phone"));
-        }
-        userMapper.updateById(user);
+        userService.updateProfile(
+                UserContext.getUserId(),
+                params.get("nickname"),
+                params.get("avatar"),
+                params.get("phone"),
+                params.get("email")
+        );
         return Result.success();
     }
 
     /**
-     * 修改密码
+     * 修改登录密码
      * POST /api/wap/user/change-password
      */
     @PostMapping("/change-password")
     public Result<Void> changePassword(@RequestBody Map<String, String> params) {
-        Long userId = UserContext.getUserId();
-        User user = userMapper.selectById(userId);
-        if (user == null) {
-            return Result.error(401, "用户不存在");
-        }
-        String oldPassword = params.get("oldPassword");
-        String newPassword = params.get("newPassword");
-        if (oldPassword == null || newPassword == null) {
-            return Result.error("密码不能为空");
-        }
-        org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder encoder =
-                new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder();
-        if (!encoder.matches(oldPassword, user.getPassword())) {
-            return Result.error("原密码错误");
-        }
-        user.setPassword(encoder.encode(newPassword));
-        userMapper.updateById(user);
+        userService.changePassword(
+                UserContext.getUserId(),
+                params.get("oldPassword"),
+                params.get("newPassword")
+        );
+        return Result.success();
+    }
+
+    /**
+     * 设置资金密码
+     * POST /api/wap/user/set-fund-password
+     */
+    @PostMapping("/set-fund-password")
+    public Result<Void> setFundPassword(@RequestBody Map<String, String> params) {
+        userService.setFundPassword(UserContext.getUserId(), params.get("password"));
+        return Result.success();
+    }
+
+    /**
+     * 修改资金密码
+     * POST /api/wap/user/change-fund-password
+     */
+    @PostMapping("/change-fund-password")
+    public Result<Void> changeFundPassword(@RequestBody Map<String, String> params) {
+        userService.changeFundPassword(
+                UserContext.getUserId(),
+                params.get("oldPassword"),
+                params.get("newPassword")
+        );
         return Result.success();
     }
 }

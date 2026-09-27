@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS users (
     vip_level INT DEFAULT 1 COMMENT 'VIP等级',
     is_trial TINYINT DEFAULT 0 COMMENT '是否试玩账号 0否 1是',
     status TINYINT DEFAULT 1 COMMENT '状态 0禁用 1正常',
+    role VARCHAR(20) DEFAULT 'user' COMMENT '角色 user普通用户 admin管理员 superadmin超级管理员',
     fund_password VARCHAR(100) DEFAULT '' COMMENT '资金密码',
     invite_code VARCHAR(20) DEFAULT '' COMMENT '邀请码',
     invited_by BIGINT DEFAULT NULL COMMENT '邀请人ID',
@@ -28,10 +29,12 @@ CREATE TABLE IF NOT EXISTS users (
     last_login_ip VARCHAR(50) DEFAULT '' COMMENT '最后登录IP',
     create_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    version INT DEFAULT 0 COMMENT '乐观锁版本号',
     deleted TINYINT DEFAULT 0 COMMENT '逻辑删除',
     INDEX idx_username (username),
     INDEX idx_phone (phone),
     INDEX idx_invite_code (invite_code),
+    INDEX idx_role (role),
     INDEX idx_create_time (create_time)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
@@ -382,8 +385,8 @@ CREATE TABLE IF NOT EXISTS bot_telegram_user (
     language_code VARCHAR(10) DEFAULT '' COMMENT '语言',
     is_premium TINYINT DEFAULT 0 COMMENT '是否Premium用户',
     invite_code VARCHAR(32) DEFAULT '' COMMENT '注册时使用的邀请码',
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX idx_user_id (user_id),
     INDEX idx_telegram_id (telegram_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Telegram用户绑定表';
@@ -400,10 +403,10 @@ CREATE TABLE IF NOT EXISTS bot_notification (
     status TINYINT DEFAULT 0 COMMENT '0待发送 1已发送 2失败',
     retry_count INT DEFAULT 0 COMMENT '重试次数',
     sent_at DATETIME DEFAULT NULL COMMENT '发送时间',
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_user_status (user_id, status),
     INDEX idx_type (type),
-    INDEX idx_created_at (created_at)
+    INDEX idx_create_time (create_time)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Bot通知记录表';
 
 -- Bot 客服会话表
@@ -415,8 +418,81 @@ CREATE TABLE IF NOT EXISTS bot_support_session (
     admin_id BIGINT DEFAULT NULL COMMENT '处理客服ID',
     last_message TEXT COMMENT '最后一条消息',
     last_message_at DATETIME DEFAULT NULL COMMENT '最后消息时间',
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     closed_at DATETIME DEFAULT NULL,
     INDEX idx_status (status),
     INDEX idx_user_id (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='Bot客服会话表';
+
+-- ============================================================
+-- 16. 支付方式表
+-- ============================================================
+CREATE TABLE IF NOT EXISTS payment_methods (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL COMMENT '支付方式名称',
+    code VARCHAR(50) NOT NULL UNIQUE COMMENT '支付方式编码 alipay/wechat/bank/usdt_trc20/usdt_erc20/...',
+    type VARCHAR(20) NOT NULL COMMENT '类型 cny法币 crypto数字货币',
+    category VARCHAR(20) DEFAULT 'recharge' COMMENT '适用场景 recharge充值 withdraw提现 both两者',
+    icon VARCHAR(255) DEFAULT '' COMMENT '图标URL',
+    min_amount DECIMAL(18,2) DEFAULT 100.00 COMMENT '最小金额',
+    max_amount DECIMAL(18,2) DEFAULT 50000.00 COMMENT '最大金额',
+    fee_rate DECIMAL(10,4) DEFAULT 0.0000 COMMENT '手续费率',
+    fixed_fee DECIMAL(18,2) DEFAULT 0.00 COMMENT '固定手续费',
+    address VARCHAR(500) DEFAULT '' COMMENT '收款地址(USDT地址/银行卡号/支付宝账号)',
+    address_name VARCHAR(100) DEFAULT '' COMMENT '收款人姓名/开户行',
+    qrcode VARCHAR(255) DEFAULT '' COMMENT '收款二维码图片',
+    auto_confirm TINYINT DEFAULT 0 COMMENT '是否自动确认到账 0人工 1自动(USDT链上监听)',
+    chain VARCHAR(20) DEFAULT '' COMMENT '区块链类型 TRC20/ERC20(仅crypto)',
+    api_config TEXT COMMENT 'API配置JSON(三方支付网关配置)',
+    status TINYINT DEFAULT 1 COMMENT '状态 0禁用 1启用',
+    sort INT DEFAULT 0 COMMENT '排序',
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted TINYINT DEFAULT 0,
+    INDEX idx_type_status (type, status),
+    INDEX idx_code (code)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='支付方式表';
+
+-- ============================================================
+-- 17. 管理员操作日志表
+-- ============================================================
+CREATE TABLE IF NOT EXISTS admin_operation_log (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    admin_id BIGINT NOT NULL COMMENT '操作管理员ID',
+    admin_name VARCHAR(50) DEFAULT '' COMMENT '管理员用户名',
+    action VARCHAR(50) NOT NULL COMMENT '操作类型 login/approve_recharge/reject_recharge/approve_withdraw/reject_withdraw/adjust_balance/disable_user/enable_user/set_vip/...',
+    target_type VARCHAR(30) DEFAULT '' COMMENT '操作对象类型 user/order/bet/promotion/...',
+    target_id BIGINT DEFAULT NULL COMMENT '操作对象ID',
+    before_data TEXT COMMENT '变更前数据JSON',
+    after_data TEXT COMMENT '变更后数据JSON',
+    ip VARCHAR(50) DEFAULT '' COMMENT '操作IP',
+    user_agent VARCHAR(500) DEFAULT '' COMMENT 'User-Agent',
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_admin_id (admin_id),
+    INDEX idx_action (action),
+    INDEX idx_create_time (create_time)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='管理员操作日志表';
+
+-- ============================================================
+-- 18. USDT充值地址池（用于自动到账匹配）
+-- ============================================================
+CREATE TABLE IF NOT EXISTS usdt_address_pool (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    address VARCHAR(100) NOT NULL UNIQUE COMMENT 'USDT收款地址',
+    chain VARCHAR(20) DEFAULT 'TRC20' COMMENT '链类型',
+    label VARCHAR(50) DEFAULT '' COMMENT '标签',
+    status TINYINT DEFAULT 1 COMMENT '状态 0禁用 1启用',
+    last_used_time DATETIME DEFAULT NULL COMMENT '最后使用时间',
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_chain_status (chain, status)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='USDT充值地址池';
+
+-- ============================================================
+-- 支付方式初始化数据
+-- ============================================================
+INSERT INTO payment_methods (name, code, type, category, icon, min_amount, max_amount, fee_rate, address, address_name, qrcode, auto_confirm, chain, status, sort) VALUES
+('支付宝', 'alipay', 'cny', 'recharge', '/uploads/icons/alipay.png', 100.00, 50000.00, 0.0000, '', '', '/uploads/qrcode/alipay.png', 0, '', 1, 1),
+('微信支付', 'wechat', 'cny', 'recharge', '/uploads/icons/wechat.png', 100.00, 50000.00, 0.0000, '', '', '/uploads/qrcode/wechat.png', 0, '', 1, 2),
+('银行卡转账', 'bank', 'cny', 'both', '/uploads/icons/bank.png', 100.00, 50000.00, 0.0100, '', '', '', 0, '', 1, 3),
+('USDT-TRC20', 'usdt_trc20', 'crypto', 'both', '/uploads/icons/usdt.png', 100.00, 500000.00, 0.0050, 'TExxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '', '', 1, 'TRC20', 1, 4),
+('USDT-ERC20', 'usdt_erc20', 'crypto', 'both', '/uploads/icons/usdt.png', 100.00, 500000.00, 0.0050, '0xExxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '', '', 1, 'ERC20', 1, 5);

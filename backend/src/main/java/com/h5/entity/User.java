@@ -34,6 +34,9 @@ public class User {
 
     private Integer status;
 
+    /** 角色：user普通用户 / admin管理员 / superadmin超级管理员 */
+    private String role;
+
     private String fundPassword;
 
     private String inviteCode;
@@ -49,6 +52,10 @@ public class User {
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
+
+    /** 乐观锁版本号 */
+    @Version
+    private Integer version;
 
     @TableLogic
     private Integer deleted;

@@ -74,9 +74,9 @@ type ResultTable = {
   };
 };
 
-/** 登录（对接真实后端 /api/wap/auth/login） */
+/** 登录（对接管理端独立登录接口 /api/admin/auth/login） */
 export const getLogin = (data?: object) => {
-  return http.request<any>("post", "/wap/auth/login", { data });
+  return http.request<any>("post", "/admin/auth/login", { data });
 };
 
 /** 刷新`token`（真实后端无刷新机制，返回空） */

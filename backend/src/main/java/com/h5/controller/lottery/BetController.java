@@ -6,11 +6,10 @@ import com.h5.common.BusinessException;
 import com.h5.common.Result;
 import com.h5.common.UserContext;
 import com.h5.entity.Bet;
-import com.h5.entity.Transaction;
 import com.h5.entity.User;
 import com.h5.mapper.BetMapper;
-import com.h5.mapper.TransactionMapper;
 import com.h5.mapper.UserMapper;
+import com.h5.service.BalanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +25,7 @@ public class BetController {
 
     @Autowired private BetMapper betMapper;
     @Autowired private UserMapper userMapper;
-    @Autowired private TransactionMapper transactionMapper;
+    @Autowired private BalanceService balanceService;
 
     /**
      * 提交投注
@@ -48,13 +47,8 @@ public class BetController {
 
         if (amount.compareTo(BigDecimal.ZERO) <= 0) throw new BusinessException("投注金额必须大于0");
         BigDecimal totalAmount = amount.multiply(new BigDecimal(count));
-        if (totalAmount.compareTo(user.getBalance()) > 0) throw new BusinessException("余额不足");
 
         String betNo = "B" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + new Random().nextInt(10000);
-
-        // 扣减余额
-        user.setBalance(user.getBalance().subtract(totalAmount));
-        userMapper.updateById(user);
 
         Bet bet = new Bet();
         bet.setBetNo(betNo);
@@ -69,22 +63,17 @@ public class BetController {
         bet.setStatus("pending");
         betMapper.insert(bet);
 
-        // 交易流水
-        Transaction tx = new Transaction();
-        tx.setUserId(userId);
-        tx.setType("bet");
-        tx.setAmount(totalAmount.negate());
-        tx.setBalanceBefore(user.getBalance().add(totalAmount));
-        tx.setBalanceAfter(user.getBalance());
-        tx.setRefId(bet.getId());
-        tx.setRefNo(betNo);
-        tx.setDescription(lotteryCode + " 投注 " + numbers);
-        transactionMapper.insert(tx);
+        // 使用 BalanceService 安全扣减余额（乐观锁 + 自动写流水）
+        User updated = balanceService.deductBalance(
+                userId, totalAmount, "bet",
+                bet.getId(), betNo,
+                lotteryCode + " 投注 " + playType + " " + numbers
+        );
 
         Map<String, Object> data = new HashMap<>();
         data.put("betNo", betNo);
         data.put("amount", totalAmount);
-        data.put("balance", user.getBalance());
+        data.put("balance", updated.getBalance());
         data.put("status", "pending");
         return Result.success(data);
     }

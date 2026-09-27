@@ -32,7 +32,7 @@ public class BotTelegramUser {
 
     private String inviteCode;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime createTime;
 
-    private LocalDateTime updatedAt;
+    private LocalDateTime updateTime;
 }

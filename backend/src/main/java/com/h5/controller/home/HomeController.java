@@ -1,124 +1,62 @@
 package com.h5.controller.home;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.h5.common.Result;
-import com.h5.entity.*;
-import com.h5.mapper.*;
+import com.h5.entity.Banner;
+import com.h5.entity.Lottery;
+import com.h5.entity.Notice;
+import com.h5.service.HomeService;
+import com.h5.service.LotteryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
+/**
+ * 首页 Controller（委托 HomeService / LotteryService）
+ */
 @RestController
 @RequestMapping("/wap/home")
 public class HomeController {
 
-    @Autowired private SiteConfigMapper siteConfigMapper;
-    @Autowired private BannerMapper bannerMapper;
-    @Autowired private NoticeMapper noticeMapper;
-    @Autowired private LotteryMapper lotteryMapper;
-    @Autowired private CasinoProviderMapper casinoProviderMapper;
+    @Autowired private HomeService homeService;
+    @Autowired private LotteryService lotteryService;
 
-    /**
-     * 站点配置
-     * GET /api/wap/home/config
-     */
+    /** 站点配置 */
     @GetMapping("/config")
     public Result<Map<String, Object>> config() {
-        List<SiteConfig> configs = siteConfigMapper.selectList(null);
-        Map<String, String> configMap = configs.stream()
-                .collect(Collectors.toMap(SiteConfig::getConfigKey, SiteConfig::getConfigValue, (a, b) -> a));
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("siteName", configMap.getOrDefault("site_name", "H5 Game"));
-        data.put("customerServiceUrl", configMap.getOrDefault("customer_service_url", ""));
-        data.put("telegramGroupUrl", configMap.getOrDefault("telegram_group_url", ""));
-        data.put("rechargeMinAmount", configMap.getOrDefault("recharge_min_amount", "100"));
-        data.put("rechargeMaxAmount", configMap.getOrDefault("recharge_max_amount", "50000"));
-        data.put("withdrawMinAmount", configMap.getOrDefault("withdraw_min_amount", "100"));
-        data.put("withdrawFeeRate", configMap.getOrDefault("withdraw_fee_rate", "0.01"));
-        data.put("icp", "");
-        data.put("copyright", "© 2024 H5 Game");
-        return Result.success(data);
+        return Result.success(homeService.getSiteConfig());
     }
 
-    /**
-     * Banner 列表
-     * GET /api/wap/home/banners
-     */
+    /** Banner 列表 */
     @GetMapping("/banners")
     public Result<List<Banner>> banners(@RequestParam(required = false, defaultValue = "home") String position) {
-        List<Banner> list = bannerMapper.selectList(
-                new LambdaQueryWrapper<Banner>()
-                        .eq(Banner::getStatus, 1)
-                        .eq(Banner::getPosition, position)
-                        .orderByAsc(Banner::getSort)
-        );
-        return Result.success(list);
+        return Result.success(homeService.getBanners(position));
     }
 
-    /**
-     * 公告列表
-     * GET /api/wap/home/announcements
-     */
+    /** 公告列表 */
     @GetMapping("/announcements")
     public Result<List<Notice>> announcements() {
-        List<Notice> list = noticeMapper.selectList(
-                new LambdaQueryWrapper<Notice>()
-                        .eq(Notice::getStatus, 1)
-                        .orderByAsc(Notice::getSort)
-                        .last("LIMIT 10")
-        );
-        return Result.success(list);
+        return Result.success(homeService.getAnnouncements());
     }
 
-    /**
-     * 彩票分类
-     * GET /api/wap/home/categories
-     */
+    /** 彩票分类（含彩种） */
     @GetMapping("/categories")
     public Result<List<Map<String, Object>>> categories() {
-        List<Lottery> lotteries = lotteryMapper.selectList(
-                new LambdaQueryWrapper<Lottery>()
-                        .eq(Lottery::getStatus, 1)
-                        .orderByAsc(Lottery::getSort)
-        );
-        // 按 categoryCode 分组
-        Map<String, List<Lottery>> grouped = lotteries.stream()
-                .collect(Collectors.groupingBy(Lottery::getCategoryCode));
-
-        List<Map<String, Object>> categories = new ArrayList<>();
-        for (Map.Entry<String, List<Lottery>> entry : grouped.entrySet()) {
-            Map<String, Object> cat = new HashMap<>();
-            cat.put("code", entry.getKey());
-            cat.put("name", entry.getValue().get(0).getCategoryName());
-            cat.put("games", entry.getValue());
-            categories.add(cat);
-        }
-        return Result.success(categories);
+        return Result.success(homeService.getCategories());
     }
 
-    /**
-     * 彩票游戏列表
-     * GET /api/wap/home/games
-     */
+    /** 彩票游戏列表 */
     @GetMapping("/games")
     public Result<List<Lottery>> games(@RequestParam(required = false) String categoryCode) {
-        LambdaQueryWrapper<Lottery> wrapper = new LambdaQueryWrapper<Lottery>()
-                .eq(Lottery::getStatus, 1)
-                .orderByAsc(Lottery::getSort);
         if (categoryCode != null && !categoryCode.isEmpty()) {
-            wrapper.eq(Lottery::getCategoryCode, categoryCode);
+            return Result.success(lotteryService.getLotteriesByCategory(categoryCode));
         }
-        List<Lottery> list = lotteryMapper.selectList(wrapper);
-        return Result.success(list);
+        return Result.success(lotteryService.getAllLotteries());
     }
 
-    /**
-     * 快捷入口
-     * GET /api/wap/home/quick-entries
-     */
+    /** 快捷入口 */
     @GetMapping("/quick-entries")
     public Result<List<Map<String, Object>>> quickEntries() {
         List<Map<String, Object>> entries = new ArrayList<>();

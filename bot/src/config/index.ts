@@ -14,6 +14,7 @@ export const config = {
   miniAppUrl: process.env.MINI_APP_URL || 'https://your-h5-domain.com',
   apiBaseUrl: process.env.API_BASE_URL || 'http://127.0.0.1:8888/api',
   internalSecret: process.env.BOT_INTERNAL_SECRET || '',
+  redisUrl: process.env.REDIS_URL || '',  // Redis 连接URL（配置后会话存储用Redis，否则用内存）
   adminIds: (process.env.ADMIN_TELEGRAM_IDS || '')
     .split(',')
     .map((id) => parseInt(id.trim(), 10))

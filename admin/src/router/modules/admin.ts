@@ -71,6 +71,16 @@ export default {
         title: "消息管理",
         keepAlive: true
       }
+    },
+    {
+      path: "/admin/payments",
+      name: "AdminPayments",
+      component: () => import("@/views/admin/PaymentManagement.vue"),
+      meta: {
+        icon: "ep/credit-card",
+        title: "支付方式管理",
+        keepAlive: true
+      }
     }
   ]
 } satisfies RouteConfigsTable;
