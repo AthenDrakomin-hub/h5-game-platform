@@ -23,6 +23,10 @@ public class UsdtAddressPool {
 
     private Integer status;
 
+    private Integer sort;
+
+    private Integer usageCount;
+
     private LocalDateTime lastUsedTime;
 
     @TableField(fill = FieldFill.INSERT)

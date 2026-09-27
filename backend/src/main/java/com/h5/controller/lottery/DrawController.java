@@ -25,9 +25,13 @@ public class DrawController {
      * GET /api/wap/draw/info/batch?codes=jsdd,jspk10
      */
     @GetMapping("/info/batch")
-    public Result<Map<String, Object>> batch(@RequestParam String codes) {
-        String[] codeArray = codes.split(",");
+    public Result<Map<String, Object>> batch(@RequestParam(required = false) String codes) {
         Map<String, Object> result = new HashMap<>();
+
+        // 无参数时返回全部彩票开奖信息
+        String[] codeArray = (codes == null || codes.isBlank())
+                ? lotteryService.getAllLotteries().stream().map(Lottery::getCode).toArray(String[]::new)
+                : codes.split(",");
 
         for (String code : codeArray) {
             code = code.trim();

@@ -58,6 +58,8 @@ public class WebConfig implements WebMvcConfigurer {
                         "/admin/auth/login",
                         // Bot 自动注册（Bot 内部调用）
                         "/bot/auth/register",
+                        "/wap/payment-methods/recharge-methods",
+                        "/wap/payment-methods/withdraw-methods",
                         // 静态资源
                         "/uploads/**",
                         "/error"

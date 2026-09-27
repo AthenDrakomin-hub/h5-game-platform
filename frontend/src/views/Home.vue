@@ -40,7 +40,7 @@
         @click="goQuickNav(item)"
       >
         <div class="quick-nav-icon">
-          <van-icon :name="item.icon" size="24" color="#e8b860" />
+          <img :src="item.icon" :alt="item.name" class="icon-img" />
         </div>
         <span class="quick-nav-name">{{ item.name }}</span>
       </div>
@@ -60,7 +60,10 @@
           class="game-card"
           @click="goGame(game)"
         >
-          <div class="game-icon">{{ game.icon }}</div>
+          <div class="game-icon">
+            <img v-if="game.icon" :src="game.icon" :alt="game.name" class="game-icon-img" />
+            <span v-else>{{ game.name }}</span>
+          </div>
           <span class="game-name">{{ game.name }}</span>
         </div>
       </div>
@@ -243,6 +246,11 @@ onMounted(() => {
   justify-content: center;
   border: 1px solid #333;
 }
+.icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
 .quick-nav-name {
   font-size: 12px;
   color: #b0b0b0;
@@ -292,7 +300,19 @@ onMounted(() => {
   transform: scale(0.98);
 }
 .game-icon {
-  font-size: 32px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #222;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.game-icon-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 .game-name {
   font-size: 13px;

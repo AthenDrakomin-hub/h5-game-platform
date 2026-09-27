@@ -275,9 +275,9 @@ public class UsdtTrc20Service {
                             .eq(PaymentMethod::getStatus, 1)
             );
             for (PaymentMethod pm : methods) {
-                if (pm.getPayAccount() != null && !pm.getPayAccount().isEmpty()
-                        && !addresses.contains(pm.getPayAccount())) {
-                    addresses.add(pm.getPayAccount());
+                if (pm.getAddress() != null && !pm.getAddress().isEmpty()
+                        && !addresses.contains(pm.getAddress())) {
+                    addresses.add(pm.getAddress());
                 }
             }
         }

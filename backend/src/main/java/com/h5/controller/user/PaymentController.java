@@ -22,7 +22,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @RestController
-@RequestMapping("/wap/payment")
+@RequestMapping("/wap/payment-methods")
 public class PaymentController {
 
     @Autowired private OrderMapper orderMapper;

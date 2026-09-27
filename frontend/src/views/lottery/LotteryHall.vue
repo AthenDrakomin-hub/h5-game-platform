@@ -33,7 +33,10 @@
             class="game-card"
             @click="goGame(game)"
           >
-            <div class="game-icon">{{ game.icon }}</div>
+            <div class="game-icon">
+              <img v-if="game.icon" :src="game.icon" :alt="game.name" class="game-icon-img" />
+              <span v-else>{{ game.icon }}</span>
+            </div>
             <div class="game-info">
               <span class="game-name">{{ game.name }}</span>
               <span class="game-status" :class="game.status">{{ game.status === 'online' ? '正在开奖' : '维护中' }}</span>

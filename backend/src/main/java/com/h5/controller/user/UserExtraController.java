@@ -72,13 +72,13 @@ public class UserExtraController {
                         .eq(PaymentMethod::getStatus, 1)
                         .last("LIMIT 1")
         );
-        String payAccount = methods.isEmpty() ? "请联系客服获取收款账户" : methods.get(0).getPayAccount();
+        String payAccount = methods.isEmpty() ? "请联系客服获取收款账户" : methods.get(0).getAddress();
 
         Map<String, Object> data = new HashMap<>();
         data.put("orderNo", orderNo);
         data.put("amount", amount);
         data.put("payAccount", payAccount);
-        data.put("qrcode", "/uploads/qrcode/manual.png");
+        data.put("qrcode", "/uploads/qrcode/manual.svg");
         data.put("status", "pending");
         return Result.success(data);
     }
@@ -325,7 +325,7 @@ public class UserExtraController {
                         .eq(PaymentMethod::getStatus, 1)
                         .last("LIMIT 1")
         );
-        String address = methods.isEmpty() ? "TExxxxxxxxxxxxxxxxxxxxxxxxxxxxx" : methods.get(0).getPayAccount();
+        String address = methods.isEmpty() ? "TExxxxxxxxxxxxxxxxxxxxxxxxxxxxx" : methods.get(0).getAddress();
 
         Order order = new Order();
         order.setOrderNo(orderNo);
@@ -347,13 +347,13 @@ public class UserExtraController {
     }
 
     // ==================== 内部工具 ====================
-    private Map<String, Object> getMessagesByType(int page, int pageSize, String type) {
+    private Result<Map<String, Object>> getMessagesByType(int page, int pageSize, String type) {
         Long userId = UserContext.getUserId();
         Page<Message> pageResult = messageMapper.selectPage(
                 new Page<>(page, pageSize),
                 new LambdaQueryWrapper<Message>()
                         .and(w -> w.eq(Message::getUserId, userId).or().eq(Message::getUserId, 0))
-                        .eq(Message::getType, type)
+                        .eq(Message::getCategory, type)
                         .orderByDesc(Message::getCreateTime)
         );
         Map<String, Object> data = new HashMap<>();

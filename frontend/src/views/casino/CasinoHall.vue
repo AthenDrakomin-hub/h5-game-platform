@@ -40,7 +40,10 @@
             :class="{ maintenance: platform.status === 'maintenance' }"
             @click="enterPlatform(platform)"
           >
-            <div class="platform-icon">{{ platform.icon }}</div>
+            <div class="platform-icon">
+              <img v-if="platform.icon" :src="platform.icon" :alt="platform.name" class="platform-icon-img" />
+              <span v-else>{{ platform.icon }}</span>
+            </div>
             <div class="platform-info">
               <span class="platform-name">{{ platform.name }}</span>
               <span class="platform-count">{{ platform.gameCount }}款游戏</span>
@@ -225,6 +228,11 @@ onMounted(() => {
   background: #222;
   border-radius: 10px;
   flex-shrink: 0;
+}
+.platform-icon-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 .platform-info {
   flex: 1;

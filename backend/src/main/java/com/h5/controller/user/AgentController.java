@@ -193,7 +193,7 @@ public class AgentController {
         Map<String, Object> data = new HashMap<>();
         data.put("inviteCode", user != null ? user.getInviteCode() : "INV" + userId);
         data.put("inviteLink", siteDomain + "/register?invite=" + (user != null ? user.getInviteCode() : "INV" + userId));
-        data.put("qrCode", "/uploads/qrcode/invite_" + userId + ".png");
+        data.put("qrCode", "/uploads/qrcode/invite_" + userId + ".svg");
         data.put("totalClicks", 0);
         data.put("totalRegisters", members.size());
         data.put("conversionRate", members.size() > 0 ? "100%" : "0%");

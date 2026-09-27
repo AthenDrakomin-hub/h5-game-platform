@@ -60,14 +60,14 @@ public class HomeController {
     @GetMapping("/quick-entries")
     public Result<List<Map<String, Object>>> quickEntries() {
         List<Map<String, Object>> entries = new ArrayList<>();
-        entries.add(Map.of("id", 1, "name", "充值", "icon", "/uploads/icons/recharge.png", "link", "/user/recharge"));
-        entries.add(Map.of("id", 2, "name", "提现", "icon", "/uploads/icons/withdraw.png", "link", "/user/withdraw"));
-        entries.add(Map.of("id", 3, "name", "优惠活动", "icon", "/uploads/icons/promo.png", "link", "/promo"));
-        entries.add(Map.of("id", 4, "name", "VIP中心", "icon", "/uploads/icons/vip.png", "link", "/user/vip"));
-        entries.add(Map.of("id", 5, "name", "在线客服", "icon", "/uploads/icons/service.png", "link", "/chat"));
-        entries.add(Map.of("id", 6, "name", "邀请好友", "icon", "/uploads/icons/invite.png", "link", "/user/invite"));
-        entries.add(Map.of("id", 7, "name", "游戏记录", "icon", "/uploads/icons/record.png", "link", "/user/bet-record"));
-        entries.add(Map.of("id", 8, "name", "更多", "icon", "/uploads/icons/more.png", "link", "/user"));
+        entries.add(Map.of("id", 1, "name", "充值", "icon", "/uploads/icons/recharge.svg", "link", "/user/recharge"));
+        entries.add(Map.of("id", 2, "name", "提现", "icon", "/uploads/icons/withdraw.svg", "link", "/user/withdraw"));
+        entries.add(Map.of("id", 3, "name", "优惠活动", "icon", "/uploads/icons/promo.svg", "link", "/promo"));
+        entries.add(Map.of("id", 4, "name", "VIP中心", "icon", "/uploads/icons/vip.svg", "link", "/user/vip"));
+        entries.add(Map.of("id", 5, "name", "在线客服", "icon", "/uploads/icons/service.svg", "link", "/chat"));
+        entries.add(Map.of("id", 6, "name", "邀请好友", "icon", "/uploads/icons/invite.svg", "link", "/user/invite"));
+        entries.add(Map.of("id", 7, "name", "游戏记录", "icon", "/uploads/icons/record.svg", "link", "/user/bet-record"));
+        entries.add(Map.of("id", 8, "name", "更多", "icon", "/uploads/icons/more.svg", "link", "/user"));
         return Result.success(entries);
     }
 }

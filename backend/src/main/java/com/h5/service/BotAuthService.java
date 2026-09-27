@@ -110,8 +110,8 @@ public class BotAuthService {
             binding.setLanguageCode(dto.getLanguageCode() != null ? dto.getLanguageCode() : "");
             binding.setIsPremium(0);
             binding.setInviteCode(dto.getInviteCode() != null ? dto.getInviteCode() : "");
-            binding.setCreatedAt(LocalDateTime.now());
-            binding.setUpdatedAt(LocalDateTime.now());
+            binding.setCreateTime(LocalDateTime.now());
+            binding.setUpdateTime(LocalDateTime.now());
             botTelegramUserMapper.insert(binding);
         }
 
@@ -159,7 +159,7 @@ public class BotAuthService {
             changed = true;
         }
         if (changed) {
-            binding.setUpdatedAt(LocalDateTime.now());
+            binding.setUpdateTime(LocalDateTime.now());
             botTelegramUserMapper.updateById(binding);
         }
     }

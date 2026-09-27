@@ -18,7 +18,7 @@ public class UserSettingController {
     public Result<List<Map<String, Object>>> avatars() {
         List<Map<String, Object>> list = new ArrayList<>();
         for (int i = 1; i <= 12; i++) {
-            list.add(Map.of("id", i, "url", "/uploads/avatars/avatar" + i + ".png"));
+            list.add(Map.of("id", i, "url", "/uploads/avatars/avatar" + i + ".svg"));
         }
         return Result.success(list);
     }

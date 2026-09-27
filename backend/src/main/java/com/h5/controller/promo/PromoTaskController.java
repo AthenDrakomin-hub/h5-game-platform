@@ -46,8 +46,8 @@ public class PromoTaskController {
         for (Promotion p : promos) {
             Map<String, Object> item = new HashMap<>();
             item.put("id", p.getId());
-            item.put("name", p.getName());
-            item.put("icon", p.getIcon());
+            item.put("name", p.getTitle());
+            item.put("icon", p.getImage());
             item.put("link", "/promo/detail/" + p.getId());
             list.add(item);
         }
@@ -66,7 +66,7 @@ public class PromoTaskController {
         Map<String, Object> data = new HashMap<>();
         if (promo != null) {
             data.put("id", promo.getId());
-            data.put("title", promo.getName());
+            data.put("title", promo.getTitle());
             data.put("image", promo.getImage());
             data.put("link", "/promo/detail/" + promo.getId());
             data.put("status", 1);
@@ -288,7 +288,7 @@ public class PromoTaskController {
         Map<String, Object> data = new HashMap<>();
         data.put("inviteCode", user != null ? user.getInviteCode() : "INV" + userId);
         data.put("inviteLink", siteDomain + "/register?invite=" + (user != null ? user.getInviteCode() : "INV" + userId));
-        data.put("qrCode", "/uploads/qrcode/invite_" + userId + ".png");
+        data.put("qrCode", "/uploads/qrcode/invite_" + userId + ".svg");
         data.put("totalInvited", invited);
         data.put("totalReward", BigDecimal.ZERO);
         return Result.success(data);
