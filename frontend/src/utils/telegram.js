@@ -2,11 +2,41 @@
  * Telegram Mini App 适配层
  * 封装 Telegram WebApp SDK，提供统一的初始化、用户、主题、按钮、反馈、分享能力
  * 通过 VITE_TELEGRAM_ENABLED 环境变量开关
+ *
+ * 版本兼容：所有 6.1+ 才引入的 API（BackButton/setHeaderColor/disableVerticalSwipes 等）
+ * 调用前必须通过 isVersionAtLeast('6.1') 检查，低版本静默降级，避免控制台警告刷屏
  */
 
 const TG = typeof window !== 'undefined' ? window.Telegram?.WebApp : null
 
 export const isTelegram = !!TG
+
+/* ===== 版本工具 ===== */
+
+/**
+ * 比较版本号，返回当前 TG 版本是否 >= minVersion
+ * @param {string} minVersion 如 '6.1'、'7.0'
+ */
+export function isVersionAtLeast(minVersion) {
+  if (!TG?.version) return false
+  const cur = String(TG.version).split('.').map(Number)
+  const min = String(minVersion).split('.').map(Number)
+  for (let i = 0; i < Math.max(cur.length, min.length); i++) {
+    const c = cur[i] || 0
+    const m = min[i] || 0
+    if (c > m) return true
+    if (c < m) return false
+  }
+  return true
+}
+
+/** 安全调用：版本不支持时静默跳过 */
+function safeCall(minVersion, fn) {
+  if (!isVersionAtLeast(minVersion)) return
+  try { fn() } catch (e) { /* 静默降级 */ }
+}
+
+/* ===== 初始化 ===== */
 
 /** 初始化 Telegram WebApp，必须在应用启动时调用 */
 export function initTelegram() {
@@ -14,16 +44,18 @@ export function initTelegram() {
   try {
     TG.ready()
     TG.expand()
-    // 禁用垂直滑动关闭（防止误触）
-    if (TG.disableVerticalSwipes) TG.disableVerticalSwipes()
-    // 设置头部颜色
-    if (TG.setHeaderColor) TG.setHeaderColor('secondary_bg_color')
+    // disableVerticalSwipes 需要 6.1+
+    safeCall('6.1', () => TG.disableVerticalSwipes())
+    // setHeaderColor 需要 6.1+
+    safeCall('6.1', () => TG.setHeaderColor('secondary_bg_color'))
     return true
   } catch (e) {
     console.warn('[Telegram] init failed:', e)
     return false
   }
 }
+
+/* ===== 用户信息 ===== */
 
 /** 获取 Telegram 用户信息（从 initData 解析） */
 export function getTelegramUser() {
@@ -44,6 +76,8 @@ export function getInitData() {
   return TG?.initData || ''
 }
 
+/* ===== 主题 ===== */
+
 /** 获取主题参数 */
 export function getThemeParams() {
   if (!TG) return null
@@ -54,16 +88,14 @@ export function getThemeParams() {
 export function onThemeChange(callback) {
   if (!TG) return () => {}
   const handler = () => callback(getThemeParams())
-  TG.onEvent('themeChanged', handler)
-  return () => TG.offEvent('themeChanged', handler)
+  try { TG.onEvent('themeChanged', handler) } catch (e) { /* noop */ }
+  return () => { try { TG.offEvent('themeChanged', handler) } catch (e) { /* noop */ } }
 }
 
 /** 应用 Telegram 主题到 CSS 变量（与现有深色金调做兼容合并） */
 export function applyTelegramTheme(params) {
   if (!params) return
   const root = document.documentElement
-  // Telegram 主题色映射到 Vant 变量
-  // 仅覆盖背景/文字类，保留品牌金调主色
   const map = {
     bg_color: '--tg-bg-color',
     text_color: '--tg-text-color',
@@ -74,87 +106,117 @@ export function applyTelegramTheme(params) {
     secondary_bg_color: '--tg-secondary-bg-color'
   }
   Object.entries(map).forEach(([tgKey, cssVar]) => {
-    if (params[tgKey]) {
-      root.style.setProperty(cssVar, params[tgKey])
-    }
+    if (params[tgKey]) root.style.setProperty(cssVar, params[tgKey])
   })
-  // 标记 Telegram 环境
   root.classList.add('telegram-env')
 }
 
-/* ===== BackButton ===== */
+/* ===== BackButton（需要 6.1+） ===== */
+
+let _backClickHandler = null
+
 export function showBackButton(onClick) {
-  if (!TG?.BackButton) return
-  TG.BackButton.show()
-  TG.BackButton.onClick(onClick)
+  if (!TG?.BackButton || !isVersionAtLeast('6.1')) return
+  try {
+    // 先解绑旧 handler，避免重复绑定
+    if (_backClickHandler) {
+      TG.BackButton.offClick(_backClickHandler)
+    }
+    _backClickHandler = onClick
+    TG.BackButton.onClick(onClick)
+    TG.BackButton.show()
+  } catch (e) { /* 静默降级 */ }
 }
 
 export function hideBackButton() {
-  if (!TG?.BackButton) return
-  TG.BackButton.hide()
-  TG.BackButton.offClick()
+  if (!TG?.BackButton || !isVersionAtLeast('6.1')) return
+  try {
+    TG.BackButton.hide()
+    if (_backClickHandler) {
+      TG.BackButton.offClick(_backClickHandler)
+      _backClickHandler = null
+    }
+  } catch (e) { /* 静默降级 */ }
 }
 
-/* ===== MainButton ===== */
+/* ===== MainButton（需要 6.0+，基础可用） ===== */
+
+let _mainClickHandler = null
+
 export function showMainButton(text, onClick, options = {}) {
   if (!TG?.MainButton) return
-  TG.MainButton.setText(text)
-  if (options.color) TG.MainButton.setParams({ color: options.color })
-  TG.MainButton.show()
-  TG.MainButton.onClick(onClick)
+  try {
+    TG.MainButton.setText(text)
+    if (options.color) TG.MainButton.setParams({ color: options.color })
+    if (_mainClickHandler) TG.MainButton.offClick(_mainClickHandler)
+    _mainClickHandler = onClick
+    TG.MainButton.onClick(onClick)
+    TG.MainButton.show()
+  } catch (e) { /* 静默降级 */ }
 }
 
 export function hideMainButton() {
   if (!TG?.MainButton) return
-  TG.MainButton.hide()
-  TG.MainButton.offClick()
+  try {
+    TG.MainButton.hide()
+    if (_mainClickHandler) {
+      TG.MainButton.offClick(_mainClickHandler)
+      _mainClickHandler = null
+    }
+  } catch (e) { /* 静默降级 */ }
 }
 
 export function setMainButtonLoading(loading) {
   if (!TG?.MainButton) return
-  if (loading) TG.MainButton.showProgress()
-  else TG.MainButton.hideProgress()
+  try {
+    if (loading) TG.MainButton.showProgress()
+    else TG.MainButton.hideProgress()
+  } catch (e) { /* 静默降级 */ }
 }
 
 /* ===== HapticFeedback 触觉反馈 ===== */
+
 export const haptic = {
   impact(style = 'medium') {
-    // style: light | medium | heavy | rigid | soft
-    TG?.HapticFeedback?.impactOccurred?.(style)
+    try { TG?.HapticFeedback?.impactOccurred?.(style) } catch (e) { /* noop */ }
   },
   success() {
-    TG?.HapticFeedback?.notificationOccurred?.('success')
+    try { TG?.HapticFeedback?.notificationOccurred?.('success') } catch (e) { /* noop */ }
   },
   warning() {
-    TG?.HapticFeedback?.notificationOccurred?.('warning')
+    try { TG?.HapticFeedback?.notificationOccurred?.('warning') } catch (e) { /* noop */ }
   },
   error() {
-    TG?.HapticFeedback?.notificationOccurred?.('error')
+    try { TG?.HapticFeedback?.notificationOccurred?.('error') } catch (e) { /* noop */ }
   },
   selection() {
-    TG?.HapticFeedback?.selectionChanged?.()
+    try { TG?.HapticFeedback?.selectionChanged?.() } catch (e) { /* noop */ }
   }
 }
 
 /* ===== 分享 ===== */
+
 export function shareToTelegram(text, url = '') {
   if (!TG) {
-    // 非 Telegram 环境，用 Web Share API 或复制
     if (navigator.share) {
       navigator.share({ title: text, text, url }).catch(() => {})
     }
     return
   }
-  const shareUrl = url || window.location.href
-  TG.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(text)}`)
+  try {
+    const shareUrl = url || window.location.href
+    TG.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(text)}`)
+  } catch (e) { /* noop */ }
 }
 
 /* ===== 关闭 Mini App ===== */
+
 export function closeApp() {
-  TG?.close?.()
+  try { TG?.close?.() } catch (e) { /* noop */ }
 }
 
 /* ===== 版本信息 ===== */
+
 export function getTgVersion() {
   return TG?.version || ''
 }
