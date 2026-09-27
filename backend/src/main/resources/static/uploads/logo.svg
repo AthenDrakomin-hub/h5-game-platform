@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120">
+  <defs>
+    <linearGradient id="nova-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0C75E"/>
+      <stop offset="100%" stop-color="#C9A227"/>
+    </linearGradient>
+    <linearGradient id="nova-teal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D4AA"/>
+      <stop offset="100%" stop-color="#00A896"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(10, 10)">
+    <rect x="0" y="0" width="100" height="100" rx="22" fill="#0A1628"/>
+    <path d="M28 72 L28 28 L45 28 L62 55 L62 28 L77 28 L77 72 L60 72 L43 45 L43 72 Z" fill="url(#nova-teal)"/>
+    <circle cx="82" cy="20" r="4" fill="url(#nova-gold)"/>
+    <circle cx="88" cy="26" r="2" fill="#F0C75E" opacity="0.6"/>
+  </g>
+  <text x="130" y="58" font-family="'Arial Black',Arial,sans-serif" font-size="42" font-weight="900" fill="#FFFFFF" letter-spacing="4">NOVA</text>
+  <text x="130" y="85" font-family="Arial,sans-serif" font-size="14" fill="#00D4AA" letter-spacing="8">新星娱乐</text>
+</svg>

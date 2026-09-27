@@ -491,8 +491,8 @@ CREATE TABLE IF NOT EXISTS usdt_address_pool (
 -- 支付方式初始化数据
 -- ============================================================
 INSERT INTO payment_methods (name, code, type, category, icon, min_amount, max_amount, fee_rate, address, address_name, qrcode, auto_confirm, chain, status, sort) VALUES
-('支付宝', 'alipay', 'cny', 'recharge', '/uploads/icons/alipay.png', 100.00, 50000.00, 0.0000, '', '', '/uploads/qrcode/alipay.png', 0, '', 1, 1),
-('微信支付', 'wechat', 'cny', 'recharge', '/uploads/icons/wechat.png', 100.00, 50000.00, 0.0000, '', '', '/uploads/qrcode/wechat.png', 0, '', 1, 2),
-('银行卡转账', 'bank', 'cny', 'both', '/uploads/icons/bank.png', 100.00, 50000.00, 0.0100, '', '', '', 0, '', 1, 3),
-('USDT-TRC20', 'usdt_trc20', 'crypto', 'both', '/uploads/icons/usdt.png', 100.00, 500000.00, 0.0050, 'TExxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '', '', 1, 'TRC20', 1, 4),
-('USDT-ERC20', 'usdt_erc20', 'crypto', 'both', '/uploads/icons/usdt.png', 100.00, 500000.00, 0.0050, '0xExxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '', '', 1, 'ERC20', 1, 5);
+('支付宝', 'alipay', 'cny', 'recharge', '/uploads/icons/alipay.svg', 100.00, 50000.00, 0.0000, '', '', '/uploads/qrcode/alipay_qr.svg', 0, '', 1, 1),
+('微信支付', 'wechat', 'cny', 'recharge', '/uploads/icons/wechat.svg', 100.00, 50000.00, 0.0000, '', '', '/uploads/qrcode/wechat_qr.svg', 0, '', 1, 2),
+('银行卡转账', 'bank', 'cny', 'both', '/uploads/icons/bank.svg', 100.00, 50000.00, 0.0100, '', '', '', 0, '', 1, 3),
+('USDT-TRC20', 'usdt_trc20', 'crypto', 'both', '/uploads/icons/usdt.svg', 100.00, 500000.00, 0.0050, 'TExxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '', '/uploads/qrcode/usdt_qr.svg', 1, 'TRC20', 1, 4),
+('USDT-ERC20', 'usdt_erc20', 'crypto', 'both', '/uploads/icons/usdt.svg', 100.00, 500000.00, 0.0050, '0xExxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '', '/uploads/qrcode/usdt_qr.svg', 1, 'ERC20', 1, 5);

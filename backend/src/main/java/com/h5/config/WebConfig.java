@@ -1,13 +1,15 @@
 package com.h5.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * Web 配置：CORS + 鉴权拦截器
+ * Web 配置：CORS + 鉴权拦截器 + 静态资源映射
  */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
@@ -20,6 +22,10 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Autowired
     private RateLimitInterceptor rateLimitInterceptor;
+
+    /** 外部上传文件目录（生产环境建议挂载到持久化卷） */
+    @Value("${app.upload-dir:./uploads}")
+    private String uploadDir;
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -78,5 +84,22 @@ public class WebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .excludePathPatterns("/error", "/uploads/**")
                 .order(0); // 最高优先级
+    }
+
+    /**
+     * 静态资源映射：/uploads/** 同时映射到 classpath 和外部目录
+     * 优先级：外部目录 > classpath（外部上传的文件覆盖内置资源）
+     * 注意：由于 context-path=/api，实际访问路径为 /api/uploads/**
+     *       前端独立部署时由 Nginx 直接服务 /uploads，无需经过后端
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/uploads/**")
+                .addResourceLocations(
+                        "file:" + uploadDir + "/",
+                        "classpath:/static/uploads/",
+                        "classpath:/uploads/"
+                )
+                .setCachePeriod(3600); // 缓存1小时
     }
 }
