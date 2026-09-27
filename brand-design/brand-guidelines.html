@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA 新星娱乐 · 品牌规范手册</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:#0A1628; color:#fff; line-height:1.6; }
+.cover { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; background:linear-gradient(135deg,#0A1628,#0D1F35); position:relative; overflow:hidden; }
+.cover::before { content:''; position:absolute; width:600px; height:600px; background:radial-gradient(circle,rgba(0,212,170,0.15),transparent 70%); top:-200px; right:-200px; }
+.cover::after { content:''; position:absolute; width:400px; height:400px; background:radial-gradient(circle,rgba(240,199,94,0.1),transparent 70%); bottom:-100px; left:-100px; }
+.cover-logo { width:120px; height:120px; margin-bottom:30px; position:relative; z-index:1; }
+.cover h1 { font-size:56px; font-weight:900; letter-spacing:8px; background:linear-gradient(135deg,#00D4AA,#F0C75E); -webkit-background-clip:text; -webkit-text-fill-color:transparent; position:relative; z-index:1; }
+.cover p { font-size:18px; color:#8B949E; letter-spacing:6px; margin-top:10px; position:relative; z-index:1; }
+.cover .version { position:absolute; bottom:40px; color:#6E7681; font-size:13px; }
+.section { max-width:1000px; margin:0 auto; padding:80px 40px; }
+.section h2 { font-size:28px; margin-bottom:8px; color:#00D4AA; }
+.section .subtitle { color:#8B949E; font-size:14px; margin-bottom:40px; }
+.color-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:16px; }
+.color-card { background:#0D1F35; border-radius:12px; overflow:hidden; border:1px solid #1E3A5F; }
+.color-swatch { height:80px; }
+.color-info { padding:12px; }
+.color-info h4 { font-size:14px; margin-bottom:4px; }
+.color-info p { font-size:11px; color:#6E7681; font-family:monospace; }
+.typography-grid { display:grid; gap:24px; }
+.type-item { background:#0D1F35; border-radius:12px; padding:24px; border:1px solid #1E3A5F; }
+.type-item .label { font-size:11px; color:#6E7681; text-transform:uppercase; letter-spacing:2px; margin-bottom:8px; }
+.type-item .sample { font-size:32px; font-weight:bold; }
+.logo-section { display:grid; grid-template-columns:1fr 1fr; gap:30px; }
+.logo-box { background:#0D1F35; border-radius:12px; padding:30px; text-align:center; border:1px solid #1E3A5F; }
+.logo-box.dark { background:#0A1628; }
+.logo-box.light { background:#fff; }
+.logo-box img { max-width:200px; }
+.logo-box p { margin-top:12px; font-size:12px; color:#6E7681; }
+.spacing-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:8px; }
+.space-item { background:#00D4AA; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:11px; color:#0A1628; font-weight:bold; }
+.component-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; }
+.comp-box { background:#0D1F35; border-radius:12px; padding:20px; border:1px solid #1E3A5F; text-align:center; }
+.comp-box .btn { display:inline-block; padding:10px 24px; border-radius:8px; font-size:14px; font-weight:bold; }
+.comp-box .btn.primary { background:linear-gradient(135deg,#00D4AA,#00A896); color:#fff; }
+.comp-box .btn.gold { background:linear-gradient(135deg,#F0C75E,#C9A227); color:#0A1628; }
+.comp-box .btn.outline { border:1.5px solid #00D4AA; color:#00D4AA; }
+.comp-box .tag { display:inline-block; padding:4px 12px; border-radius:12px; font-size:12px; font-weight:bold; }
+.comp-box .tag.teal { background:rgba(0,212,170,0.15); color:#00D4AA; }
+.comp-box .tag.gold { background:rgba(240,199,94,0.15); color:#F0C75E; }
+.comp-box .card { background:#0A1628; border-radius:8px; padding:16px; text-align:left; }
+.comp-box .card h5 { font-size:14px; margin-bottom:4px; }
+.comp-box .card p { font-size:11px; color:#6E7681; }
+.toc { position:fixed; right:30px; top:50%; transform:translateY(-50%); background:#0D1F35; border-radius:12px; padding:20px; border:1px solid #1E3A5F; z-index:100; }
+.toc a { display:block; color:#8B949E; text-decoration:none; font-size:12px; padding:6px 0; transition:color 0.2s; }
+.toc a:hover { color:#00D4AA; }
+@media (max-width:1200px) { .toc { display:none; } }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <svg class="cover-logo" viewBox="0 0 100 100">
+    <rect width="100" height="100" rx="22" fill="#0A1628" stroke="#00D4AA" stroke-width="2"/>
+    <path d="M28 72 L28 28 L45 28 L62 55 L62 28 L77 28 L77 72 L60 72 L43 45 L43 72 Z" fill="#00D4AA"/>
+    <circle cx="82" cy="20" r="4" fill="#F0C75E"/>
+  </svg>
+  <h1>NOVA</h1>
+  <p>新星娱乐 · 品牌规范手册</p>
+  <div class="version">Brand Guidelines v1.0 · 2026</div>
+</div>
+
+<div class="toc">
+  <a href="#logo">Logo 规范</a>
+  <a href="#color">色彩系统</a>
+  <a href="#typography">字体规范</a>
+  <a href="#spacing">间距圆角</a>
+  <a href="#components">组件规范</a>
+  <a href="#voice">品牌声音</a>
+  <a href="#applications">应用场景</a>
+</div>
+
+<div id="logo" class="section">
+  <h2>Logo 规范</h2>
+  <p class="subtitle">几何 N 字母 + 星芒点缀，象征新星升起、无限可能</p>
+  <div class="logo-section">
+    <div class="logo-box dark">
+      <img src="logo-nova.svg" alt="NOVA Logo 深色">
+      <p>深色背景使用（主版本）</p>
+    </div>
+    <div class="logo-box light">
+      <img src="logo-nova.svg" alt="NOVA Logo 浅色" style="filter:brightness(0) invert(1);">
+      <p>浅色背景使用（反白版本）</p>
+    </div>
+  </div>
+  <div style="margin-top:30px; background:#0D1F35; border-radius:12px; padding:24px; border:1px solid #1E3A5F;">
+    <h4 style="color:#F0C75E; margin-bottom:12px;">⚠️ 错误用法</h4>
+    <ul style="color:#8B949E; font-size:14px; line-height:2; padding-left:20px;">
+      <li>不得拉伸、扭曲 Logo 比例</li>
+      <li>不得更改 Logo 颜色（青色 N + 金色星芒是固定组合）</li>
+      <li>不得在低对比度背景上使用 Logo</li>
+      <li>不得添加阴影、描边、渐变等额外效果</li>
+      <li>Logo 最小使用尺寸：宽度不小于 32px</li>
+      <li>Logo 周围安全空间：不小于 Logo 高度的 1/4</li>
+    </ul>
+  </div>
+</div>
+
+<div id="color" class="section">
+  <h2>色彩系统</h2>
+  <p class="subtitle">深午夜蓝 + 青色 + 金色，传递高端信任与品质感</p>
+  
+  <h3 style="color:#F0C75E; font-size:18px; margin-bottom:16px;">品牌主色</h3>
+  <div class="color-grid" style="margin-bottom:40px;">
+    <div class="color-card"><div class="color-swatch" style="background:#00D4AA;"></div><div class="color-info"><h4>Primary Teal</h4><p>#00D4AA</p></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#00A896;"></div><div class="color-info"><h4>Teal Dark</h4><p>#00A896</p></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#F0C75E;"></div><div class="color-info"><h4>Gold</h4><p>#F0C75E</p></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#C9A227;"></div><div class="color-info"><h4>Gold Dark</h4><p>#C9A227</p></div></div>
+  </div>
+
+  <h3 style="color:#F0C75E; font-size:18px; margin-bottom:16px;">中性色（深色模式）</h3>
+  <div class="color-grid" style="margin-bottom:40px;">
+    <div class="color-card"><div class="color-swatch" style="background:#0A1628;"></div><div class="color-info"><h4>Background</h4><p>#0A1628</p></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#0D1F35;"></div><div class="color-info"><h4>Surface</h4><p>#0D1F35</p></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#142844;"></div><div class="color-info"><h4>Surface 2</h4><p>#142844</p></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#1E3A5F;"></div><div class="color-info"><h4>Border</h4><p>#1E3A5F</p></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#FFFFFF;"></div><div class="color-info"><h4>Text Primary</h4><p>#FFFFFF</p></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#8B949E;"></div><div class="color-info"><h4>Text Secondary</h4><p>#8B949E</p></div></div>
+  </div>
+
+  <h3 style="color:#F0C75E; font-size:18px; margin-bottom:16px;">语义色</h3>
+  <div class="color-grid">
+    <div class="color-card"><div class="color-swatch" style="background:#07C160;"></div><div class="color-info"><h4>Success</h4><p>#07C160</p></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#EE0A24;"></div><div class="color-info"><h4>Danger</h4><p>#EE0A24</p></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#FF976A;"></div><div class="color-info"><h4>Warning</h4><p>#FF976A</p></div></div>
+    <div class="color-card"><div class="color-swatch" style="background:#7B2FF7;"></div><div class="color-info"><h4>Info / VIP</h4><p>#7B2FF7</p></div></div>
+  </div>
+</div>
+
+<div id="typography" class="section">
+  <h2>字体规范</h2>
+  <p class="subtitle">无衬线字体为主，数字使用等宽字体确保对齐</p>
+  <div class="typography-grid">
+    <div class="type-item">
+      <div class="label">标题 / Display</div>
+      <div class="sample" style="font-size:40px; font-weight:900; letter-spacing:2px;">NOVA 新星</div>
+      <p style="color:#6E7681; font-size:12px; margin-top:8px;">font-family: Arial Black / sans-serif · font-weight: 900 · letter-spacing: 2-4px</p>
+    </div>
+    <div class="type-item">
+      <div class="label">副标题 / Heading</div>
+      <div class="sample" style="font-size:24px; font-weight:700;">欢迎来到新星娱乐</div>
+      <p style="color:#6E7681; font-size:12px; margin-top:8px;">font-family: -apple-system / Segoe UI · font-weight: 700</p>
+    </div>
+    <div class="type-item">
+      <div class="label">正文 / Body</div>
+      <div class="sample" style="font-size:14px; font-weight:400; line-height:1.6;">NOVA 新星娱乐致力于为用户提供安全、公平、极致的游戏体验。</div>
+      <p style="color:#6E7681; font-size:12px; margin-top:8px;">font-family: system-ui · font-size: 14px · line-height: 1.5-1.6</p>
+    </div>
+    <div class="type-item">
+      <div class="label">数字 / Numbers（金额、倒计时）</div>
+      <div class="sample" style="font-family:'Courier New',monospace; font-size:28px; font-weight:bold; color:#F0C75E;">¥ 8,888.00</div>
+      <p style="color:#6E7681; font-size:12px; margin-top:8px;">font-family: Courier New / monospace · 等宽对齐 · 金额使用金色</p>
+    </div>
+  </div>
+</div>
+
+<div id="spacing" class="section">
+  <h2>间距与圆角</h2>
+  <p class="subtitle">4px 基准网格，确保视觉节奏一致</p>
+  <h3 style="color:#F0C75E; font-size:16px; margin-bottom:16px;">间距系统（4px 基准）</h3>
+  <div class="spacing-grid" style="margin-bottom:40px;">
+    <div class="space-item" style="height:16px;">4</div>
+    <div class="space-item" style="height:24px;">8</div>
+    <div class="space-item" style="height:32px;">12</div>
+    <div class="space-item" style="height:40px;">16</div>
+    <div class="space-item" style="height:48px;">20</div>
+    <div class="space-item" style="height:56px;">24</div>
+  </div>
+  <h3 style="color:#F0C75E; font-size:16px; margin-bottom:16px;">圆角系统</h3>
+  <div style="display:flex; gap:20px; flex-wrap:wrap;">
+    <div style="text-align:center;"><div style="width:60px; height:60px; background:#00D4AA; border-radius:4px;"></div><p style="font-size:12px; color:#6E7681; margin-top:8px;">4px 小元素</p></div>
+    <div style="text-align:center;"><div style="width:60px; height:60px; background:#00D4AA; border-radius:8px;"></div><p style="font-size:12px; color:#6E7681; margin-top:8px;">8px 按钮</p></div>
+    <div style="text-align:center;"><div style="width:60px; height:60px; background:#00D4AA; border-radius:12px;"></div><p style="font-size:12px; color:#6E7681; margin-top:8px;">12px 卡片</p></div>
+    <div style="text-align:center;"><div style="width:60px; height:60px; background:#00D4AA; border-radius:16px;"></div><p style="font-size:12px; color:#6E7681; margin-top:8px;">16px 弹窗</p></div>
+    <div style="text-align:center;"><div style="width:60px; height:60px; background:#00D4AA; border-radius:22px;"></div><p style="font-size:12px; color:#6E7681; margin-top:8px;">22px Logo/图标</p></div>
+    <div style="text-align:center;"><div style="width:60px; height:60px; background:#00D4AA; border-radius:50%;"></div><p style="font-size:12px; color:#6E7681; margin-top:8px;">50% 头像/圆形按钮</p></div>
+  </div>
+</div>
+
+<div id="components" class="section">
+  <h2>组件规范</h2>
+  <p class="subtitle">核心 UI 组件的品牌化样式</p>
+  <div class="component-grid">
+    <div class="comp-box"><p style="font-size:11px; color:#6E7681; margin-bottom:12px;">主要按钮</p><span class="btn primary">立即充值</span></div>
+    <div class="comp-box"><p style="font-size:11px; color:#6E7681; margin-bottom:12px;">金色按钮（VIP/强调）</p><span class="btn gold">VIP 特权</span></div>
+    <div class="comp-box"><p style="font-size:11px; color:#6E7681; margin-bottom:12px;">描边按钮</p><span class="btn outline">了解更多</span></div>
+    <div class="comp-box"><p style="font-size:11px; color:#6E7681; margin-bottom:12px;">青色标签</p><span class="tag teal">HOT</span></div>
+    <div class="comp-box"><p style="font-size:11px; color:#6E7681; margin-bottom:12px;">金色标签</p><span class="tag gold">VIP</span></div>
+    <div class="comp-box"><p style="font-size:11px; color:#6E7681; margin-bottom:12px;">卡片</p><div class="card"><h5>极速赛车</h5><p>即将开奖 · 00:45</p></div></div>
+  </div>
+</div>
+
+<div id="voice" class="section">
+  <h2>品牌声音与文案调性</h2>
+  <p class="subtitle">专业、简洁、有温度，不浮夸不低俗</p>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+    <div style="background:#0D1F35; border-radius:12px; padding:24px; border:1px solid #1E3A5F;">
+      <h4 style="color:#00D4AA; margin-bottom:12px;">✓ 推荐用法</h4>
+      <ul style="color:#8B949E; font-size:14px; line-height:2; padding-left:20px;">
+        <li>"立即充值，畅享游戏"</li>
+        <li>"恭喜中奖，奖金已到账"</li>
+        <li>"VIP 会员，尊享专属特权"</li>
+        <li>"安全、公平、透明"</li>
+        <li>使用"您"而非"你"</li>
+      </ul>
+    </div>
+    <div style="background:#0D1F35; border-radius:12px; padding:24px; border:1px solid #1E3A5F;">
+      <h4 style="color:#EE0A24; margin-bottom:12px;">✗ 避免用法</h4>
+      <ul style="color:#8B949E; font-size:14px; line-height:2; padding-left:20px;">
+        <li>夸张承诺："稳赚不赔""百分百中奖"</li>
+        <li>低俗用语、赌博暗示</li>
+        <li>过度使用感叹号和 emoji</li>
+        <li>"亲""宝宝"等过度亲昵称呼</li>
+        <li>误导性宣传、虚假对比</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="applications" class="section">
+  <h2>应用场景</h2>
+  <p class="subtitle">品牌在各场景的统一呈现</p>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px;">
+    <div style="background:#0D1F35; border-radius:12px; padding:20px; border:1px solid #1E3A5F; text-align:center;">
+      <div style="font-size:32px; margin-bottom:8px;">📱</div>
+      <h4 style="font-size:14px; margin-bottom:4px;">移动端 H5</h4>
+      <p style="font-size:11px; color:#6E7681;">深色模式 · 480px 居中</p>
+    </div>
+    <div style="background:#0D1F35; border-radius:12px; padding:20px; border:1px solid #1E3A5F; text-align:center;">
+      <div style="font-size:32px; margin-bottom:8px;">💻</div>
+      <h4 style="font-size:14px; margin-bottom:4px;">管理后台</h4>
+      <p style="font-size:11px; color:#6E7681;">桌面端 · 深色主题</p>
+    </div>
+    <div style="background:#0D1F35; border-radius:12px; padding:20px; border:1px solid #1E3A5F; text-align:center;">
+      <div style="font-size:32px; margin-bottom:8px;">✈️</div>
+      <h4 style="font-size:14px; margin-bottom:4px;">Telegram Mini App</h4>
+      <p style="font-size:11px; color:#6E7681;">主题自适应 · BackButton</p>
+    </div>
+    <div style="background:#0D1F35; border-radius:12px; padding:20px; border:1px solid #1E3A5F; text-align:center;">
+      <div style="font-size:32px; margin-bottom:8px;">📧</div>
+      <h4 style="font-size:14px; margin-bottom:4px;">邮件模板</h4>
+      <p style="font-size:11px; color:#6E7681;">通知 · 营销 · 验证</p>
+    </div>
+    <div style="background:#0D1F35; border-radius:12px; padding:20px; border:1px solid #1E3A5F; text-align:center;">
+      <div style="font-size:32px; margin-bottom:8px;">🎨</div>
+      <h4 style="font-size:14px; margin-bottom:4px;">社交媒体</h4>
+      <p style="font-size:11px; color:#6E7681;">Telegram · Twitter · Facebook</p>
+    </div>
+    <div style="background:#0D1F35; border-radius:12px; padding:20px; border:1px solid #1E3A5F; text-align:center;">
+      <div style="font-size:32px; margin-bottom:8px;">🔖</div>
+      <h4 style="font-size:14px; margin-bottom:4px;">品牌物料</h4>
+      <p style="font-size:11px; color:#6E7681;">名片 · 海报 · 横幅</p>
+    </div>
+  </div>
+</div>
+
+<div style="text-align:center; padding:60px; color:#6E7681; font-size:13px; border-top:1px solid #1E3A5F;">
+  <p>NOVA 新星娱乐 · Brand Guidelines v1.0</p>
+  <p style="margin-top:8px;">本规范为品牌唯一标准，任何对外传播须严格遵守</p>
+</div>
+
+</body>
+</html>

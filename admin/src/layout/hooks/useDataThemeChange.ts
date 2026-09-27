@@ -15,6 +15,8 @@ export function useDataThemeChange() {
   const themeColors = ref<Array<themeColorsType>>([
     /* 亮白色 */
     { color: "#ffffff", themeColor: "light" },
+    /* NOVA 新星娱乐 */
+    { color: "#00D4AA", themeColor: "nova" },
     /* 道奇蓝 */
     { color: "#1b2a47", themeColor: "default" },
     /* 深紫罗兰色 */

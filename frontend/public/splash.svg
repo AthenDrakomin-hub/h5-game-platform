@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920">
+  <defs>
+    <radialGradient id="splashglow" cx="50%" cy="35%" r="50%">
+      <stop offset="0%" stop-color="#00D4AA" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#0A1628" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="splashn" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00D4AA"/>
+      <stop offset="100%" stop-color="#00A896"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="#0A1628"/>
+  <rect width="1080" height="1920" fill="url(#splashglow)"/>
+  <!-- 装饰圆环 -->
+  <circle cx="540" cy="650" r="300" fill="none" stroke="#00D4AA" stroke-width="1" opacity="0.1"/>
+  <circle cx="540" cy="650" r="220" fill="none" stroke="#00D4AA" stroke-width="1" opacity="0.15"/>
+  <circle cx="540" cy="650" r="140" fill="none" stroke="#F0C75E" stroke-width="1" opacity="0.2"/>
+  <!-- Logo -->
+  <g transform="translate(390, 530)">
+    <rect width="300" height="300" rx="66" fill="#0D1F35" stroke="#00D4AA" stroke-width="3"/>
+    <path d="M84 222 L84 84 L138 84 L192 168 L192 84 L240 84 L240 222 L186 222 L132 138 L132 222 Z" fill="url(#splashn)"/>
+    <circle cx="255" cy="60" r="12" fill="#F0C75E"/>
+  </g>
+  <!-- 品牌名 -->
+  <text x="540" y="980" font-family="Arial Black,sans-serif" font-size="100" font-weight="900" fill="#fff" text-anchor="middle" letter-spacing="20">NOVA</text>
+  <text x="540" y="1050" font-family="Arial,sans-serif" font-size="36" fill="#00D4AA" text-anchor="middle" letter-spacing="16">新星娱乐</text>
+  <!-- 加载动画点 -->
+  <g transform="translate(440, 1650)">
+    <circle cx="40" cy="0" r="10" fill="#00D4AA">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="100" cy="0" r="10" fill="#00D4AA">
+      <animate attributeName="opacity" values="0.3;1;0.3" dur="1.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="160" cy="0" r="10" fill="#F0C75E">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1.2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  <text x="540" y="1750" font-family="Arial,sans-serif" font-size="24" fill="#6E7681" text-anchor="middle">安全 · 公平 · 透明</text>
+</svg>

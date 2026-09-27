@@ -1,8 +1,8 @@
 <template>
   <div class="not-found-page">
     <div class="nf-content">
-      <div class="nf-code">404</div>
-      <h1 class="nf-title">页面不存在</h1>
+      <img src="/404.svg" alt="404" class="nf-img" />
+      <h1 class="nf-title">页面走丢了</h1>
       <p class="nf-desc">您访问的页面可能已被移除或链接错误</p>
       <van-button round type="primary" class="nf-btn" @click="goHome">
         返回首页
@@ -24,7 +24,7 @@ function goHome() {
 <style scoped>
 .not-found-page {
   min-height: 100vh;
-  background: #0d0d0d;
+  background: #0A1628;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,30 +33,25 @@ function goHome() {
   text-align: center;
   padding: 40px;
 }
-.nf-code {
-  font-size: 96px;
-  font-weight: 900;
-  background: linear-gradient(135deg, #e8b860, #c99a3e);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
-  margin-bottom: 16px;
+.nf-img {
+  width: 280px;
+  height: auto;
+  margin-bottom: 20px;
 }
 .nf-title {
   font-size: 22px;
-  color: #f0f0f0;
+  color: #FFFFFF;
   margin: 0 0 10px 0;
 }
 .nf-desc {
   font-size: 14px;
-  color: #888;
+  color: #8B949E;
   margin: 0 0 30px 0;
 }
 .nf-btn {
-  background: linear-gradient(135deg, #e8b860, #c99a3e) !important;
+  background: linear-gradient(135deg, #00D4AA, #00A896) !important;
   border: none !important;
-  color: #1a1a1a !important;
+  color: #fff !important;
   font-weight: 600 !important;
   width: 180px;
 }

@@ -93,3 +93,15 @@ html[data-theme="auroraGreen"] {
   --pure-theme-menu-title-hover: #fff;
   --pure-theme-menu-active-before: #60ac80;
 }
+
+/* NOVA 新星娱乐 - 深午夜蓝 + 青色 */
+html[data-theme="nova"] {
+  --pure-theme-sub-menu-active-text: #fff;
+  --pure-theme-menu-bg: #0A1628;
+  --pure-theme-menu-hover: rgb(0 212 170 / 15%);
+  --pure-theme-sub-menu-bg: #0D1F35;
+  --pure-theme-menu-text: rgb(254 254 254 / 65%);
+  --pure-theme-sidebar-logo: #0D1F35;
+  --pure-theme-menu-title-hover: #fff;
+  --pure-theme-menu-active-before: #00D4AA;
+}
