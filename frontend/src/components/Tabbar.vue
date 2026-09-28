@@ -1,5 +1,5 @@
 <template>
-  <van-tabbar v-model="active" route active-color="#e8b860" inactive-color="#808080" safe-area-inset-bottom>
+  <van-tabbar v-model="active" route active-color="#d4a84b" inactive-color="#6a5a40" safe-area-inset-bottom>
     <van-tabbar-item to="/" icon="wap-home">首页</van-tabbar-item>
     <van-tabbar-item to="/lottery" icon="gift">彩票</van-tabbar-item>
     <van-tabbar-item to="/casino" icon="gold-coin-o">娱乐城</van-tabbar-item>
@@ -16,8 +16,8 @@ const active = ref(0)
 
 <style scoped>
 :deep(.van-tabbar) {
-  background: #1a1a1a;
-  border-top: 1px solid #333;
+  background: linear-gradient(180deg, #1a130a 0%, #0d0a06 100%);
+  border-top: 1px solid rgba(212, 168, 75, 0.15);
 }
 :deep(.van-tabbar-item__icon) {
   font-size: 20px;

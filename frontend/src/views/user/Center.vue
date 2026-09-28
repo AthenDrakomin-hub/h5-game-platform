@@ -1,128 +1,189 @@
 <template>
   <div class="user-center">
-    <!-- 顶部用户信息 -->
-    <div class="user-header">
-      <div class="user-bg"></div>
-      <div class="user-info-row">
-        <div class="avatar-wrap" @click="goLoginIfNeeded">
+    <!-- 顶部导航 -->
+    <div class="top-bar">
+      <span class="top-title">我的</span>
+      <div class="top-actions">
+        <van-icon name="setting-o" size="20" color="#d4a84b" @click="goSettings" />
+        <van-icon name="chat-o" size="20" color="#d4a84b" @click="goPage('/user/message')" />
+      </div>
+    </div>
+
+    <!-- 用户资料 + 资产合并卡片 -->
+    <div class="profile-assets-card">
+      <!-- 用户资料行 -->
+      <div class="user-profile-row" @click="goLoginIfNeeded">
+        <div class="avatar-wrap">
           <div v-if="authStore.isLoggedIn" class="avatar">
-            {{ (authStore.userInfo?.nickname || 'U')[0].toUpperCase() }}
+            <span class="avatar-level">{{ vipLevelName }}</span>
           </div>
           <div v-else class="avatar avatar-guest">
-            <van-icon name="user-o" size="28" color="#666" />
+            <van-icon name="user-o" size="24" color="#666" />
           </div>
         </div>
-        <div class="user-detail" @click="goLoginIfNeeded">
+        <div class="user-info">
           <template v-if="authStore.isLoggedIn">
             <div class="username">{{ authStore.userInfo?.nickname || authStore.userInfo?.username }}</div>
-            <div class="user-tags">
-              <span class="vip-tag">VIP{{ userStore.vipLevel }}</span>
-              <span v-if="authStore.userInfo?.isTrial" class="trial-tag">试玩</span>
-            </div>
+            <div class="user-sub">{{ joinDateText }}</div>
           </template>
           <template v-else>
             <div class="username">点击登录</div>
             <div class="user-sub">登录后享受更多服务</div>
           </template>
         </div>
-        <div class="header-actions">
-          <van-icon name="setting-o" size="22" color="#ccc" @click="goSettings" />
+        <div class="profile-right">
+          <div class="msg-icon-wrap" @click.stop="goPage('/user/message')">
+            <van-icon name="envelop-o" size="18" color="#d4a84b" />
+            <span v-if="unreadCount > 0" class="msg-badge">{{ unreadCount > 99 ? '99+' : unreadCount }}</span>
+          </div>
+          <van-icon name="arrow" size="14" color="#666" />
         </div>
       </div>
 
-      <!-- 余额卡片 -->
-      <div class="balance-card">
-        <div class="balance-left">
-          <span class="balance-label">账户余额</span>
-          <div class="balance-amount">
+      <!-- 资产行 -->
+      <div class="assets-row">
+        <div class="assets-left">
+          <div class="assets-label">
+            总资产
+            <van-icon name="eye-o" size="14" color="#888" class="eye-icon" @click="toggleBalance" />
+          </div>
+          <div class="assets-amount">
             <span class="currency">¥</span>
             <span class="amount">{{ formattedBalance }}</span>
-            <van-icon name="eye-o" size="16" color="#888" class="eye-icon" @click="toggleBalance" />
+          </div>
+          <div class="yesterday-profit" @click="goPage('/user/profit-loss-report')">
+            昨日收益 <span class="profit-value">+¥{{ yesterdayProfit }}</span>
+            <van-icon name="arrow" size="10" color="#888" />
           </div>
         </div>
-        <div class="balance-actions">
-          <div class="balance-btn recharge" @click="goRecharge">充值</div>
-          <div class="balance-btn withdraw" @click="goWithdraw">提现</div>
+        <div class="assets-actions">
+          <div class="action-btn recharge" @click="goRecharge">
+            <van-icon name="add-o" size="16" />
+            <span>充值</span>
+          </div>
+          <div class="action-btn withdraw" @click="goWithdraw">
+            <van-icon name="down" size="16" />
+            <span>提现</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- 功能菜单 -->
-    <div class="menu-section">
-      <div class="menu-grid">
-        <div class="menu-item" @click="goPage('/user/orders')">
-          <van-icon name="orders-o" size="22" color="#e8b860" />
-          <span>我的订单</span>
+    <!-- 两个大卡片：VIP特权 + 代理中心 -->
+    <div class="big-cards-row">
+      <div class="big-card vip-card" @click="goPage('/user/vip')">
+        <div class="big-card-icon">
+          <van-icon name="vip-card-o" size="32" color="#d4a84b" />
         </div>
-        <div class="menu-item" @click="goPage('/user/bet-records')">
-          <van-icon name="chart-trending-o" size="22" color="#e8b860" />
-          <span>投注记录</span>
+        <div class="big-card-info">
+          <div class="big-card-title">VIP特权</div>
+          <div class="big-card-sub">解锁尊享特权</div>
         </div>
-        <div class="menu-item" @click="goPage('/user/transaction')">
-          <van-icon name="balance-list-o" size="22" color="#e8b860" />
-          <span>账变记录</span>
+      </div>
+      <div class="big-card agent-card" @click="goPage('/user/agent')">
+        <div class="big-card-icon">
+          <van-icon name="friends-o" size="32" color="#d4a84b" />
         </div>
-        <div class="menu-item" @click="goPage('/user/game-records')">
-          <van-icon name="gold-coin-o" size="22" color="#e8b860" />
-          <span>游戏记录</span>
+        <div class="big-card-info">
+          <div class="big-card-title">代理中心</div>
+          <div class="big-card-sub">邀请好友赚佣金</div>
         </div>
       </div>
     </div>
 
-    <div class="menu-section">
-      <div class="menu-list">
-        <div class="menu-list-item" @click="goPage('/user/vip')">
-          <van-icon name="vip-card-o" size="20" color="#e8b860" />
-          <span class="menu-text">VIP特权</span>
-          <van-icon name="arrow" size="14" color="#555" />
+    <!-- 快捷菜单 4个图标 -->
+    <div class="quick-menu-block">
+      <div class="quick-icons-row">
+        <div class="quick-icon-item" @click="goPage('/user/transfer')">
+          <div class="quick-icon-wrap">
+            <van-icon name="exchange" size="26" color="#d4a84b" />
+          </div>
+          <span class="quick-icon-label">转账</span>
         </div>
-        <div class="menu-list-item" @click="goPage('/user/welfare')">
-          <van-icon name="gift-o" size="20" color="#e8b860" />
-          <span class="menu-text">礼金中心</span>
-          <van-icon name="arrow" size="14" color="#555" />
+        <div class="quick-icon-item" @click="goPage('/user/bet-records')">
+          <div class="quick-icon-wrap">
+            <van-icon name="chart-trending-o" size="26" color="#d4a84b" />
+          </div>
+          <span class="quick-icon-label">投注记录</span>
         </div>
-        <div class="menu-list-item" @click="goPage('/user/agent')">
-          <van-icon name="friends-o" size="20" color="#e8b860" />
-          <span class="menu-text">代理中心</span>
-          <van-icon name="arrow" size="14" color="#555" />
+        <div class="quick-icon-item" @click="goPage('/user/transaction')">
+          <div class="quick-icon-wrap">
+            <van-icon name="balance-list-o" size="26" color="#d4a84b" />
+          </div>
+          <span class="quick-icon-label">账变记录</span>
         </div>
-        <div class="menu-list-item" @click="goPage('/user/promote-earn')">
-          <van-icon name="share-o" size="20" color="#e8b860" />
-          <span class="menu-text">推广赚钱</span>
-          <van-icon name="arrow" size="14" color="#555" />
+        <div class="quick-icon-item" @click="goPage('/user/yuebao')">
+          <div class="quick-icon-wrap">
+            <van-icon name="gold-coin-o" size="26" color="#d4a84b" />
+          </div>
+          <span class="quick-icon-label">余额宝</span>
         </div>
-        <div class="menu-list-item" @click="goPage('/user/message')">
-          <van-icon name="chat-o" size="20" color="#e8b860" />
-          <span class="menu-text">消息中心</span>
-          <span v-if="unreadCount > 0" class="badge">{{ unreadCount > 99 ? '99+' : unreadCount }}</span>
-          <van-icon name="arrow" size="14" color="#555" />
+      </div>
+    </div>
+
+    <!-- 菜单列表 -->
+    <div class="menu-list-block">
+      <div class="menu-list-item" @click="goPage('/user/welfare')">
+        <div class="menu-icon-wrap">
+          <van-icon name="gift-o" size="22" color="#d4a84b" />
         </div>
-        <div class="menu-list-item" @click="goPage('/user/bank-cards')">
-          <van-icon name="credit-pay" size="20" color="#e8b860" />
-          <span class="menu-text">银行卡管理</span>
-          <van-icon name="arrow" size="14" color="#555" />
+        <span class="menu-text">福利中心</span>
+        <van-icon name="arrow" size="14" color="#555" />
+      </div>
+      <div class="menu-list-item" @click="goPage('/user/rebate')">
+        <div class="menu-icon-wrap">
+          <van-icon name="clock-o" size="22" color="#d4a84b" />
         </div>
-        <div class="menu-list-item" @click="goPage('/user/wallet-addresses')">
-          <van-icon name="wallet-o" size="20" color="#e8b860" />
-          <span class="menu-text">钱包地址</span>
-          <van-icon name="arrow" size="14" color="#555" />
+        <span class="menu-text">实时返水</span>
+        <van-icon name="arrow" size="14" color="#555" />
+      </div>
+      <div class="menu-list-item" @click="goPage('/user/orders?type=recharge')">
+        <div class="menu-icon-wrap">
+          <van-icon name="credit-pay" size="22" color="#d4a84b" />
         </div>
-        <div class="menu-list-item" @click="goPage('/user/feedback')">
-          <van-icon name="edit" size="20" color="#e8b860" />
-          <span class="menu-text">有奖反馈</span>
-          <van-icon name="arrow" size="14" color="#555" />
+        <span class="menu-text">充值记录</span>
+        <van-icon name="arrow" size="14" color="#555" />
+      </div>
+      <div class="menu-list-item" @click="goPage('/user/orders?type=withdraw')">
+        <div class="menu-icon-wrap">
+          <van-icon name="bank-card" size="22" color="#d4a84b" />
         </div>
-        <div class="menu-list-item" @click="goChat">
-          <van-icon name="service-o" size="20" color="#e8b860" />
-          <span class="menu-text">在线客服</span>
-          <van-icon name="arrow" size="14" color="#555" />
+        <span class="menu-text">提现记录</span>
+        <van-icon name="arrow" size="14" color="#555" />
+      </div>
+      <div class="menu-list-item" @click="goPage('/user/switch-record')">
+        <div class="menu-icon-wrap">
+          <van-icon name="swap" size="22" color="#d4a84b" />
         </div>
+        <span class="menu-text">转换记录</span>
+        <van-icon name="arrow" size="14" color="#555" />
+      </div>
+      <div class="menu-list-item" @click="goPage('/user/profit-loss-report')">
+        <div class="menu-icon-wrap">
+          <van-icon name="chart-colume" size="22" color="#d4a84b" />
+        </div>
+        <span class="menu-text">盈亏记录</span>
+        <van-icon name="arrow" size="14" color="#555" />
+      </div>
+      <div class="menu-list-item" @click="goAppDownload">
+        <div class="menu-icon-wrap">
+          <van-icon name="down" size="22" color="#d4a84b" />
+        </div>
+        <span class="menu-text">APP下载</span>
+        <van-icon name="arrow" size="14" color="#555" />
+      </div>
+      <div class="menu-list-item" @click="goPage('/user/feedback')">
+        <div class="menu-icon-wrap">
+          <van-icon name="edit" size="22" color="#d4a84b" />
+        </div>
+        <span class="menu-text">有奖反馈</span>
+        <van-icon name="arrow" size="14" color="#555" />
       </div>
     </div>
 
     <!-- 退出登录 -->
     <div v-if="authStore.isLoggedIn" class="logout-section">
-      <van-button block round class="logout-btn" @click="onLogout">退出登录</van-button>
+      <div class="logout-btn" @click="onLogout">退出登录</div>
     </div>
 
     <div class="center-footer">
@@ -138,7 +199,7 @@ import { useAuthStore } from '@/stores/auth'
 import { useAppStore } from '@/stores/app'
 import { useUserStore } from '@/stores/user'
 import { userApi } from '@/api/user'
-import { showConfirmDialog } from 'vant'
+import { showConfirmDialog, showToast } from 'vant'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -147,10 +208,26 @@ const userStore = useUserStore()
 
 const showBalance = ref(true)
 const unreadCount = ref(0)
+const yesterdayProfit = ref('0.00')
 
 const formattedBalance = computed(() => {
   if (!showBalance.value) return '****'
   return userStore.formattedBalance
+})
+
+const vipLevelName = computed(() => {
+  const level = userStore.vipLevel || authStore.userInfo?.vipLevel || 0
+  const names = ['普通', '青铜', '白银', '黄金', '铂金', '钻石', '王者']
+  return names[level] || '普通'
+})
+
+const joinDateText = computed(() => {
+  const createTime = authStore.userInfo?.createTime
+  if (!createTime) return '今日加入'
+  const date = new Date(createTime)
+  const today = new Date()
+  if (date.toDateString() === today.toDateString()) return '今日加入'
+  return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} 加入`
 })
 
 function toggleBalance() {
@@ -183,8 +260,8 @@ function goSettings() {
   goPage('/user/settings')
 }
 
-function goChat() {
-  router.push('/chat')
+function goAppDownload() {
+  showToast('APP下载功能开发中')
 }
 
 async function onLogout() {
@@ -221,168 +298,260 @@ onMounted(() => {
 <style scoped>
 .user-center {
   min-height: 100vh;
-  background: #0d0d0d;
-  padding-bottom: 60px;
-}
-.user-header {
-  position: relative;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
   padding-bottom: 70px;
 }
-.user-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  background: linear-gradient(180deg, #1a1a2e 0%, #0d0d0d 100%);
-}
-.user-info-row {
-  position: relative;
+
+/* 顶部导航 */
+.top-bar {
   display: flex;
   align-items: center;
-  padding: 20px 16px 16px;
+  justify-content: center;
+  height: 48px;
+  position: relative;
+  padding: 0 16px;
+}
+.top-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #d4a84b;
+  letter-spacing: 2px;
+}
+.top-actions {
+  position: absolute;
+  right: 16px;
+  display: flex;
+  gap: 18px;
+}
+
+/* 资料+资产合并卡片 */
+.profile-assets-card {
+  margin: 8px 12px 12px;
+  background: linear-gradient(135deg, #2a1f10 0%, #1a130a 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(212, 168, 75, 0.15);
+  overflow: hidden;
+}
+
+/* 用户资料行 */
+.user-profile-row {
+  display: flex;
+  align-items: center;
+  padding: 18px 16px 14px;
   gap: 12px;
 }
 .avatar-wrap {
   flex-shrink: 0;
 }
 .avatar {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #e8b860, #c99a3e);
+  background: linear-gradient(135deg, #d4a84b, #a07828);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  border: 2px solid rgba(212, 168, 75, 0.4);
+}
+.avatar-level {
+  font-size: 13px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: #1a130a;
 }
 .avatar-guest {
   background: #2a2a2a;
+  border-color: #444;
 }
-.user-detail {
+.user-info {
   flex: 1;
 }
 .username {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  color: #f0f0f0;
-  margin-bottom: 4px;
+  color: #f0e6d0;
+  margin-bottom: 3px;
 }
 .user-sub {
-  font-size: 12px;
-  color: #888;
+  font-size: 11px;
+  color: #8a7a5a;
 }
-.user-tags {
+.profile-right {
   display: flex;
-  gap: 6px;
-}
-.vip-tag {
-  font-size: 10px;
-  background: linear-gradient(135deg, #e8b860, #c99a3e);
-  color: #1a1a1a;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-weight: 700;
-}
-.trial-tag {
-  font-size: 10px;
-  background: rgba(7, 193, 96, 0.2);
-  color: #07c160;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-.header-actions {
-  flex-shrink: 0;
-}
-.balance-card {
-  position: absolute;
-  bottom: 0;
-  left: 16px;
-  right: 16px;
-  background: linear-gradient(135deg, #2a2a3e, #1a1a2e);
-  border-radius: 16px;
-  padding: 16px;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  border: 1px solid #3a3a4e;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  gap: 8px;
 }
-.balance-left {
+.msg-icon-wrap {
+  position: relative;
+  padding: 4px;
+}
+.msg-badge {
+  position: absolute;
+  top: 0;
+  right: -2px;
+  background: #ee0a24;
+  color: #fff;
+  font-size: 9px;
+  min-width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+}
+
+/* 资产行 */
+.assets-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px 18px;
+}
+.assets-left {
   flex: 1;
 }
-.balance-label {
+.assets-label {
   font-size: 12px;
-  color: #888;
-  display: block;
-  margin-bottom: 4px;
-}
-.balance-amount {
+  color: #8a7a5a;
   display: flex;
   align-items: center;
   gap: 4px;
+  margin-bottom: 4px;
+}
+.eye-icon {
+  cursor: pointer;
+}
+.assets-amount {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
 }
 .currency {
   font-size: 14px;
-  color: #e8b860;
+  color: #d4a84b;
+  font-weight: 600;
 }
 .amount {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
-  color: #e8b860;
+  color: #f0e6d0;
   font-variant-numeric: tabular-nums;
 }
-.eye-icon {
-  margin-left: 6px;
-  cursor: pointer;
-}
-.balance-actions {
+.yesterday-profit {
+  font-size: 11px;
+  color: #8a7a5a;
+  margin-top: 4px;
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 3px;
 }
-.balance-btn {
-  padding: 8px 16px;
+.profit-value {
+  color: #52c41a;
+  font-weight: 600;
+}
+.assets-actions {
+  display: flex;
+  gap: 10px;
+}
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 9px 18px;
   border-radius: 20px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
 }
-.balance-btn.recharge {
-  background: linear-gradient(135deg, #e8b860, #c99a3e);
-  color: #1a1a1a;
+.action-btn.recharge {
+  background: linear-gradient(135deg, #d4a84b, #a07828);
+  color: #1a130a;
 }
-.balance-btn.withdraw {
-  background: transparent;
-  border: 1px solid #e8b860;
-  color: #e8b860;
+.action-btn.withdraw {
+  background: linear-gradient(135deg, #d4a84b, #a07828);
+  color: #1a130a;
 }
-.menu-section {
-  padding: 16px;
+
+/* 两个大卡片 */
+.big-cards-row {
+  display: flex;
+  gap: 10px;
+  padding: 0 12px 12px;
 }
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  background: #1a1a1a;
+.big-card {
+  flex: 1;
+  background: linear-gradient(135deg, #2a1f10 0%, #1a130a 100%);
+  border-radius: 14px;
+  border: 1px solid rgba(212, 168, 75, 0.12);
+  padding: 16px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.big-card-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
   border-radius: 12px;
-  padding: 16px 8px;
+  background: rgba(212, 168, 75, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.menu-item {
+.big-card-info {
+  flex: 1;
+}
+.big-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f0e6d0;
+  margin-bottom: 2px;
+}
+.big-card-sub {
+  font-size: 11px;
+  color: #8a7a5a;
+}
+
+/* 快捷菜单 */
+.quick-menu-block {
+  margin: 0 12px 12px;
+  background: linear-gradient(135deg, #2a1f10 0%, #1a130a 100%);
+  border-radius: 14px;
+  border: 1px solid rgba(212, 168, 75, 0.12);
+  padding: 16px 0;
+}
+.quick-icons-row {
+  display: flex;
+  justify-content: space-around;
+}
+.quick-icon-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   cursor: pointer;
 }
-.menu-item span {
-  font-size: 11px;
-  color: #aaa;
-}
-.menu-list {
-  background: #1a1a1a;
+.quick-icon-wrap {
+  width: 42px;
+  height: 42px;
   border-radius: 12px;
+  background: rgba(212, 168, 75, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quick-icon-label {
+  font-size: 11px;
+  color: #b0a080;
+}
+
+/* 菜单列表 */
+.menu-list-block {
+  margin: 0 12px 12px;
+  background: linear-gradient(135deg, #2a1f10 0%, #1a130a 100%);
+  border-radius: 14px;
+  border: 1px solid rgba(212, 168, 75, 0.12);
   overflow: hidden;
 }
 .menu-list-item {
@@ -390,45 +559,48 @@ onMounted(() => {
   align-items: center;
   gap: 12px;
   padding: 14px 16px;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid rgba(212, 168, 75, 0.06);
   cursor: pointer;
 }
 .menu-list-item:last-child {
   border-bottom: none;
 }
-.menu-text {
-  flex: 1;
-  font-size: 14px;
-  color: #d0d0d0;
-}
-.badge {
-  background: #ee0a24;
-  color: #fff;
-  font-size: 10px;
-  min-width: 18px;
-  height: 18px;
-  border-radius: 9px;
+.menu-icon-wrap {
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 5px;
 }
+.menu-text {
+  flex: 1;
+  font-size: 14px;
+  color: #d0c4a8;
+}
+
+/* 退出登录 */
 .logout-section {
-  padding: 0 16px 16px;
+  padding: 8px 12px 16px;
 }
 .logout-btn {
-  background: transparent !important;
-  border: 1px solid #ee0a24 !important;
-  color: #ee0a24 !important;
-  height: 44px !important;
+  background: transparent;
+  border: 1px solid rgba(238, 10, 36, 0.5);
+  color: #ee0a24;
+  text-align: center;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
 }
+
 .center-footer {
   text-align: center;
-  padding: 20px;
+  padding: 16px;
 }
 .center-footer p {
-  font-size: 11px;
-  color: #444;
+  font-size: 10px;
+  color: #4a4030;
   margin: 0;
 }
 </style>
