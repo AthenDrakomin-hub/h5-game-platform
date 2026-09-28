@@ -9,6 +9,7 @@ target/
 **/target/
 build/
 **/build/
+!admin/build/
 
 # IDE
 .idea/
