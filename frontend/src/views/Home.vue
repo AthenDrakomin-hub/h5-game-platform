@@ -451,10 +451,12 @@ onMounted(() => {
   color: #8a7a5a;
 }
 .category-item.active {
-  background: rgba(212,168,75,0.1);
+  background: linear-gradient(180deg, rgba(240,208,128,0.25) 0%, rgba(212,168,75,0.15) 100%);
+  border-left: 2px solid #f0d080;
 }
 .category-item.active span {
   color: #f0d080;
+  font-weight: 600;
 }
 .hot-badge {
   position: absolute;
