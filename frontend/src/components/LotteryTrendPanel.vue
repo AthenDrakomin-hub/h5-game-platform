@@ -162,7 +162,7 @@ onMounted(() => {
 }
 .cell-blue {
   background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
-  color: #fff !important;
+  color: #3a2610 !important;
 }
 .cell-empty {
   color: #8a7a5a;

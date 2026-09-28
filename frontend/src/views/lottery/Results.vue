@@ -164,7 +164,7 @@ onMounted(() => {
 }
 .result-ball.special {
   background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
-  color: #fff;
+  color: #3a2610;
 }
 .empty-state {
   padding: 60px 20px;

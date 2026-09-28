@@ -102,7 +102,7 @@ onMounted(() => { loadInfo(); loadRecords() })
 <style scoped>
 .redpacket-page { min-height: 100vh; background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%); }
 :deep(.van-nav-bar) { background: transparent; }
-:deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) { color: #fff !important; }
+:deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) { color: #f2e0b8 !important; }
 .redpacket-content { padding: 20px; }
 .redpacket-header { text-align: center; padding: 30px 0; }
 .redpacket-icon { font-size: 80px; margin-bottom: 16px; }
