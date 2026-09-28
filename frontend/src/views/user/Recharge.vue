@@ -7,6 +7,26 @@
         <span>当前余额：¥{{ userStore.formattedBalance }}</span>
       </div>
 
+      <!-- 优惠活动横幅 -->
+      <div class="promo-banner" @click="$router.push('/promo')">
+        <div class="promo-banner-item">
+          <div class="promo-banner-icon">🎁</div>
+          <div class="promo-banner-text">
+            <span class="promo-banner-title">首存奖励</span>
+            <span class="promo-banner-desc">首次存款享100%加成</span>
+          </div>
+        </div>
+        <div class="promo-banner-divider"></div>
+        <div class="promo-banner-item">
+          <div class="promo-banner-icon">💰</div>
+          <div class="promo-banner-text">
+            <span class="promo-banner-title">每日返利</span>
+            <span class="promo-banner-desc">流水越高返利越多</span>
+          </div>
+        </div>
+        <GoldIcon name="arrow" :size="14" color="#8a7a5a" class="promo-banner-arrow" />
+      </div>
+
       <!-- 充值方式 -->
       <div class="section">
         <div class="section-title">选择充值方式</div>
@@ -211,6 +231,49 @@ onMounted(() => {
   margin-bottom: 12px;
   font-size: 13px;
   color: #f2e0b8;
+}
+/* 优惠活动横幅 */
+.promo-banner {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(rgba(212,168,75,0.12) 0%, rgba(212,168,75,0.02) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  border-radius: 14px;
+  border: 1px solid rgba(212,168,75,0.25);
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+.promo-banner-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.promo-banner-icon {
+  font-size: 22px;
+}
+.promo-banner-text {
+  display: flex;
+  flex-direction: column;
+}
+.promo-banner-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f0d080;
+}
+.promo-banner-desc {
+  font-size: 10px;
+  color: #8a7a5a;
+  margin-top: 2px;
+}
+.promo-banner-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(255,255,255,0.1);
+  margin: 0 10px;
+}
+.promo-banner-arrow {
+  flex-shrink: 0;
 }
 .section {
   margin-bottom: 16px;

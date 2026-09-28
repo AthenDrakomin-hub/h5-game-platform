@@ -25,14 +25,19 @@
       </van-swipe>
     </div>
 
-    <!-- 大奖记录横向滚动 -->
-    <div class="jackpot-bar">
-      <div class="jackpot-title">◆ 大奖记录 ◆</div>
-      <div class="jackpot-scroll">
-        <div class="jackpot-track">
-          <span v-for="(item, i) in jackpotRecords" :key="i" class="jackpot-item">
-            恭喜 {{ item.user }} 赢得 <span class="jackpot-amount">{{ item.amount }}</span>
-          </span>
+    <!-- 大奖记录2列卡片 -->
+    <div class="jackpot-section">
+      <div class="jackpot-header">
+        <span class="jackpot-title-text">大奖记录</span>
+        <span class="jackpot-more" @click="$router.push('/promo')">更多 ›</span>
+      </div>
+      <div class="jackpot-grid">
+        <div v-for="(item, i) in jackpotRecords" :key="i" class="jackpot-card">
+          <img :src="`/assets/games/game${(i % 6) + 1}.png`" :alt="item.user" class="jackpot-game-icon" />
+          <div class="jackpot-card-info">
+            <span class="jackpot-user">恭喜 {{ item.user }}</span>
+            <span class="jackpot-card-amount">¥{{ item.amount }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -283,44 +288,64 @@ onMounted(() => {
   margin-top: 8px;
 }
 
-/* 大奖记录 */
-.jackpot-bar {
+/* 大奖记录2列卡片 */
+.jackpot-section {
   margin: 12px;
-  background: linear-gradient(rgba(255,255,255,0.06), rgba(255,255,255,0)),
-              linear-gradient(145deg, rgba(30,24,18,0.6), rgba(10,9,8,0.4));
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 10px 0;
-  overflow: hidden;
 }
-.jackpot-title {
-  text-align: center;
-  font-size: 12px;
-  color: #d4a84b;
+.jackpot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 8px;
-  letter-spacing: 2px;
+  padding: 0 2px;
 }
-.jackpot-scroll {
-  overflow: hidden;
-  white-space: nowrap;
-}
-.jackpot-track {
-  display: inline-block;
-  animation: scrollJackpot 20s linear infinite;
-}
-.jackpot-item {
-  display: inline-block;
-  font-size: 12px;
-  color: #b0a080;
-  margin: 0 16px;
-}
-.jackpot-amount {
-  color: #f0d080;
+.jackpot-title-text {
+  font-size: 14px;
   font-weight: 600;
+  color: #f2e0b8;
 }
-@keyframes scrollJackpot {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+.jackpot-more {
+  font-size: 12px;
+  color: #8a7a5a;
+}
+.jackpot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.jackpot-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.7), rgba(11,10,8,0.5));
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+.jackpot-game-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.jackpot-card-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.jackpot-user {
+  font-size: 11px;
+  color: #b0a080;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.jackpot-card-amount {
+  font-size: 13px;
+  font-weight: 700;
+  color: #f0d080;
 }
 
 /* 娱乐城提示条 */
@@ -473,17 +498,26 @@ onMounted(() => {
   align-items: center;
   gap: 6px;
   cursor: pointer;
+  transition: transform 0.2s;
+}
+.game-card:active {
+  transform: scale(0.96);
 }
 .game-icon-wrap {
   width: 100%;
   aspect-ratio: 1;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   background: linear-gradient(145deg, rgba(40,30,20,0.8), rgba(20,15,10,0.6));
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+.game-card:active .game-icon-wrap {
+  border-color: rgba(212,168,75,0.6);
+  box-shadow: 0 0 12px rgba(212,168,75,0.3);
 }
 .game-icon-img {
   width: 100%;
@@ -499,6 +533,10 @@ onMounted(() => {
   font-size: 11px;
   color: #d0c4a8;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
 }
 
 .more-games {

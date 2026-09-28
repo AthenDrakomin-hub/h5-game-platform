@@ -107,6 +107,16 @@
           确认提现
         </van-button>
       </div>
+
+      <!-- 提现说明 -->
+      <div class="withdraw-notes">
+        <div class="notes-title">温馨提示</div>
+        <div class="notes-item">1. 提现申请提交后，USDT通常5-30分钟到账，银行卡1-24小时到账</div>
+        <div class="notes-item">2. 手续费：USDT TRC20免手续费，银行卡按金额1%收取（最低5元）</div>
+        <div class="notes-item">3. 每日提现次数不限，单笔最低100元，最高50000元</div>
+        <div class="notes-item">4. 为保障资金安全，大额提现可能需要人工审核</div>
+        <div class="notes-item">5. 提现到账时间受区块链网络或银行处理速度影响</div>
+      </div>
     </div>
   </div>
 </template>
@@ -242,6 +252,7 @@ onMounted(() => {
 }
 .withdraw-content {
   padding: 12px;
+  padding-bottom: 90px;
 }
 .balance-card {
   background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
@@ -424,5 +435,25 @@ onMounted(() => {
 }
 .submit-btn:disabled {
   opacity: 0.4;
+}
+/* 提现说明 */
+.withdraw-notes {
+  background: linear-gradient(rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.6), rgba(11,10,8,0.4));
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 14px;
+  margin-top: 16px;
+}
+.notes-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #f2e0b8;
+  margin-bottom: 8px;
+}
+.notes-item {
+  font-size: 11px;
+  color: #8a7a5a;
+  line-height: 1.8;
 }
 </style>
