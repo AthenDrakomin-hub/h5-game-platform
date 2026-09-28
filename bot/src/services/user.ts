@@ -57,7 +57,7 @@ class SessionStore {
         const data = await this.redisClient.get(`bot:session:${telegramId}`);
         if (data) return JSON.parse(data);
       } catch (e) {
-        console.warn('[Redis] 读取会话失败，降级内存:', e.message);
+        console.warn('[Redis] 读取会话失败，降级内存:', (e as Error).message);
       }
     }
     // 内存模式
@@ -79,7 +79,7 @@ class SessionStore {
         );
         return;
       } catch (e) {
-        console.warn('[Redis] 写入会话失败，降级内存:', e.message);
+        console.warn('[Redis] 写入会话失败，降级内存:', (e as Error).message);
       }
     }
     this.memoryCache.set(telegramId, {
