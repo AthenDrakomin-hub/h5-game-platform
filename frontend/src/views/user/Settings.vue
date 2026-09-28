@@ -256,7 +256,7 @@ onMounted(() => {
 }
 .about-content .version {
   margin-top: 20px;
-  color: #666;
+  color: #8a7a5a;
   font-size: 12px;
 }
 </style>

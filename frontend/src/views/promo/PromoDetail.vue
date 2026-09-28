@@ -151,7 +151,7 @@ onMounted(() => {
 }
 .detail-content-html {
   font-size: 14px;
-  color: #ccc;
+  color: #d0c4a8;
   line-height: 1.8;
 }
 .detail-content-html :deep(p) {
@@ -184,7 +184,7 @@ onMounted(() => {
 }
 .rules-list li {
   font-size: 13px;
-  color: #999;
+  color: #8a7a5a;
   line-height: 1.8;
   margin-bottom: 6px;
 }

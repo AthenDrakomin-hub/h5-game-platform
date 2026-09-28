@@ -116,7 +116,7 @@ onMounted(() => { loadInfo(); loadRecords() })
 .record-section { margin-top: 30px; }
 .record-section h3 { color: #f0d080; margin-bottom: 12px; }
 .record-item { display: flex; justify-content: space-between; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 8px; }
-.record-user { color: #ccc; }
+.record-user { color: #d0c4a8; }
 .record-amount { color: #f0d080; font-weight: 600; }
 .record-time { color: #6a5a40; font-size: 12px; }
 </style>

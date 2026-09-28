@@ -552,7 +552,7 @@ onMounted(() => {
   gap: 8px;
   padding: 4px 4px 16px;
   font-size: 13px;
-  color: #999;
+  color: #8a7a5a;
   cursor: pointer;
 }
 .checkbox {

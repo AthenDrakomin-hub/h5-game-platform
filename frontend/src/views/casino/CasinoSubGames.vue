@@ -105,7 +105,7 @@ onMounted(() => {
   display: block;
   padding: 6px 4px;
   font-size: 11px;
-  color: #ccc;
+  color: #d0c4a8;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
@@ -116,8 +116,8 @@ onMounted(() => {
   top: 4px;
   right: 4px;
   font-size: 9px;
-  background: #ee0a24;
-  color: #fff;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
+  color: #3a2610;
   padding: 1px 4px;
   border-radius: 3px;
   font-weight: 700;

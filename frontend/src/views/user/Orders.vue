@@ -172,7 +172,7 @@ onMounted(() => {
 }
 .order-value {
   font-size: 12px;
-  color: #ccc;
+  color: #d0c4a8;
 }
 .order-amount {
   font-size: 16px;

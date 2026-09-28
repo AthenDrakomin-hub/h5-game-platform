@@ -78,7 +78,7 @@ const rules = ref([
 .rules-content { padding: 12px; }
 :deep(.van-collapse), :deep(.van-collapse-item) { background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6)) !important; border-color: rgba(255,255,255,0.1) !important; }
 :deep(.van-cell__title) { color: #f0d080 !important; font-weight: 600; }
-:deep(.van-collapse-item__content) { color: #ccc !important; }
+:deep(.van-collapse-item__content) { color: #d0c4a8 !important; }
 .rule-content { font-size: 14px; line-height: 1.8; }
 .rule-content p { margin: 8px 0; }
 .rule-content strong { color: #f0d080; }

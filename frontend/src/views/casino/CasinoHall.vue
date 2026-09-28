@@ -154,7 +154,7 @@ onMounted(() => {
 .title-bar {
   width: 3px;
   height: 14px;
-  background: linear-gradient(180deg, #f0d080, #d4a84b);
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
   border-radius: 2px;
   margin-right: 8px;
 }
@@ -250,11 +250,11 @@ onMounted(() => {
 }
 .platform-count {
   font-size: 11px;
-  color: #666;
+  color: #8a7a5a;
 }
 .maintenance-tag {
   font-size: 10px;
-  color: #ff976a;
+  color: #f0d080;
   border: 1px solid #ff976a;
   padding: 2px 6px;
   border-radius: 4px;
@@ -280,7 +280,7 @@ onMounted(() => {
   display: block;
   padding: 6px 8px;
   font-size: 11px;
-  color: #ccc;
+  color: #d0c4a8;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -79,7 +79,7 @@ function goTab(path) {
   right: 0;
   display: flex;
   background: linear-gradient(180deg, #1a130a 0%, #0d0a06 100%);
-  border-top: 1px solid rgba(212, 168, 75, 0.15);
+  border-top: 1px solid rgba(255,255,255,0.08);
   padding-bottom: env(safe-area-inset-bottom);
   z-index: 100;
 }
@@ -89,21 +89,34 @@ function goTab(path) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 6px 0 4px;
+  padding: 8px 0 6px;
   cursor: pointer;
-  opacity: 0.45;
+  opacity: 0.5;
   transition: all 0.2s;
+  position: relative;
 }
 .tabbar-item.active {
   opacity: 1;
 }
+.tabbar-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 2px;
+  background: linear-gradient(90deg, #f0d080, #d4a84b);
+  border-radius: 0 0 2px 2px;
+}
 .tabbar-item.active :deep(.gold-icon) {
-  filter: drop-shadow(0 0 6px rgba(240,208,128,0.5));
+  filter: drop-shadow(0 0 8px rgba(240,208,128,0.6));
+  transform: translateY(-1px);
 }
 .tabbar-text {
   font-size: 10px;
   color: #8a7a5a;
-  margin-top: 2px;
+  margin-top: 3px;
 }
 .tabbar-item.active .tabbar-text {
   color: #f0d080;

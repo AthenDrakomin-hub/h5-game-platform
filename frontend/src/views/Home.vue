@@ -449,8 +449,8 @@ onMounted(() => {
   position: absolute;
   top: 4px;
   right: 4px;
-  background: #ee0a24;
-  color: #fff;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
+  color: #3a2610;
   font-size: 8px;
   padding: 1px 4px;
   border-radius: 4px;
