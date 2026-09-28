@@ -4,8 +4,8 @@
     <div class="top-bar">
       <span class="top-title">我的</span>
       <div class="top-actions">
-        <van-icon name="setting-o" size="20" color="#d4a84b" @click="goSettings" />
-        <van-icon name="chat-o" size="20" color="#d4a84b" @click="goPage('/user/message')" />
+        <GoldIcon name="setting" :size="20" @click="goSettings" />
+        <GoldIcon name="chat" :size="20" @click="goPage('/user/message')" />
       </div>
     </div>
 
@@ -18,7 +18,7 @@
             <span class="avatar-level">{{ vipLevelName }}</span>
           </div>
           <div v-else class="avatar avatar-guest">
-            <van-icon name="user-o" size="24" color="#666" />
+            <GoldIcon name="user" :size="24" color="#666" />
           </div>
         </div>
         <div class="user-info">
@@ -33,10 +33,10 @@
         </div>
         <div class="profile-right">
           <div class="msg-icon-wrap" @click.stop="goPage('/user/message')">
-            <van-icon name="envelop-o" size="18" color="#d4a84b" />
+            <GoldIcon name="envelop" :size="18" />
             <span v-if="unreadCount > 0" class="msg-badge">{{ unreadCount > 99 ? '99+' : unreadCount }}</span>
           </div>
-          <van-icon name="arrow" size="14" color="#666" />
+          <GoldIcon name="arrow" :size="14" color="#666" />
         </div>
       </div>
 
@@ -45,7 +45,9 @@
         <div class="assets-left">
           <div class="assets-label">
             总资产
-            <van-icon name="eye-o" size="14" color="#888" class="eye-icon" @click="toggleBalance" />
+            <span class="eye-icon" @click="toggleBalance">
+              <GoldIcon name="eye" :size="14" color="#888" />
+            </span>
           </div>
           <div class="assets-amount">
             <span class="currency">¥</span>
@@ -53,16 +55,16 @@
           </div>
           <div class="yesterday-profit" @click="goPage('/user/profit-loss-report')">
             昨日收益 <span class="profit-value">+¥{{ yesterdayProfit }}</span>
-            <van-icon name="arrow" size="10" color="#888" />
+            <GoldIcon name="arrow" :size="10" color="#888" />
           </div>
         </div>
         <div class="assets-actions">
           <div class="action-btn recharge" @click="goRecharge">
-            <van-icon name="add-o" size="16" />
+            <GoldIcon name="add" :size="16" />
             <span>充值</span>
           </div>
           <div class="action-btn withdraw" @click="goWithdraw">
-            <van-icon name="down" size="16" />
+            <GoldIcon name="down" :size="16" />
             <span>提现</span>
           </div>
         </div>
@@ -73,7 +75,7 @@
     <div class="big-cards-row">
       <div class="big-card vip-card" @click="goPage('/user/vip')">
         <div class="big-card-icon">
-          <van-icon name="vip-card-o" size="32" color="#d4a84b" />
+          <GoldIcon name="crown" :size="32" />
         </div>
         <div class="big-card-info">
           <div class="big-card-title">VIP特权</div>
@@ -82,7 +84,7 @@
       </div>
       <div class="big-card agent-card" @click="goPage('/user/agent')">
         <div class="big-card-icon">
-          <van-icon name="friends-o" size="32" color="#d4a84b" />
+          <GoldIcon name="friends" :size="32" />
         </div>
         <div class="big-card-info">
           <div class="big-card-title">代理中心</div>
@@ -96,25 +98,25 @@
       <div class="quick-icons-row">
         <div class="quick-icon-item" @click="goPage('/user/transfer')">
           <div class="quick-icon-wrap">
-            <van-icon name="exchange" size="26" color="#d4a84b" />
+            <GoldIcon name="exchange" :size="26" />
           </div>
           <span class="quick-icon-label">转账</span>
         </div>
         <div class="quick-icon-item" @click="goPage('/user/bet-records')">
           <div class="quick-icon-wrap">
-            <van-icon name="chart-trending-o" size="26" color="#d4a84b" />
+            <GoldIcon name="chart" :size="26" />
           </div>
           <span class="quick-icon-label">投注记录</span>
         </div>
         <div class="quick-icon-item" @click="goPage('/user/transaction')">
           <div class="quick-icon-wrap">
-            <van-icon name="balance-list-o" size="26" color="#d4a84b" />
+            <GoldIcon name="balance" :size="26" />
           </div>
           <span class="quick-icon-label">账变记录</span>
         </div>
         <div class="quick-icon-item" @click="goPage('/user/yuebao')">
           <div class="quick-icon-wrap">
-            <van-icon name="gold-coin-o" size="26" color="#d4a84b" />
+            <GoldIcon name="coin" :size="26" />
           </div>
           <span class="quick-icon-label">余额宝</span>
         </div>
@@ -125,59 +127,59 @@
     <div class="menu-list-block">
       <div class="menu-list-item" @click="goPage('/user/welfare')">
         <div class="menu-icon-wrap">
-          <van-icon name="gift-o" size="22" color="#d4a84b" />
+          <GoldIcon name="gift" :size="22" />
         </div>
         <span class="menu-text">福利中心</span>
-        <van-icon name="arrow" size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#555" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/rebate')">
         <div class="menu-icon-wrap">
-          <van-icon name="clock-o" size="22" color="#d4a84b" />
+          <GoldIcon name="clock" :size="22" />
         </div>
         <span class="menu-text">实时返水</span>
-        <van-icon name="arrow" size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#555" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/orders?type=recharge')">
         <div class="menu-icon-wrap">
-          <van-icon name="credit-pay" size="22" color="#d4a84b" />
+          <GoldIcon name="credit" :size="22" />
         </div>
         <span class="menu-text">充值记录</span>
-        <van-icon name="arrow" size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#555" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/orders?type=withdraw')">
         <div class="menu-icon-wrap">
-          <van-icon name="bank-card" size="22" color="#d4a84b" />
+          <GoldIcon name="bankcard" :size="22" />
         </div>
         <span class="menu-text">提现记录</span>
-        <van-icon name="arrow" size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#555" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/switch-record')">
         <div class="menu-icon-wrap">
-          <van-icon name="swap" size="22" color="#d4a84b" />
+          <GoldIcon name="swap" :size="22" />
         </div>
         <span class="menu-text">转换记录</span>
-        <van-icon name="arrow" size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#555" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/profit-loss-report')">
         <div class="menu-icon-wrap">
-          <van-icon name="chart-colume" size="22" color="#d4a84b" />
+          <GoldIcon name="colume" :size="22" />
         </div>
         <span class="menu-text">盈亏记录</span>
-        <van-icon name="arrow" size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#555" />
       </div>
       <div class="menu-list-item" @click="goAppDownload">
         <div class="menu-icon-wrap">
-          <van-icon name="down" size="22" color="#d4a84b" />
+          <GoldIcon name="download" :size="22" />
         </div>
         <span class="menu-text">APP下载</span>
-        <van-icon name="arrow" size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#555" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/feedback')">
         <div class="menu-icon-wrap">
-          <van-icon name="edit" size="22" color="#d4a84b" />
+          <GoldIcon name="edit" :size="22" />
         </div>
         <span class="menu-text">有奖反馈</span>
-        <van-icon name="arrow" size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#555" />
       </div>
     </div>
 
@@ -200,6 +202,7 @@ import { useAppStore } from '@/stores/app'
 import { useUserStore } from '@/stores/user'
 import { userApi } from '@/api/user'
 import { showConfirmDialog, showToast } from 'vant'
+import GoldIcon from '@/components/GoldIcon.vue'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -420,6 +423,8 @@ onMounted(() => {
 }
 .eye-icon {
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
 }
 .assets-amount {
   display: flex;
