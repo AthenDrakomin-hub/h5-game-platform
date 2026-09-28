@@ -56,7 +56,7 @@ draw:
     enabled: ${DRAW_ENABLED:true}
   provider:
     marksix6:
-      enabled: ${DRAW_MARKSIX6_ENABLED:false}
+      enabled: ${DRAW_MARKSIX6_ENABLED:true}
       api-url: ${DRAW_MARKSIX6_URL:https://api3.marksix6.net/lottery_api.php}
       timeout: 5000
 
@@ -69,7 +69,7 @@ admin:
 # USDT 自动到账
 usdt:
   trc20:
-    enabled: ${USDT_TRX_ENABLED:false}
+    enabled: ${USDT_TRX_ENABLED:true}
     grid-api: ${USDT_GRID_API:https://api.trongrid.io}
     api-key: ${USDT_GRID_KEY:}
     poll-interval: ${USDT_POLL_INTERVAL:5000}

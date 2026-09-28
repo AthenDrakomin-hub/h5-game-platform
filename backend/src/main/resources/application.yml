@@ -64,8 +64,8 @@ jwt:
 
 # 站点配置
 site:
-  name: H5 Game
-  domain: https://h5.lexiangim.com
+  name: NOVA 新星娱乐
+  domain: https://h5.goodspage.cn
 
 # 开奖调度配置
 draw:
@@ -73,7 +73,7 @@ draw:
     enabled: true  # 是否启用自动开奖调度
   provider:
     marksix6:
-      enabled: false  # 是否启用第三方开奖API（生产环境建议开启）
+      enabled: true  # 启用第三方开奖API（MarkSix6）
       api-url: https://api3.marksix6.net/lottery_api.php
       timeout: 5000
 
@@ -90,7 +90,7 @@ telegram:
 # USDT 自动到账配置
 usdt:
   trc20:
-    enabled: false  # 是否启用TRC20自动到账监听
+    enabled: true  # 启用TRC20自动到账监听
     grid-api: https://api.trongrid.io  # TronGrid API 地址
     api-key: ""  # TronGrid API Key（可选，提高限流）
     poll-interval: 5000  # 轮询间隔(毫秒)
