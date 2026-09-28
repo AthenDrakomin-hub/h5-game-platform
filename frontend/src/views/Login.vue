@@ -600,7 +600,7 @@ onMounted(() => {
 }
 .footer-link {
   font-size: 13px;
-  color: #888;
+  color: #8a7a5a;
   cursor: pointer;
 }
 .forgot-link {
@@ -612,11 +612,11 @@ onMounted(() => {
   gap: 16px;
   margin-top: 24px;
   padding-top: 16px;
-  border-top: 1px solid #222;
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
 .popup-secondary-btn {
   font-size: 12px;
-  color: #888;
+  color: #8a7a5a;
   cursor: pointer;
 }
 .agreement-popup-content {
@@ -638,7 +638,7 @@ onMounted(() => {
 }
 .modal-close-btn {
   font-size: 20px;
-  color: #888;
+  color: #8a7a5a;
   cursor: pointer;
 }
 .modal-content {

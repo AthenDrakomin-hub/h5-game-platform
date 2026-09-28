@@ -51,7 +51,7 @@ defineProps({
 }
 .placeholder-desc {
   font-size: 14px;
-  color: #888;
+  color: #8a7a5a;
   margin: 0 0 30px 0;
 }
 .placeholder-btn {

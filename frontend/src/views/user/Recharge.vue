@@ -389,7 +389,7 @@ onMounted(() => {
   font-weight: 600;
 }
 .amount-input::placeholder {
-  color: #555;
+  color: #8a7a5a;
   font-size: 14px;
 }
 .amount-tip {

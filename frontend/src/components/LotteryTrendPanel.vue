@@ -139,7 +139,7 @@ onMounted(() => {
   font-weight: 500;
   padding: 6px 2px;
   text-align: center;
-  border: 1px solid #333;
+  border: 1px solid rgba(255,255,255,0.1);
   min-width: 24px;
 }
 .trend-table td {
@@ -165,7 +165,7 @@ onMounted(() => {
   color: #fff !important;
 }
 .cell-empty {
-  color: #333;
+  color: #8a7a5a;
 }
 .trend-loading {
   padding: 30px;

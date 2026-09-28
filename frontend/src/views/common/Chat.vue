@@ -271,7 +271,7 @@ onMounted(() => {
 }
 .quick-questions {
   padding: 8px 12px;
-  border-top: 1px solid #222;
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
 .quick-title {
   font-size: 11px;
@@ -299,7 +299,7 @@ onMounted(() => {
   gap: 10px;
   padding: 10px 12px;
   background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
-  border-top: 1px solid #333;
+  border-top: 1px solid rgba(255,255,255,0.1);
   padding-bottom: calc(10px + env(safe-area-inset-bottom));
 }
 .chat-input {

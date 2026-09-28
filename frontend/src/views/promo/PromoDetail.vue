@@ -197,7 +197,7 @@ onMounted(() => {
   margin: 0 auto;
   padding: 12px 16px;
   background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
-  border-top: 1px solid #333;
+  border-top: 1px solid rgba(255,255,255,0.1);
   padding-bottom: calc(12px + env(safe-area-inset-bottom));
 }
 .claim-btn {

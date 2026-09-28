@@ -208,6 +208,6 @@ onMounted(() => {
   color: #f0d080;
 }
 .game-status.maintenance {
-  color: #888;
+  color: #8a7a5a;
 }
 </style>

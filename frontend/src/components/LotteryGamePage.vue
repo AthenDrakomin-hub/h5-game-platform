@@ -295,7 +295,7 @@ onUnmounted(() => {
   align-items: center;
   padding: 10px 16px;
   background: rgba(0,0,0,0.2);
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .issue-info {
   display: flex;

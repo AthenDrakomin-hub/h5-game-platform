@@ -162,7 +162,7 @@ onMounted(() => {
 }
 .promo-status.ended {
   background: rgba(128, 128, 128, 0.15);
-  color: #888;
+  color: #8a7a5a;
 }
 .promo-desc {
   font-size: 12px;

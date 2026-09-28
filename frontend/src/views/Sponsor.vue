@@ -117,6 +117,6 @@
 }
 .sponsor-footer p {
   font-size: 11px;
-  color: #444;
+  color: #8a7a5a;
 }
 </style>
