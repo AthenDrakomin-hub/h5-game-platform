@@ -4,8 +4,8 @@
     <div class="top-bar">
       <span class="top-title">我的</span>
       <div class="top-actions">
-        <GoldIcon name="setting" :size="20" @click="goSettings" />
-        <GoldIcon name="chat" :size="20" @click="goPage('/user/message')" />
+        <GoldIcon name="setting" :size="20" color="#c0b090" @click="goSettings" />
+        <GoldIcon name="chat" :size="20" color="#c0b090" @click="goPage('/user/message')" />
       </div>
     </div>
 
@@ -32,9 +32,8 @@
           </template>
         </div>
         <div class="profile-right">
-          <div class="msg-icon-wrap" @click.stop="goPage('/user/message')">
-            <GoldIcon name="envelop" :size="18" />
-            <span v-if="unreadCount > 0" class="msg-badge">{{ unreadCount > 99 ? '99+' : unreadCount }}</span>
+          <div class="msg-badge-wrap" @click.stop="goPage('/user/message')">
+            <span class="msg-badge-num">{{ unreadCount > 99 ? '99+' : unreadCount }}</span>
           </div>
           <GoldIcon name="arrow" :size="14" color="#666" />
         </div>
@@ -60,11 +59,11 @@
         </div>
         <div class="assets-actions">
           <div class="action-btn recharge" @click="goRecharge">
-            <GoldIcon name="add" :size="16" />
+            <GoldIcon name="coin" :size="18" color="#3a2610" />
             <span>充值</span>
           </div>
           <div class="action-btn withdraw" @click="goWithdraw">
-            <GoldIcon name="down" :size="16" />
+            <GoldIcon name="bankcard" :size="18" color="#3a2610" />
             <span>提现</span>
           </div>
         </div>
@@ -75,7 +74,7 @@
     <div class="big-cards-row">
       <div class="big-card vip-card" @click="goPage('/user/vip')">
         <div class="big-card-icon">
-          <GoldIcon name="crown" :size="32" />
+          <GoldIcon name="crown" :size="30" />
         </div>
         <div class="big-card-info">
           <div class="big-card-title">VIP特权</div>
@@ -84,7 +83,7 @@
       </div>
       <div class="big-card agent-card" @click="goPage('/user/agent')">
         <div class="big-card-icon">
-          <GoldIcon name="friends" :size="32" />
+          <GoldIcon name="friends" :size="30" />
         </div>
         <div class="big-card-info">
           <div class="big-card-title">代理中心</div>
@@ -98,25 +97,25 @@
       <div class="quick-icons-row">
         <div class="quick-icon-item" @click="goPage('/user/transfer')">
           <div class="quick-icon-wrap">
-            <GoldIcon name="exchange" :size="26" />
+            <GoldIcon name="exchange" :size="30" />
           </div>
           <span class="quick-icon-label">转账</span>
         </div>
         <div class="quick-icon-item" @click="goPage('/user/bet-records')">
           <div class="quick-icon-wrap">
-            <GoldIcon name="chart" :size="26" />
+            <GoldIcon name="chart" :size="30" />
           </div>
           <span class="quick-icon-label">投注记录</span>
         </div>
         <div class="quick-icon-item" @click="goPage('/user/transaction')">
           <div class="quick-icon-wrap">
-            <GoldIcon name="balance" :size="26" />
+            <GoldIcon name="balance" :size="30" />
           </div>
           <span class="quick-icon-label">账变记录</span>
         </div>
         <div class="quick-icon-item" @click="goPage('/user/yuebao')">
           <div class="quick-icon-wrap">
-            <GoldIcon name="coin" :size="26" />
+            <GoldIcon name="coin" :size="30" />
           </div>
           <span class="quick-icon-label">余额宝</span>
         </div>
@@ -127,56 +126,56 @@
     <div class="menu-list-block">
       <div class="menu-list-item" @click="goPage('/user/welfare')">
         <div class="menu-icon-wrap">
-          <GoldIcon name="gift" :size="22" />
+          <GoldIcon name="gift" :size="24" />
         </div>
         <span class="menu-text">福利中心</span>
         <GoldIcon name="arrow" :size="14" color="#555" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/rebate')">
         <div class="menu-icon-wrap">
-          <GoldIcon name="clock" :size="22" />
+          <GoldIcon name="clock" :size="24" />
         </div>
         <span class="menu-text">实时返水</span>
         <GoldIcon name="arrow" :size="14" color="#555" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/orders?type=recharge')">
         <div class="menu-icon-wrap">
-          <GoldIcon name="credit" :size="22" />
+          <GoldIcon name="credit" :size="24" />
         </div>
         <span class="menu-text">充值记录</span>
         <GoldIcon name="arrow" :size="14" color="#555" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/orders?type=withdraw')">
         <div class="menu-icon-wrap">
-          <GoldIcon name="bankcard" :size="22" />
+          <GoldIcon name="bankcard" :size="24" />
         </div>
         <span class="menu-text">提现记录</span>
         <GoldIcon name="arrow" :size="14" color="#555" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/switch-record')">
         <div class="menu-icon-wrap">
-          <GoldIcon name="swap" :size="22" />
+          <GoldIcon name="swap" :size="24" />
         </div>
         <span class="menu-text">转换记录</span>
         <GoldIcon name="arrow" :size="14" color="#555" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/profit-loss-report')">
         <div class="menu-icon-wrap">
-          <GoldIcon name="colume" :size="22" />
+          <GoldIcon name="colume" :size="24" />
         </div>
         <span class="menu-text">盈亏记录</span>
         <GoldIcon name="arrow" :size="14" color="#555" />
       </div>
       <div class="menu-list-item" @click="goAppDownload">
         <div class="menu-icon-wrap">
-          <GoldIcon name="download" :size="22" />
+          <GoldIcon name="download" :size="24" />
         </div>
         <span class="menu-text">APP下载</span>
         <GoldIcon name="arrow" :size="14" color="#555" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/feedback')">
         <div class="menu-icon-wrap">
-          <GoldIcon name="edit" :size="22" />
+          <GoldIcon name="edit" :size="24" />
         </div>
         <span class="menu-text">有奖反馈</span>
         <GoldIcon name="arrow" :size="14" color="#555" />
@@ -315,10 +314,10 @@ onMounted(() => {
   padding: 0 16px;
 }
 .top-title {
-  font-size: 17px;
-  font-weight: 700;
-  color: #d4a84b;
-  letter-spacing: 2px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #f2e0b8;
+  letter-spacing: 1px;
 }
 .top-actions {
   position: absolute;
@@ -327,12 +326,13 @@ onMounted(() => {
   gap: 18px;
 }
 
-/* 资料+资产合并卡片 */
+/* 资料+资产合并卡片 - 暗黑玻璃质感 */
 .profile-assets-card {
   margin: 8px 12px 12px;
-  background: linear-gradient(135deg, #2a1f10 0%, #1a130a 100%);
-  border-radius: 16px;
-  border: 1px solid rgba(212, 168, 75, 0.15);
+  background: linear-gradient(rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 26%),
+              linear-gradient(145deg, rgba(31, 26, 21, 0.82) 0%, rgba(11, 10, 8, 0.6) 100%);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   overflow: hidden;
 }
 
@@ -347,31 +347,32 @@ onMounted(() => {
   flex-shrink: 0;
 }
 .avatar {
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #d4a84b, #a07828);
+  background: linear-gradient(rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 30%),
+              linear-gradient(145deg, rgba(39, 30, 21, 0.92), rgba(19, 15, 12, 0.94));
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgba(212, 168, 75, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 .avatar-level {
-  font-size: 13px;
-  font-weight: 700;
-  color: #1a130a;
+  font-size: 14px;
+  font-weight: 500;
+  color: #f2e0b8;
 }
 .avatar-guest {
-  background: #2a2a2a;
-  border-color: #444;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 .user-info {
   flex: 1;
 }
 .username {
   font-size: 16px;
-  font-weight: 600;
-  color: #f0e6d0;
+  font-weight: 500;
+  color: #ffffff;
   margin-bottom: 3px;
 }
 .user-sub {
@@ -383,24 +384,21 @@ onMounted(() => {
   align-items: center;
   gap: 8px;
 }
-.msg-icon-wrap {
-  position: relative;
-  padding: 4px;
-}
-.msg-badge {
-  position: absolute;
-  top: 0;
-  right: -2px;
-  background: #ee0a24;
-  color: #fff;
-  font-size: 9px;
-  min-width: 14px;
-  height: 14px;
-  border-radius: 7px;
+.msg-badge-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 3px;
+  min-width: 24px;
+  height: 18px;
+  padding: 0 6px;
+  background: linear-gradient(135deg, #d4a84b, #a07828);
+  border-radius: 9px;
+  cursor: pointer;
+}
+.msg-badge-num {
+  font-size: 10px;
+  font-weight: 600;
+  color: #1a130a;
 }
 
 /* 资产行 */
@@ -432,14 +430,14 @@ onMounted(() => {
   gap: 2px;
 }
 .currency {
-  font-size: 14px;
-  color: #d4a84b;
+  font-size: 16px;
+  color: #ffffff;
   font-weight: 600;
 }
 .amount {
   font-size: 26px;
   font-weight: 700;
-  color: #f0e6d0;
+  color: #ffffff;
   font-variant-numeric: tabular-nums;
 }
 .yesterday-profit {
@@ -462,22 +460,17 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 9px 18px;
-  border-radius: 20px;
+  padding: 8px 16px;
+  border-radius: 10px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-}
-.action-btn.recharge {
-  background: linear-gradient(135deg, #d4a84b, #a07828);
-  color: #1a130a;
-}
-.action-btn.withdraw {
-  background: linear-gradient(135deg, #d4a84b, #a07828);
-  color: #1a130a;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
+  color: #3a2610;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* 两个大卡片 */
+/* 两个大卡片 - 暗黑玻璃质感 */
 .big-cards-row {
   display: flex;
   gap: 10px;
@@ -485,9 +478,10 @@ onMounted(() => {
 }
 .big-card {
   flex: 1;
-  background: linear-gradient(135deg, #2a1f10 0%, #1a130a 100%);
-  border-radius: 14px;
-  border: 1px solid rgba(212, 168, 75, 0.12);
+  background: linear-gradient(rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 26%),
+              linear-gradient(145deg, rgba(30, 24, 18, 0.72) 0%, rgba(10, 9, 8, 0.5) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 16px 14px;
   display: flex;
   align-items: center;
@@ -496,10 +490,8 @@ onMounted(() => {
 }
 .big-card-icon {
   flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: rgba(212, 168, 75, 0.1);
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -518,13 +510,14 @@ onMounted(() => {
   color: #8a7a5a;
 }
 
-/* 快捷菜单 */
+/* 快捷菜单 - 暗黑玻璃质感 */
 .quick-menu-block {
   margin: 0 12px 12px;
-  background: linear-gradient(135deg, #2a1f10 0%, #1a130a 100%);
-  border-radius: 14px;
-  border: 1px solid rgba(212, 168, 75, 0.12);
-  padding: 16px 0;
+  background: linear-gradient(rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 26%),
+              linear-gradient(145deg, rgba(30, 24, 18, 0.72) 0%, rgba(10, 9, 8, 0.5) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 18px 0;
 }
 .quick-icons-row {
   display: flex;
@@ -538,10 +531,8 @@ onMounted(() => {
   cursor: pointer;
 }
 .quick-icon-wrap {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: rgba(212, 168, 75, 0.08);
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -551,12 +542,13 @@ onMounted(() => {
   color: #b0a080;
 }
 
-/* 菜单列表 */
+/* 菜单列表 - 暗黑玻璃质感 */
 .menu-list-block {
   margin: 0 12px 12px;
-  background: linear-gradient(135deg, #2a1f10 0%, #1a130a 100%);
-  border-radius: 14px;
-  border: 1px solid rgba(212, 168, 75, 0.12);
+  background: linear-gradient(rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 26%),
+              linear-gradient(145deg, rgba(30, 24, 18, 0.72) 0%, rgba(10, 9, 8, 0.5) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   overflow: hidden;
 }
 .menu-list-item {
@@ -564,7 +556,7 @@ onMounted(() => {
   align-items: center;
   gap: 12px;
   padding: 14px 16px;
-  border-bottom: 1px solid rgba(212, 168, 75, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   cursor: pointer;
 }
 .menu-list-item:last-child {
