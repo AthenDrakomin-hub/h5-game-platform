@@ -203,7 +203,7 @@
           </ol>
         </div>
         <div class="modal-footer">
-          <van-button round block type="primary" class="modal-confirm-btn" @click="agreeProtocol = true; showAgreement = false">已阅读并同意</van-button>
+          <van-button block type="primary" class="modal-confirm-btn" @click="agreeProtocol = true; showAgreement = false">已阅读并同意</van-button>
         </div>
       </div>
     </van-popup>
@@ -498,7 +498,7 @@ onMounted(() => {
 }
 .auth-tab {
   font-size: 16px;
-  color: #808080;
+  color: #8a7a5a;
   cursor: pointer;
   padding: 4px 0;
   position: relative;

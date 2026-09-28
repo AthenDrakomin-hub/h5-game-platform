@@ -113,7 +113,7 @@
           <p>请在 {{ expireMinutes }} 分钟内完成支付</p>
         </div>
         <div class="pay-actions">
-          <van-button block round type="primary" class="pay-confirm-btn" @click="onPaySuccess">
+          <van-button block type="primary" class="pay-confirm-btn" @click="onPaySuccess">
             我已完成支付
           </van-button>
         </div>
@@ -474,7 +474,7 @@ onMounted(() => {
 }
 .pay-info-text p {
   font-size: 13px;
-  color: #b0a080;
+  color: #8a7a5a;
   margin: 6px 0;
 }
 .pay-actions {

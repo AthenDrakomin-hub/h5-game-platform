@@ -23,7 +23,7 @@
         </div>
       </div>
 
-      <van-button round block type="primary" class="grab-btn" :disabled="!canGrab" @click="grabRedPacket">
+      <van-button block type="primary" class="grab-btn" :disabled="!canGrab" @click="grabRedPacket">
         {{ canGrab ? '立即抢红包' : '今日已抢完' }}
       </van-button>
 

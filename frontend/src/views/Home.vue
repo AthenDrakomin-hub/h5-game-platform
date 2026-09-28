@@ -338,7 +338,7 @@ onMounted(() => {
 }
 .jackpot-user {
   font-size: 11px;
-  color: #b0a080;
+  color: #8a7a5a;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -407,7 +407,7 @@ onMounted(() => {
 }
 .action-icon span {
   font-size: 10px;
-  color: #b0a080;
+  color: #8a7a5a;
 }
 
 /* 游戏分类区 */

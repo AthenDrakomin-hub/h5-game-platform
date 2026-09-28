@@ -5,7 +5,7 @@
       <div class="placeholder-icon">{{ icon }}</div>
       <h2 class="placeholder-title">{{ title }}</h2>
       <p class="placeholder-desc">{{ description }}</p>
-      <van-button round type="primary" class="placeholder-btn" @click="$router.back()">
+      <van-button type="primary" class="placeholder-btn" @click="$router.back()">
         返回上一页
       </van-button>
     </div>

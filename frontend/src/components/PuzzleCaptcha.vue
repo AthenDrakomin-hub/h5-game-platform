@@ -228,7 +228,7 @@ onMounted(() => {
 }
 .captcha-close {
   font-size: 18px;
-  color: #808080;
+  color: #8a7a5a;
   cursor: pointer;
 }
 .captcha-canvas-wrap {

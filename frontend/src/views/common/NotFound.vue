@@ -4,7 +4,7 @@
       <img src="/404.svg" alt="404" class="nf-img" />
       <h1 class="nf-title">页面走丢了</h1>
       <p class="nf-desc">您访问的页面可能已被移除或链接错误</p>
-      <van-button round type="primary" class="nf-btn" @click="goHome">
+      <van-button type="primary" class="nf-btn" @click="goHome">
         返回首页
       </van-button>
     </div>

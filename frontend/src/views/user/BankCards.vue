@@ -33,7 +33,7 @@
       </div>
       <div v-if="!loading && cards.length === 0" class="empty-state">
         <van-empty description="暂无银行卡" />
-        <van-button round type="primary" class="add-card-btn" @click="goAdd">添加银行卡</van-button>
+        <van-button type="primary" class="add-card-btn" @click="goAdd">添加银行卡</van-button>
       </div>
     </div>
   </div>

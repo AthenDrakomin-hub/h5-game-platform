@@ -51,7 +51,7 @@
 
       <!-- 退出 -->
       <div v-if="authStore.isLoggedIn" class="logout-section">
-        <van-button block round class="logout-btn" @click="onLogout">退出登录</van-button>
+        <van-button block class="logout-btn" @click="onLogout">退出登录</van-button>
       </div>
     </div>
 
