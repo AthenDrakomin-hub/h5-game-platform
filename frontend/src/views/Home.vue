@@ -83,7 +83,7 @@
           :key="cat.key"
           class="category-item"
           :class="{ active: activeCategory === cat.key }"
-          @click="activeCategory = cat.key"
+          @click="onCategoryClick(cat)"
         >
           <GoldIcon :name="cat.icon" :size="22" />
           <span>{{ cat.name }}</span>
@@ -220,6 +220,18 @@ function goPage(path) {
     return
   }
   router.push(path)
+}
+
+function onCategoryClick(cat) {
+  if (cat.key === 'lottery') {
+    router.push('/lottery')
+    return
+  }
+  if (cat.key === 'live' || cat.key === 'electronic' || cat.key === 'chess' || cat.key === 'fish') {
+    router.push('/casino')
+    return
+  }
+  activeCategory.value = cat.key
 }
 
 function goLink(link) {

@@ -11,22 +11,6 @@
     <div
       class="tabbar-item"
       :class="{ active: active === 1 }"
-      @click="goTab('/lottery')"
-    >
-      <GoldIcon name="lottery" :size="22" />
-      <span class="tabbar-text">彩票</span>
-    </div>
-    <div
-      class="tabbar-item"
-      :class="{ active: active === 2 }"
-      @click="goTab('/casino')"
-    >
-      <GoldIcon name="casino" :size="22" />
-      <span class="tabbar-text">娱乐城</span>
-    </div>
-    <div
-      class="tabbar-item"
-      :class="{ active: active === 3 }"
       @click="goTab('/promo')"
     >
       <GoldIcon name="coupon" :size="22" />
@@ -34,17 +18,33 @@
     </div>
     <div
       class="tabbar-item"
+      :class="{ active: active === 2 }"
+      @click="goLogin"
+    >
+      <GoldIcon name="user" :size="22" />
+      <span class="tabbar-text">{{ isLoggedIn ? '账户' : '登录' }}</span>
+    </div>
+    <div
+      class="tabbar-item"
+      :class="{ active: active === 3 }"
+      @click="goTab('/chat')"
+    >
+      <GoldIcon name="headset" :size="22" />
+      <span class="tabbar-text">客服</span>
+    </div>
+    <div
+      class="tabbar-item"
       :class="{ active: active === 4 }"
       @click="goTab('/user/center')"
     >
-      <GoldIcon name="user" :size="22" />
-      <span class="tabbar-text">我的</span>
+      <GoldIcon name="crown" :size="22" />
+      <span class="tabbar-text">会员</span>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import GoldIcon from '@/components/GoldIcon.vue'
 
@@ -52,11 +52,15 @@ const route = useRoute()
 const router = useRouter()
 const active = ref(0)
 
+const isLoggedIn = computed(() => {
+  return !!localStorage.getItem('token')
+})
+
 const pathMap = {
   '/': 0,
-  '/lottery': 1,
-  '/casino': 2,
-  '/promo': 3,
+  '/promo': 1,
+  '/login': 2,
+  '/chat': 3,
   '/user/center': 4
 }
 
@@ -67,6 +71,14 @@ watch(() => route.path, (path) => {
 function goTab(path) {
   if (route.path !== path) {
     router.push(path)
+  }
+}
+
+function goLogin() {
+  if (isLoggedIn.value) {
+    router.push('/user/center')
+  } else {
+    router.push('/login')
   }
 }
 </script>
