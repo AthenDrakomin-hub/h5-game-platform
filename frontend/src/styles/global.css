@@ -192,6 +192,11 @@ html, body, #app {
   color: #3a2610 !important;
   font-weight: 600 !important;
   border-radius: 10px !important;
+  transition: all 0.15s ease;
+}
+.btn-primary:active {
+  transform: scale(0.97);
+  opacity: 0.9;
 }
 
 .btn-outline {
@@ -199,6 +204,21 @@ html, body, #app {
   border: 1px solid #f0d080 !important;
   color: #f0d080 !important;
   border-radius: 10px !important;
+  transition: all 0.15s ease;
+}
+.btn-outline:active {
+  transform: scale(0.97);
+  background: rgba(240,208,128,0.1) !important;
+}
+
+/* 通用卡片点击效果 */
+.clickable-card {
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.clickable-card:active {
+  transform: scale(0.98);
+  opacity: 0.9;
 }
 
 /* 空状态 */
@@ -206,6 +226,41 @@ html, body, #app {
   padding: 60px 20px;
   text-align: center;
   color: #8a7a5a;
+}
+
+/* van-button 通用点击效果 */
+.van-button {
+  transition: all 0.15s ease !important;
+}
+.van-button:active {
+  transform: scale(0.97) !important;
+  opacity: 0.9 !important;
+}
+.van-button--primary:active {
+  background: linear-gradient(180deg, #e0c070 0%, #c4983b 50%, #a88230 100%) !important;
+}
+
+/* van-cell 通用点击效果 */
+.van-cell {
+  transition: background 0.15s ease;
+}
+.van-cell:active {
+  background: rgba(240,208,128,0.08) !important;
+}
+
+/* 空状态统一样式 */
+:deep(.van-empty), .van-empty {
+  padding: 60px 20px;
+}
+.van-empty__description {
+  color: #8a7a5a !important;
+  font-size: 14px !important;
+  margin-top: 12px !important;
+}
+.van-empty__image {
+  width: 120px !important;
+  height: 120px !important;
+  opacity: 0.6;
 }
 
 
