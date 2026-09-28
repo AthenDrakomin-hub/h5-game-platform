@@ -88,7 +88,7 @@ function drawBackground() {
   }
 
   // 文字水印
-  ctx.fillStyle = 'rgba(232, 184, 96, 0.15)'
+  ctx.fillStyle = 'rgba(240, 208, 128, 0.15)'
   ctx.font = 'bold 28px Arial'
   ctx.fillText('SECURE', 30, props.canvasHeight / 2)
 }
@@ -117,7 +117,7 @@ function drawBlock() {
 
   // 滑块边框
   ctx.save()
-  ctx.strokeStyle = 'rgba(232, 184, 96, 0.9)'
+  ctx.strokeStyle = 'rgba(240, 208, 128, 0.9)'
   ctx.lineWidth = 2
   drawPuzzleShape(ctx, 0, targetY.value, props.blockSize)
   ctx.stroke()
@@ -299,14 +299,14 @@ onMounted(() => {
   left: 0;
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #f0d080, #d4a84b);
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #3a2610;
   cursor: grab;
-  box-shadow: 0 2px 8px rgba(232, 184, 96, 0.4);
+  box-shadow: 0 2px 8px rgba(240, 208, 128, 0.4);
   user-select: none;
 }
 .captcha-slider-btn.dragging {

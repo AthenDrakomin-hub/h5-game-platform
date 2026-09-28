@@ -55,7 +55,7 @@ defineProps({
   margin: 0 0 30px 0;
 }
 .placeholder-btn {
-  background: linear-gradient(135deg, #f0d080, #d4a84b) !important;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
   border: none !important;
   color: #1a1a1a !important;
   font-weight: 600 !important;

@@ -566,7 +566,7 @@ onMounted(() => {
   flex-shrink: 0;
 }
 .checkbox.checked {
-  background: linear-gradient(135deg, #f0d080, #d4a84b);
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
   border-color: #f0d080;
 }
 .protocol-link {
@@ -655,7 +655,7 @@ onMounted(() => {
   margin-bottom: 8px;
 }
 .modal-confirm-btn {
-  background: linear-gradient(135deg, #f0d080, #d4a84b) !important;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
   border: none !important;
   color: #1a1a1a !important;
 }

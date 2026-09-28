@@ -210,7 +210,7 @@ onMounted(() => {
   font-weight: 600;
 }
 .agent-avatar {
-  background: linear-gradient(135deg, #f0d080, #d4a84b);
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
 }
 .user-avatar {
   background: rgba(255,255,255,0.1);
@@ -228,7 +228,7 @@ onMounted(() => {
   border-top-left-radius: 4px;
 }
 .message-bubble.user {
-  background: linear-gradient(135deg, #f0d080, #d4a84b);
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
   border-top-right-radius: 4px;
 }
 .message-bubble p {
@@ -288,7 +288,7 @@ onMounted(() => {
   font-size: 12px;
   color: #f0d080;
   background: rgba(240, 208, 128, 0.1);
-  border: 1px solid rgba(232, 184, 96, 0.3);
+  border: 1px solid rgba(240, 208, 128, 0.3);
   padding: 6px 12px;
   border-radius: 14px;
   cursor: pointer;
@@ -317,7 +317,7 @@ onMounted(() => {
   color: #6a5a40;
 }
 .send-btn {
-  background: linear-gradient(135deg, #f0d080, #d4a84b) !important;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
   border: none !important;
   color: #1a1a1a !important;
   font-weight: 600 !important;

@@ -383,7 +383,7 @@ onUnmounted(() => {
   border: 2px solid transparent;
 }
 .number-ball.selected {
-  background: linear-gradient(135deg, #f0d080, #d4a84b);
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
   color: #3a2610;
   font-weight: 700;
   border-color: #fff;
@@ -440,7 +440,7 @@ onUnmounted(() => {
   gap: 12px;
   padding: 10px 16px;
   background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
-  border-top: 1px solid #333;
+  border-top: 1px solid rgba(255,255,255,0.1);
   z-index: 100;
   padding-bottom: calc(10px + env(safe-area-inset-bottom));
 }
@@ -477,11 +477,11 @@ onUnmounted(() => {
   flex-shrink: 0;
   width: 120px;
   height: 42px !important;
-  background: linear-gradient(135deg, #f0d080, #d4a84b) !important;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
   border: none !important;
-  color: #1a1a1a !important;
+  color: #3a2610 !important;
   font-weight: 600 !important;
-  border-radius: 21px !important;
+  border-radius: 10px !important;
 }
 .bet-btn:disabled {
   opacity: 0.4;

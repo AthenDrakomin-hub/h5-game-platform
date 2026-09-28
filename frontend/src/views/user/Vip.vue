@@ -112,7 +112,7 @@ onMounted(() => {
 .vip-level-num {
   font-size: 14px;
   color: #d4a84b;
-  background: rgba(232, 184, 96, 0.15);
+  background: rgba(240, 208, 128, 0.15);
   padding: 2px 8px;
   border-radius: 4px;
 }
@@ -156,7 +156,7 @@ onMounted(() => {
 }
 .level-item.current {
   border-color: #f0d080;
-  background: rgba(232, 184, 96, 0.05);
+  background: rgba(240, 208, 128, 0.05);
 }
 .level-header {
   display: flex;
@@ -167,7 +167,7 @@ onMounted(() => {
 .level-badge {
   font-size: 12px;
   font-weight: 700;
-  background: linear-gradient(135deg, #f0d080, #d4a84b);
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
   color: #3a2610;
   padding: 2px 8px;
   border-radius: 4px;

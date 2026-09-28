@@ -155,13 +155,13 @@ onMounted(() => {
   color: #6a5a40;
 }
 .cell-hit {
-  background: linear-gradient(135deg, #f0d080, #d4a84b);
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
   color: #1a1a1a !important;
   font-weight: 600;
   border-radius: 50%;
 }
 .cell-blue {
-  background: linear-gradient(135deg, #4a90d9, #357abd) !important;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
   color: #fff !important;
 }
 .cell-empty {

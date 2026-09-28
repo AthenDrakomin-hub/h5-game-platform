@@ -187,25 +187,25 @@ html, body, #app {
 
 /* 按钮 */
 .btn-primary {
-  background: linear-gradient(135deg, #f0d080, #d4a84b) !important;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
   border: none !important;
-  color: #1a1a1a !important;
+  color: #3a2610 !important;
   font-weight: 600 !important;
-  border-radius: 24px !important;
+  border-radius: 10px !important;
 }
 
 .btn-outline {
   background: transparent !important;
   border: 1px solid #f0d080 !important;
   color: #f0d080 !important;
-  border-radius: 24px !important;
+  border-radius: 10px !important;
 }
 
 /* 空状态 */
 .empty-state {
   padding: 60px 20px;
   text-align: center;
-  color: #666;
+  color: #8a7a5a;
 }
 
 

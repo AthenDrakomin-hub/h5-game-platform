@@ -185,7 +185,7 @@ onMounted(() => {
 }
 .add-card-btn {
   margin-top: 20px;
-  background: linear-gradient(135deg, #f0d080, #d4a84b) !important;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
   border: none !important;
   color: #1a1a1a !important;
   width: 200px;

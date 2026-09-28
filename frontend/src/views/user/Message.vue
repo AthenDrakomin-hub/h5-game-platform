@@ -113,8 +113,8 @@ onMounted(() => {
   position: relative;
 }
 .message-item.unread {
-  border-color: rgba(232, 184, 96, 0.3);
-  background: rgba(232, 184, 96, 0.03);
+  border-color: rgba(240, 208, 128, 0.3);
+  background: rgba(240, 208, 128, 0.03);
 }
 .msg-icon {
   width: 40px;
