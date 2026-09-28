@@ -136,7 +136,7 @@ public class WalletService {
         String orderNo = "YB" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))
                 + new Random().nextInt(10000);
         // 扣减主钱包余额（余额宝功能待完善，暂记为冻结）
-        balanceService.subtractBalance(userId, amount, "yuebao_in", null, orderNo, "余额宝转入");
+        balanceService.deductBalance(userId, amount, "yuebao_in", null, orderNo, "余额宝转入");
 
         Map<String, Object> data = new HashMap<>();
         data.put("amount", amount);

@@ -47,3 +47,4 @@ coverage/
 .parcel-cache/
 .eslintcache
 .tools/
+web-root/
