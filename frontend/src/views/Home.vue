@@ -2,8 +2,7 @@
   <div class="home-page">
     <!-- 顶部Logo -->
     <div class="home-logo-bar">
-      <div class="logo-text">NOVA</div>
-      <div class="logo-sub">新星娱乐</div>
+      <img src="/assets/logo.png" alt="NOVA" class="logo-img" />
     </div>
 
     <!-- Banner轮播 -->
@@ -18,10 +17,9 @@
             </template>
           </div>
         </van-swipe-item>
-        <van-swipe-item v-if="banners.length === 0">
-          <div class="banner-slide" style="background:linear-gradient(135deg,#3a2810,#1a130a)">
-            <div class="banner-title">逢8必送</div>
-            <div class="banner-sub">每月会员专属福利日</div>
+        <van-swipe-item v-if="banners.length === 0" v-for="i in 3" :key="'local-'+i">
+          <div class="banner-slide">
+            <img :src="`/assets/banners/banner${i}.png`" :alt="`banner${i}`" class="banner-img" />
           </div>
         </van-swipe-item>
       </van-swipe>
@@ -107,7 +105,7 @@
           >
             <div class="game-icon-wrap">
               <img v-if="game.icon" :src="game.icon" :alt="game.name" class="game-icon-img" />
-              <div v-else class="game-icon-placeholder">{{ game.name?.charAt(0) }}</div>
+              <img v-else :src="`/assets/games/game${(game.id % 6) + 1}.png`" :alt="game.name" class="game-icon-img" />
             </div>
             <span class="game-name">{{ game.name }}</span>
           </div>
@@ -247,21 +245,11 @@ onMounted(() => {
 /* 顶部Logo */
 .home-logo-bar {
   text-align: center;
-  padding: 12px 0 8px;
+  padding: 10px 0 6px;
 }
-.logo-text {
-  font-size: 22px;
-  font-weight: 700;
-  background: linear-gradient(180deg, #f0d080, #d4a84b, #a07828);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: 4px;
-}
-.logo-sub {
-  font-size: 11px;
-  color: #8a7a5a;
-  letter-spacing: 2px;
-  margin-top: 2px;
+.logo-img {
+  height: 36px;
+  object-fit: contain;
 }
 
 /* Banner */
@@ -269,7 +257,7 @@ onMounted(() => {
   padding: 0 12px;
 }
 .banner-slide {
-  height: 140px;
+  height: 160px;
   border-radius: 12px;
   overflow: hidden;
   display: flex;
@@ -279,7 +267,7 @@ onMounted(() => {
 }
 .banner-img {
   width: 100%;
-  height: 140px;
+  height: 160px;
   object-fit: cover;
 }
 .banner-title {

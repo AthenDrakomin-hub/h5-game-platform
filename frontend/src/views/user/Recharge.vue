@@ -18,7 +18,10 @@
             :class="{ active: selectedMethod === method.id, disabled: method.status !== 'online' }"
             @click="selectMethod(method)"
           >
-            <span class="method-icon">{{ method.icon }}</span>
+            <div class="method-icon">
+              <img v-if="method.icon && (method.icon.startsWith('/') || method.icon.startsWith('http'))" :src="method.icon" :alt="method.name" class="method-icon-img" />
+              <span v-else>{{ method.icon || '💰' }}</span>
+            </div>
             <div class="method-info">
               <span class="method-name">{{ method.name }}</span>
               <span class="method-range">{{ method.minAmount }}-{{ method.maxAmount }}元</span>
@@ -135,7 +138,15 @@ async function loadMethods() {
     methods.value = data
     if (data.length) selectedMethod.value = data[0].id
   } catch (e) {
-    methods.value = []
+    // 默认支付方式（带真实加密货币图标）
+    methods.value = [
+      { id: 1, name: 'USDT-TRC20', icon: '/assets/crypto/usdt.svg', minAmount: 100, maxAmount: 50000, status: 'online' },
+      { id: 2, name: 'USDT-ERC20', icon: '/assets/crypto/usdt.svg', minAmount: 100, maxAmount: 50000, status: 'online' },
+      { id: 3, name: 'BTC', icon: '/assets/crypto/btc.svg', minAmount: 500, maxAmount: 100000, status: 'online' },
+      { id: 4, name: 'ETH', icon: '/assets/crypto/eth.svg', minAmount: 300, maxAmount: 80000, status: 'online' },
+      { id: 5, name: 'TRX', icon: '/assets/crypto/trx.svg', minAmount: 100, maxAmount: 30000, status: 'online' },
+    ]
+    selectedMethod.value = 1
   }
 }
 
@@ -245,6 +256,11 @@ onMounted(() => {
   background: rgba(255,255,255,0.06);
   border-radius: 10px;
   flex-shrink: 0;
+}
+.method-icon-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 .method-info {
   flex: 1;
