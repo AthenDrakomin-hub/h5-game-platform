@@ -657,6 +657,6 @@ onMounted(() => {
 .modal-confirm-btn {
   background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
   border: none !important;
-  color: #1a1a1a !important;
+  color: #3a2610 !important;
 }
 </style>

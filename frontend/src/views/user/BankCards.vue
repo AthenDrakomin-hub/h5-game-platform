@@ -119,7 +119,7 @@ onMounted(() => {
   gap: 12px;
 }
 .bank-card {
-  background: linear-gradient(135deg, #2a2a3e, #1a1a2e);
+  background: linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 14px;
   padding: 16px;
   border: 1px solid #3a3a4e;
@@ -187,7 +187,7 @@ onMounted(() => {
   margin-top: 20px;
   background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
   border: none !important;
-  color: #1a1a1a !important;
+  color: #3a2610 !important;
   width: 200px;
 }
 :deep(.van-empty__description) {

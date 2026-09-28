@@ -163,7 +163,7 @@ onMounted(() => {
   font-weight: 700;
 }
 .result-ball.special {
-  background: linear-gradient(135deg, #4a90d9, #357abd);
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
   color: #fff;
 }
 .empty-state {

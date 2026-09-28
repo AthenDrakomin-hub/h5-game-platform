@@ -405,7 +405,7 @@ onMounted(() => {
 .msg-badge-num {
   font-size: 10px;
   font-weight: 600;
-  color: #1a130a;
+  color: #3a2610;
 }
 
 /* 资产行 */

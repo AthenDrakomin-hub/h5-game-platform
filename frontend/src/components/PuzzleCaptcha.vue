@@ -66,8 +66,8 @@ function drawBackground() {
   const ctx = bgCanvas.value.getContext('2d')
   // 渐变背景
   const gradient = ctx.createLinearGradient(0, 0, props.canvasWidth, props.canvasHeight)
-  gradient.addColorStop(0, '#2a2a3e')
-  gradient.addColorStop(0.5, '#1a1a2e')
+  gradient.addColorStop(0, '#2a1f10')
+  gradient.addColorStop(0.5, '#1a130a')
   gradient.addColorStop(1, '#16213e')
   ctx.fillStyle = gradient
   ctx.fillRect(0, 0, props.canvasWidth, props.canvasHeight)

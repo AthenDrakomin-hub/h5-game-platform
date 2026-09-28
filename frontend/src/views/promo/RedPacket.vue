@@ -100,23 +100,23 @@ onMounted(() => { loadInfo(); loadRecords() })
 </script>
 
 <style scoped>
-.redpacket-page { min-height: 100vh; background: linear-gradient(180deg, #8b0000, #0d0d0d); }
+.redpacket-page { min-height: 100vh; background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%); }
 :deep(.van-nav-bar) { background: transparent; }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) { color: #fff !important; }
 .redpacket-content { padding: 20px; }
 .redpacket-header { text-align: center; padding: 30px 0; }
 .redpacket-icon { font-size: 80px; margin-bottom: 16px; }
-.redpacket-header h2 { color: #ffd700; margin: 0 0 8px; }
+.redpacket-header h2 { color: #f0d080; margin: 0 0 8px; }
 .redpacket-header p { color: #ffcccc; margin: 0; }
 .redpacket-info { background: rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 24px; }
 .info-item { display: flex; justify-content: space-between; padding: 8px 0; }
 .info-item .label { color: #ffcccc; }
-.info-item .value { color: #ffd700; font-weight: 700; }
-.grab-btn { background: linear-gradient(135deg, #ffd700, #ff8c00) !important; border: none !important; color: #8b0000 !important; font-weight: 700; height: 48px; font-size: 16px; }
+.info-item .value { color: #f0d080; font-weight: 700; }
+.grab-btn { background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important; border: none !important; color: #3a2610 !important; font-weight: 700; height: 48px; font-size: 16px; }
 .record-section { margin-top: 30px; }
-.record-section h3 { color: #ffd700; margin-bottom: 12px; }
+.record-section h3 { color: #f0d080; margin-bottom: 12px; }
 .record-item { display: flex; justify-content: space-between; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 8px; }
 .record-user { color: #ccc; }
-.record-amount { color: #ffd700; font-weight: 600; }
+.record-amount { color: #f0d080; font-weight: 600; }
 .record-time { color: #6a5a40; font-size: 12px; }
 </style>

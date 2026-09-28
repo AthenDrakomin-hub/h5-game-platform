@@ -156,7 +156,7 @@ onMounted(() => {
 }
 .cell-hit {
   background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
-  color: #1a1a1a !important;
+  color: #3a2610 !important;
   font-weight: 600;
   border-radius: 50%;
 }

@@ -76,7 +76,7 @@ const rules = ref([
 :deep(.van-nav-bar) { background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6)); }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) { color: #f2e0b8 !important; }
 .rules-content { padding: 12px; }
-:deep(.van-collapse), :deep(.van-collapse-item) { background: #1a1a1a !important; border-color: rgba(255,255,255,0.1) !important; }
+:deep(.van-collapse), :deep(.van-collapse-item) { background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6)) !important; border-color: rgba(255,255,255,0.1) !important; }
 :deep(.van-cell__title) { color: #f0d080 !important; font-weight: 600; }
 :deep(.van-collapse-item__content) { color: #ccc !important; }
 .rule-content { font-size: 14px; line-height: 1.8; }
