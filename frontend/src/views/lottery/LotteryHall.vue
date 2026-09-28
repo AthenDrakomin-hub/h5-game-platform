@@ -100,15 +100,15 @@ onMounted(() => {
 <style scoped>
 .lottery-hall {
   min-height: 100vh;
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
   display: flex;
   flex-direction: column;
 }
 :deep(.van-nav-bar) {
-  background: #1a1a1a;
+  background: transparent !important;
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left), :deep(.van-nav-bar__right) {
-  color: #f0f0f0 !important;
+  color: #f2e0b8 !important;
 }
 .hall-content {
   display: flex;
@@ -117,7 +117,7 @@ onMounted(() => {
 }
 .category-sidebar {
   width: 80px;
-  background: #151515;
+  background: rgba(0,0,0,0.2);
   flex-shrink: 0;
 }
 .category-item {
@@ -130,8 +130,8 @@ onMounted(() => {
   transition: all 0.2s;
 }
 .category-item.active {
-  background: #0d0d0d;
-  border-left-color: #e8b860;
+  background: linear-gradient(90deg, rgba(212,168,75,0.12), transparent);
+  border-left-color: #d4a84b;
 }
 .cat-icon {
   font-size: 22px;
@@ -139,10 +139,10 @@ onMounted(() => {
 }
 .cat-name {
   font-size: 12px;
-  color: #888;
+  color: #8a7a5a;
 }
 .category-item.active .cat-name {
-  color: #e8b860;
+  color: #f0d080;
   font-weight: 600;
 }
 .game-list-area {
@@ -163,14 +163,16 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
   padding: 14px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid rgba(255,255,255,0.12);
   cursor: pointer;
 }
 .game-card:active {
   transform: scale(0.98);
+  border-color: rgba(212,168,75,0.4);
 }
 .game-icon {
   font-size: 32px;
@@ -179,9 +181,15 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #222;
+  background: rgba(255,255,255,0.06);
   border-radius: 10px;
   flex-shrink: 0;
+}
+.game-icon-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 .game-info {
   flex: 1;
@@ -191,12 +199,12 @@ onMounted(() => {
 }
 .game-name {
   font-size: 15px;
-  color: #e0e0e0;
+  color: #f2e0b8;
   font-weight: 500;
 }
 .game-status {
   font-size: 11px;
-  color: #07c160;
+  color: #f0d080;
 }
 .game-status.maintenance {
   color: #888;

@@ -10,7 +10,7 @@
       </div>
       <div v-else class="header-content">
         <div class="logo-area">
-          <span class="header-logo-full">🎮</span>
+          <img src="/assets/logo.png" alt="logo" class="header-logo-img" />
         </div>
         <p class="site-slogan">{{ slogan }}</p>
       </div>
@@ -434,14 +434,15 @@ onMounted(() => {
 <style scoped>
 .login-page {
   min-height: 100vh;
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
 }
 .login-popup-mode {
   min-height: auto;
   padding-bottom: 20px;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 100%);
 }
 .header-bg {
-  background: linear-gradient(180deg, #1a1a2e 0%, #0d0d0d 100%);
+  background: linear-gradient(180deg, rgba(42,31,16,0.6) 0%, transparent 100%);
   padding: 20px 20px 0;
   position: relative;
 }
@@ -468,17 +469,21 @@ onMounted(() => {
 .logo-area {
   margin-bottom: 8px;
 }
+.header-logo-img {
+  height: 44px;
+  object-fit: contain;
+}
 .header-logo-full {
   font-size: 48px;
 }
 .popup-site-name {
   font-size: 18px;
   font-weight: 600;
-  color: #e8b860;
+  color: #f0d080;
 }
 .site-slogan {
   font-size: 13px;
-  color: #808080;
+  color: #8a7a5a;
   margin: 0;
 }
 .auth-tabs {
@@ -500,12 +505,12 @@ onMounted(() => {
   transition: all 0.2s;
 }
 .auth-tab.active {
-  color: #e8b860;
+  color: #f0d080;
   font-size: 18px;
   font-weight: 600;
 }
 .tab-divider {
-  color: #333;
+  color: rgba(255,255,255,0.15);
   font-size: 14px;
 }
 .main-content {
@@ -517,11 +522,12 @@ onMounted(() => {
 .input-container {
   display: flex;
   align-items: center;
-  background: #1a1a1a;
-  border-radius: 24px;
+  background: linear-gradient(rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.7), rgba(11,10,8,0.5));
+  border-radius: 12px;
   margin-bottom: 14px;
   padding: 0 16px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 .field-icon {
   display: flex;
@@ -531,8 +537,8 @@ onMounted(() => {
 .pill-field {
   flex: 1;
   background: transparent !important;
-  --van-field-input-text-color: #f0f0f0;
-  --van-field-placeholder-text-color: #666;
+  --van-field-input-text-color: #f0e8d8;
+  --van-field-placeholder-text-color: #6a5a40;
 }
 .pill-field :deep(.van-field__control) {
   min-height: 44px;
@@ -572,14 +578,16 @@ onMounted(() => {
   height: 46px !important;
 }
 .primary-btn {
-  background: linear-gradient(135deg, #e8b860, #c99a3e) !important;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
   border: none !important;
-  color: #1a1a1a !important;
+  color: #3a2610 !important;
+  border-radius: 10px !important;
 }
 .register-btn-solid {
-  background: linear-gradient(135deg, #e8b860, #c99a3e) !important;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
   border: none !important;
-  color: #1a1a1a !important;
+  color: #3a2610 !important;
+  border-radius: 10px !important;
 }
 .register-btn-solid:disabled {
   opacity: 0.5;

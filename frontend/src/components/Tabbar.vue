@@ -91,18 +91,22 @@ function goTab(path) {
   justify-content: center;
   padding: 6px 0 4px;
   cursor: pointer;
-  opacity: 0.5;
-  transition: opacity 0.2s;
+  opacity: 0.45;
+  transition: all 0.2s;
 }
 .tabbar-item.active {
   opacity: 1;
 }
+.tabbar-item.active :deep(.gold-icon) {
+  filter: drop-shadow(0 0 6px rgba(240,208,128,0.5));
+}
 .tabbar-text {
   font-size: 10px;
-  color: #6a5a40;
+  color: #8a7a5a;
   margin-top: 2px;
 }
 .tabbar-item.active .tabbar-text {
-  color: #d4a84b;
+  color: #f0d080;
+  font-weight: 600;
 }
 </style>
