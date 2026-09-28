@@ -130,11 +130,12 @@ html, body, #app {
 /* 弹窗淡入淡出 */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+  transform: translateY(8px);
 }
 
 /* 表单淡入 */
@@ -144,6 +145,15 @@ html, body, #app {
 .form-fade-enter-from {
   opacity: 0;
   transform: translateY(10px);
+}
+
+/* 页面内容入场动画 */
+.page-enter-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(12px);
 }
 
 /* 页面容器 */
