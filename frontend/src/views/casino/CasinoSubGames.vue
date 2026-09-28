@@ -3,7 +3,7 @@
     <van-nav-bar :title="platformName" left-arrow @click-left="$router.back()" />
     <div class="sub-games-content">
       <div v-if="loading" class="loading-wrap">
-        <van-loading color="#e8b860">加载中...</van-loading>
+        <van-loading color="#f0d080">加载中...</van-loading>
       </div>
       <div v-else class="games-grid">
         <div
@@ -65,10 +65,10 @@ onMounted(() => {
 <style scoped>
 .sub-games-page {
   min-height: 100vh;
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
 }
 :deep(.van-nav-bar) {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
   color: #f0f0f0 !important;
@@ -86,12 +86,12 @@ onMounted(() => {
   gap: 10px;
 }
 .game-item {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
   position: relative;
-  border: 1px solid #2a2a2a;
+  border: 1px solid rgba(255,255,255,0.12);
 }
 .game-item:active {
   transform: scale(0.96);

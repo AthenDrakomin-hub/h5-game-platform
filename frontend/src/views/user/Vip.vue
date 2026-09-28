@@ -74,10 +74,10 @@ onMounted(() => {
 <style scoped>
 .vip-page {
   min-height: 100vh;
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
 }
 :deep(.van-nav-bar) {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
   color: #f0f0f0 !important;
@@ -87,7 +87,7 @@ onMounted(() => {
 }
 .vip-card-current {
   background: linear-gradient(135deg, #2a1f0f, #1a1508);
-  border: 1px solid #c99a3e;
+  border: 1px solid #d4a84b;
   border-radius: 16px;
   padding: 20px;
   margin-bottom: 16px;
@@ -107,11 +107,11 @@ onMounted(() => {
 .vip-level-name {
   font-size: 20px;
   font-weight: 700;
-  color: #e8b860;
+  color: #f0d080;
 }
 .vip-level-num {
   font-size: 14px;
-  color: #c99a3e;
+  color: #d4a84b;
   background: rgba(232, 184, 96, 0.15);
   padding: 2px 8px;
   border-radius: 4px;
@@ -128,18 +128,18 @@ onMounted(() => {
 }
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #e8b860, #c99a3e);
+  background: linear-gradient(90deg, #f0d080, #d4a84b);
   border-radius: 3px;
   transition: width 0.3s;
 }
 .progress-text {
   font-size: 11px;
-  color: #888;
+  color: #8a7a5a;
 }
 .section-title {
   font-size: 15px;
   font-weight: 600;
-  color: #f0f0f0;
+  color: #f2e0b8;
   margin-bottom: 12px;
   padding-left: 4px;
 }
@@ -149,13 +149,13 @@ onMounted(() => {
   gap: 10px;
 }
 .level-item {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
   padding: 14px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid rgba(255,255,255,0.12);
 }
 .level-item.current {
-  border-color: #e8b860;
+  border-color: #f0d080;
   background: rgba(232, 184, 96, 0.05);
 }
 .level-header {
@@ -167,21 +167,21 @@ onMounted(() => {
 .level-badge {
   font-size: 12px;
   font-weight: 700;
-  background: linear-gradient(135deg, #e8b860, #c99a3e);
+  background: linear-gradient(135deg, #f0d080, #d4a84b);
   color: #1a1a1a;
   padding: 2px 8px;
   border-radius: 4px;
 }
 .level-name {
   font-size: 14px;
-  color: #e0e0e0;
+  color: #d0c4a8;
   font-weight: 500;
   flex: 1;
 }
 .current-tag {
   font-size: 10px;
-  color: #e8b860;
-  border: 1px solid #e8b860;
+  color: #f0d080;
+  border: 1px solid #f0d080;
   padding: 1px 6px;
   border-radius: 3px;
 }
@@ -196,11 +196,11 @@ onMounted(() => {
 }
 .benefit-label {
   font-size: 11px;
-  color: #666;
+  color: #6a5a40;
 }
 .benefit-value {
   font-size: 14px;
-  color: #e0e0e0;
+  color: #d0c4a8;
   font-weight: 600;
 }
 </style>

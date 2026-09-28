@@ -7,7 +7,7 @@
     </van-nav-bar>
     <div class="bank-cards-content">
       <div v-if="loading" class="loading-wrap">
-        <van-loading color="#e8b860">加载中...</van-loading>
+        <van-loading color="#f0d080">加载中...</van-loading>
       </div>
       <div v-else class="card-list">
         <div
@@ -93,17 +93,17 @@ onMounted(() => {
 <style scoped>
 .bank-cards-page {
   min-height: 100vh;
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
 }
 :deep(.van-nav-bar) {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left), :deep(.van-nav-bar__right) {
   color: #f0f0f0 !important;
 }
 .add-btn {
   font-size: 14px;
-  color: #e8b860;
+  color: #f0d080;
   cursor: pointer;
 }
 .bank-cards-content {
@@ -126,7 +126,7 @@ onMounted(() => {
   position: relative;
 }
 .bank-card.default {
-  border-color: #e8b860;
+  border-color: #f0d080;
 }
 .card-header {
   display: flex;
@@ -140,12 +140,12 @@ onMounted(() => {
 .bank-name {
   font-size: 16px;
   font-weight: 600;
-  color: #f0f0f0;
+  color: #f2e0b8;
   flex: 1;
 }
 .default-tag {
   font-size: 10px;
-  background: #e8b860;
+  background: #f0d080;
   color: #1a1a1a;
   padding: 2px 6px;
   border-radius: 4px;
@@ -153,7 +153,7 @@ onMounted(() => {
 }
 .card-number {
   font-size: 20px;
-  color: #e8b860;
+  color: #f0d080;
   letter-spacing: 2px;
   margin-bottom: 16px;
   font-variant-numeric: tabular-nums;
@@ -173,7 +173,7 @@ onMounted(() => {
 }
 .action-btn {
   font-size: 12px;
-  color: #e8b860;
+  color: #f0d080;
   cursor: pointer;
 }
 .action-btn.delete {
@@ -185,12 +185,12 @@ onMounted(() => {
 }
 .add-card-btn {
   margin-top: 20px;
-  background: linear-gradient(135deg, #e8b860, #c99a3e) !important;
+  background: linear-gradient(135deg, #f0d080, #d4a84b) !important;
   border: none !important;
   color: #1a1a1a !important;
   width: 200px;
 }
 :deep(.van-empty__description) {
-  color: #666;
+  color: #6a5a40;
 }
 </style>

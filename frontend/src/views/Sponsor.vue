@@ -9,21 +9,21 @@
       </div>
       <div class="sponsor-list">
         <div class="sponsor-item">
-          <van-icon name="gold-coin-o" size="24" color="#e8b860" />
+          <van-icon name="gold-coin-o" size="24" color="#f0d080" />
           <div class="sponsor-item-info">
             <h3>代理合作</h3>
             <p>高额佣金分成，实时结算</p>
           </div>
         </div>
         <div class="sponsor-item">
-          <van-icon name="shop-o" size="24" color="#e8b860" />
+          <van-icon name="shop-o" size="24" color="#f0d080" />
           <div class="sponsor-item-info">
             <h3>品牌赞助</h3>
             <p>首页Banner、活动冠名</p>
           </div>
         </div>
         <div class="sponsor-item">
-          <van-icon name="friends-o" size="24" color="#e8b860" />
+          <van-icon name="friends-o" size="24" color="#f0d080" />
           <div class="sponsor-item-info">
             <h3>渠道推广</h3>
             <p>CPS/CPA多种合作模式</p>
@@ -47,10 +47,10 @@
 <style scoped>
 .sponsor-page {
   min-height: 100vh;
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
 }
 :deep(.van-nav-bar) {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
   color: #f0f0f0 !important;
@@ -68,12 +68,12 @@
 }
 .sponsor-hero h2 {
   font-size: 22px;
-  color: #e8b860;
+  color: #f0d080;
   margin: 0 0 8px 0;
 }
 .sponsor-hero p {
   font-size: 14px;
-  color: #888;
+  color: #8a7a5a;
   margin: 0;
 }
 .sponsor-list {
@@ -83,27 +83,27 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 12px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid rgba(255,255,255,0.12);
 }
 .sponsor-item-info h3 {
   font-size: 15px;
-  color: #f0f0f0;
+  color: #f2e0b8;
   margin: 0 0 4px 0;
 }
 .sponsor-item-info p {
   font-size: 12px;
-  color: #888;
+  color: #8a7a5a;
   margin: 0;
 }
 .sponsor-contact {
   margin-top: 30px;
   text-align: center;
   padding: 20px;
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
 }
 .sponsor-contact p {

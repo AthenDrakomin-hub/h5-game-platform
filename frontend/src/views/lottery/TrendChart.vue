@@ -77,22 +77,22 @@ onMounted(() => loadTrend())
 </script>
 
 <style scoped>
-.trend-page { min-height: 100vh; background: #0d0d0d; }
-:deep(.van-nav-bar), :deep(.van-tabs) { background: #1a1a1a; }
+.trend-page { min-height: 100vh; background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%); }
+:deep(.van-nav-bar), :deep(.van-tabs) { background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6)); }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left), :deep(.van-tab) { color: #f0f0f0 !important; }
-:deep(.van-tab--active) { color: #e8b860 !important; }
+:deep(.van-tab--active) { color: #f0d080 !important; }
 .trend-content { padding-bottom: 20px; }
-.trend-stats { display: flex; justify-content: space-around; padding: 16px; background: #1a1a1a; margin-bottom: 8px; }
+.trend-stats { display: flex; justify-content: space-around; padding: 16px; background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6)); margin-bottom: 8px; }
 .stat-item { text-align: center; }
-.stat-label { display: block; font-size: 12px; color: #888; margin-bottom: 4px; }
+.stat-label { display: block; font-size: 12px; color: #8a7a5a; margin-bottom: 4px; }
 .stat-value { font-size: 20px; font-weight: 700; }
 .stat-value.dragon { color: #ff4d4f; }
 .stat-value.tiger { color: #1890ff; }
 .stat-value.big { color: #faad14; }
 .stat-value.small { color: #52c41a; }
 .trend-list { padding: 0 12px; }
-.trend-item { display: flex; align-items: center; padding: 12px; background: #1a1a1a; border-radius: 8px; margin-bottom: 8px; }
-.period { width: 100px; font-size: 12px; color: #888; }
-.numbers { flex: 1; font-size: 14px; color: #e8b860; font-weight: 600; letter-spacing: 2px; }
+.trend-item { display: flex; align-items: center; padding: 12px; background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6)); border-radius: 8px; margin-bottom: 8px; }
+.period { width: 100px; font-size: 12px; color: #8a7a5a; }
+.numbers { flex: 1; font-size: 14px; color: #f0d080; font-weight: 600; letter-spacing: 2px; }
 .tags { display: flex; gap: 4px; }
 </style>

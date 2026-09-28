@@ -131,14 +131,14 @@ onMounted(() => {
 <style scoped>
 .casino-hall {
   min-height: 100vh;
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
   padding-bottom: 60px;
 }
 :deep(.van-nav-bar) {
-  background: #1a1a1a;
+  background: transparent !important;
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left), :deep(.van-nav-bar__right) {
-  color: #f0f0f0 !important;
+  color: #f2e0b8 !important;
 }
 .casino-content {
   padding: 12px;
@@ -154,14 +154,14 @@ onMounted(() => {
 .title-bar {
   width: 3px;
   height: 14px;
-  background: linear-gradient(180deg, #e8b860, #c99a3e);
+  background: linear-gradient(180deg, #f0d080, #d4a84b);
   border-radius: 2px;
   margin-right: 8px;
 }
 .title-text {
   font-size: 16px;
   font-weight: 600;
-  color: #f0f0f0;
+  color: #f2e0b8;
 }
 .game-scroll {
   display: flex;
@@ -173,10 +173,11 @@ onMounted(() => {
   flex-shrink: 0;
   width: 140px;
   height: 80px;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 .game-thumb {
   width: 100%;
@@ -189,7 +190,7 @@ onMounted(() => {
   left: 0;
   right: 0;
   padding: 6px 8px;
-  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
   font-size: 11px;
   color: #fff;
   white-space: nowrap;
@@ -205,15 +206,17 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
   padding: 14px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid rgba(255,255,255,0.12);
   cursor: pointer;
   position: relative;
 }
 .platform-card:active {
   transform: scale(0.98);
+  border-color: rgba(212,168,75,0.4);
 }
 .platform-card.maintenance {
   opacity: 0.5;
@@ -225,7 +228,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #222;
+  background: rgba(255,255,255,0.06);
   border-radius: 10px;
   flex-shrink: 0;
 }
@@ -242,7 +245,7 @@ onMounted(() => {
 }
 .platform-name {
   font-size: 15px;
-  color: #e0e0e0;
+  color: #f2e0b8;
   font-weight: 500;
 }
 .platform-count {

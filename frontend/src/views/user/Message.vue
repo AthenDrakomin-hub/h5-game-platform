@@ -3,7 +3,7 @@
     <van-nav-bar title="消息中心" left-arrow @click-left="$router.back()" />
     <div class="message-content">
       <div v-if="loading" class="loading-wrap">
-        <van-loading color="#e8b860">加载中...</van-loading>
+        <van-loading color="#f0d080">加载中...</van-loading>
       </div>
       <div v-else class="message-list">
         <div
@@ -81,10 +81,10 @@ onMounted(() => {
 <style scoped>
 .message-page {
   min-height: 100vh;
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
 }
 :deep(.van-nav-bar) {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
   color: #f0f0f0 !important;
@@ -105,10 +105,10 @@ onMounted(() => {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
   padding: 14px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid rgba(255,255,255,0.12);
   cursor: pointer;
   position: relative;
 }
@@ -124,7 +124,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   font-size: 20px;
-  background: #222;
+  background: rgba(255,255,255,0.06);
   flex-shrink: 0;
 }
 .msg-content {
@@ -140,17 +140,17 @@ onMounted(() => {
 .msg-title {
   font-size: 14px;
   font-weight: 600;
-  color: #e0e0e0;
+  color: #d0c4a8;
 }
 .msg-time {
   font-size: 11px;
-  color: #666;
+  color: #6a5a40;
   flex-shrink: 0;
   margin-left: 8px;
 }
 .msg-desc {
   font-size: 12px;
-  color: #888;
+  color: #8a7a5a;
   margin: 0;
   line-height: 1.5;
   display: -webkit-box;
@@ -171,6 +171,6 @@ onMounted(() => {
   padding: 40px 20px;
 }
 :deep(.van-empty__description) {
-  color: #666;
+  color: #6a5a40;
 }
 </style>

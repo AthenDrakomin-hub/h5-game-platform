@@ -118,5 +118,5 @@ onMounted(() => { loadInfo(); loadRecords() })
 .record-item { display: flex; justify-content: space-between; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 8px; }
 .record-user { color: #ccc; }
 .record-amount { color: #ffd700; font-weight: 600; }
-.record-time { color: #666; font-size: 12px; }
+.record-time { color: #6a5a40; font-size: 12px; }
 </style>

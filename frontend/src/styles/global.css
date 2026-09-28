@@ -1,3 +1,106 @@
+/* 全局深色背景 - 覆盖所有页面 */
+html, body, #app {
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
+  min-height: 100vh;
+  color: #d0c4a8;
+}
+
+/* 通用页面容器 */
+.page-container,
+[class*="-page"],
+[class*="-hall"],
+[class*="-detail"] {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%) !important;
+  color: #d0c4a8;
+}
+
+/* Vant NavBar 全局深色 */
+:deep(.van-nav-bar),
+.van-nav-bar {
+  background: transparent !important;
+}
+.van-nav-bar__title,
+.van-nav-bar .van-icon,
+.van-nav-bar__text {
+  color: #f2e0b8 !important;
+}
+
+/* Vant Tab 全局深色 */
+.van-tabs__nav {
+  background: transparent !important;
+}
+.van-tab {
+  color: #8a7a5a !important;
+}
+.van-tab--active {
+  color: #f0d080 !important;
+}
+.van-tabs__line {
+  background: linear-gradient(90deg, #f0d080, #d4a84b) !important;
+}
+
+/* 通用玻璃卡片 */
+.glass-card,
+[class*="-card"]:not([class*="game-card"]):not([class*="jackpot-card"]) {
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6)) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  border-radius: 14px !important;
+}
+
+/* 通用列表项 */
+[class*="-item"]:not([class*="tabbar-item"]):not([class*="category-item"]):not([class*="method-item"]) {
+  color: #d0c4a8;
+}
+
+/* 通用标题色 */
+[class*="-title"]:not([class*="van-"]) {
+  color: #f2e0b8;
+}
+
+/* 通用金额/强调色 */
+[class*="-amount"],
+[class*="-price"],
+[class*="-money"] {
+  color: #f0d080 !important;
+  font-weight: 600;
+}
+
+/* Vant Cell 深色 */
+.van-cell {
+  background: transparent !important;
+  color: #d0c4a8 !important;
+}
+.van-cell__title {
+  color: #d0c4a8 !important;
+}
+.van-cell__value {
+  color: #f2e0b8 !important;
+}
+
+/* Vant Button 金色 */
+.van-button--primary {
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
+  border: none !important;
+  color: #3a2610 !important;
+  border-radius: 10px !important;
+}
+
+/* Vant Field 深色输入框 */
+.van-field {
+  background: linear-gradient(rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.7), rgba(11,10,8,0.5)) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+}
+.van-field__control {
+  color: #f0e8d8 !important;
+}
+.van-field__control::placeholder {
+  color: #6a5a40 !important;
+}
+
 /* 路由过渡动画 */
 .tab-slide-left-enter-active,
 .tab-slide-left-leave-active,

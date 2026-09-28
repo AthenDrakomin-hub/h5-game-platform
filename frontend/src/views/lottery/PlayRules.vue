@@ -72,14 +72,14 @@ const rules = ref([
 </script>
 
 <style scoped>
-.rules-page { min-height: 100vh; background: #0d0d0d; }
-:deep(.van-nav-bar) { background: #1a1a1a; }
+.rules-page { min-height: 100vh; background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%); }
+:deep(.van-nav-bar) { background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6)); }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) { color: #f0f0f0 !important; }
 .rules-content { padding: 12px; }
 :deep(.van-collapse), :deep(.van-collapse-item) { background: #1a1a1a !important; border-color: #333 !important; }
-:deep(.van-cell__title) { color: #e8b860 !important; font-weight: 600; }
+:deep(.van-cell__title) { color: #f0d080 !important; font-weight: 600; }
 :deep(.van-collapse-item__content) { color: #ccc !important; }
 .rule-content { font-size: 14px; line-height: 1.8; }
 .rule-content p { margin: 8px 0; }
-.rule-content strong { color: #e8b860; }
+.rule-content strong { color: #f0d080; }
 </style>

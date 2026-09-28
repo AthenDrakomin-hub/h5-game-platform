@@ -10,7 +10,7 @@
 
     <div class="results-content">
       <div v-if="loading" class="loading-wrap">
-        <van-loading color="#e8b860">加载中...</van-loading>
+        <van-loading color="#f0d080">加载中...</van-loading>
       </div>
       <div v-else class="results-list">
         <div v-for="(item, idx) in results" :key="idx" class="result-card">
@@ -92,10 +92,10 @@ onMounted(() => {
 <style scoped>
 .results-page {
   min-height: 100vh;
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
 }
 :deep(.van-nav-bar) {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
   color: #f0f0f0 !important;
@@ -109,7 +109,7 @@ onMounted(() => {
   height: 36px;
 }
 :deep(.van-dropdown-item__title) {
-  color: #e8b860;
+  color: #f0d080;
   font-size: 13px;
 }
 .results-content {
@@ -125,10 +125,10 @@ onMounted(() => {
   gap: 10px;
 }
 .result-card {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
   padding: 14px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid rgba(255,255,255,0.12);
 }
 .result-header {
   display: flex;
@@ -138,12 +138,12 @@ onMounted(() => {
 }
 .result-issue {
   font-size: 14px;
-  color: #e8b860;
+  color: #f0d080;
   font-weight: 600;
 }
 .result-time {
   font-size: 11px;
-  color: #666;
+  color: #6a5a40;
 }
 .result-numbers {
   display: flex;
@@ -156,7 +156,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #e8b860, #c99a3e);
+  background: linear-gradient(135deg, #f0d080, #d4a84b);
   border-radius: 50%;
   font-size: 13px;
   color: #1a1a1a;
@@ -176,7 +176,7 @@ onMounted(() => {
   margin-bottom: 12px;
 }
 .empty-state p {
-  color: #666;
+  color: #6a5a40;
   font-size: 14px;
 }
 </style>

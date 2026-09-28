@@ -171,16 +171,18 @@ onMounted(() => {
   padding: 12px;
 }
 .settings-section {
-  background: #1a1a1a;
-  border-radius: 12px;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  border-radius: 14px;
   margin-bottom: 12px;
   overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
 }
 .settings-item {
   display: flex;
   align-items: center;
   padding: 14px 16px;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
   cursor: pointer;
 }
 .settings-item:last-child {
@@ -189,30 +191,32 @@ onMounted(() => {
 .item-label {
   flex: 1;
   font-size: 14px;
-  color: #d0d0d0;
+  color: #d0c4a8;
 }
 .item-value {
   font-size: 13px;
-  color: #888;
+  color: #8a7a5a;
   margin-right: 8px;
 }
 :deep(.van-switch) {
-  background: #333;
+  background: rgba(255,255,255,0.15);
 }
 :deep(.van-switch--on) {
-  background: #e8b860;
+  background: linear-gradient(180deg, #f0d080, #d4a84b);
 }
 .logout-section {
   padding: 16px 0;
 }
 .logout-btn {
   background: transparent !important;
-  border: 1px solid #ee0a24 !important;
+  border: 1px solid rgba(238,10,36,0.6) !important;
   color: #ee0a24 !important;
   height: 44px !important;
+  border-radius: 10px !important;
 }
 .profile-popup, .about-popup {
   padding: 20px;
+  background: linear-gradient(180deg, #1a1208, #0d0a06);
 }
 .popup-header {
   display: flex;
@@ -223,7 +227,7 @@ onMounted(() => {
 .popup-title {
   font-size: 17px;
   font-weight: 600;
-  color: #f0f0f0;
+  color: #f2e0b8;
 }
 .profile-info {
   display: flex;
@@ -236,10 +240,10 @@ onMounted(() => {
   font-size: 14px;
 }
 .profile-row span:first-child {
-  color: #888;
+  color: #8a7a5a;
 }
 .profile-row span:last-child {
-  color: #e0e0e0;
+  color: #f2e0b8;
 }
 .about-content {
   text-align: center;

@@ -7,7 +7,7 @@
     </van-nav-bar>
     <div class="frame-container">
       <div v-if="loading" class="frame-loading">
-        <van-loading size="32px" color="#e8b860" vertical>
+        <van-loading size="32px" color="#f0d080" vertical>
           游戏加载中...
         </van-loading>
       </div>
@@ -89,7 +89,7 @@ onMounted(() => {
   flex-direction: column;
 }
 :deep(.van-nav-bar) {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left), :deep(.van-nav-bar__right) {
   color: #f0f0f0 !important;
@@ -114,7 +114,7 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
   gap: 12px;
 }
 .frame-error {
@@ -127,11 +127,11 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
   gap: 16px;
 }
 .frame-error p {
-  color: #888;
+  color: #8a7a5a;
   font-size: 14px;
   margin: 0;
 }

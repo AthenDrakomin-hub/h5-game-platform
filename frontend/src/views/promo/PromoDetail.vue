@@ -2,7 +2,7 @@
   <div class="promo-detail-page">
     <van-nav-bar title="活动详情" left-arrow @click-left="$router.back()" />
     <div v-if="loading" class="loading-wrap">
-      <van-loading color="#e8b860">加载中...</van-loading>
+      <van-loading color="#f0d080">加载中...</van-loading>
     </div>
     <div v-else-if="promo" class="promo-detail-content">
       <img :src="promo.image" :alt="promo.title" class="detail-banner" />
@@ -97,11 +97,11 @@ onMounted(() => {
 <style scoped>
 .promo-detail-page {
   min-height: 100vh;
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
   padding-bottom: 80px;
 }
 :deep(.van-nav-bar) {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
   color: #f0f0f0 !important;
@@ -121,7 +121,7 @@ onMounted(() => {
 .detail-title {
   font-size: 20px;
   font-weight: 700;
-  color: #f0f0f0;
+  color: #f2e0b8;
   margin: 0 0 10px 0;
 }
 .detail-meta {
@@ -135,12 +135,12 @@ onMounted(() => {
   align-items: center;
   gap: 4px;
   font-size: 12px;
-  color: #888;
+  color: #8a7a5a;
 }
 .meta-tag {
   font-size: 11px;
-  color: #e8b860;
-  border: 1px solid #e8b860;
+  color: #f0d080;
+  border: 1px solid #f0d080;
   padding: 2px 8px;
   border-radius: 10px;
 }
@@ -158,7 +158,7 @@ onMounted(() => {
   margin: 0 0 10px 0;
 }
 .detail-content-html :deep(strong) {
-  color: #e8b860;
+  color: #f0d080;
 }
 .detail-content-html :deep(ol) {
   padding-left: 20px;
@@ -168,14 +168,14 @@ onMounted(() => {
 }
 .detail-rules {
   margin-top: 20px;
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
   padding: 16px;
 }
 .rules-title {
   font-size: 15px;
   font-weight: 600;
-  color: #f0f0f0;
+  color: #f2e0b8;
   margin: 0 0 12px 0;
 }
 .rules-list {
@@ -196,12 +196,12 @@ onMounted(() => {
   max-width: 480px;
   margin: 0 auto;
   padding: 12px 16px;
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-top: 1px solid #333;
   padding-bottom: calc(12px + env(safe-area-inset-bottom));
 }
 .claim-btn {
-  background: linear-gradient(135deg, #e8b860, #c99a3e) !important;
+  background: linear-gradient(135deg, #f0d080, #d4a84b) !important;
   border: none !important;
   color: #1a1a1a !important;
   font-weight: 600 !important;
@@ -212,6 +212,6 @@ onMounted(() => {
   padding: 60px 20px;
 }
 :deep(.van-empty__description) {
-  color: #666;
+  color: #6a5a40;
 }
 </style>
