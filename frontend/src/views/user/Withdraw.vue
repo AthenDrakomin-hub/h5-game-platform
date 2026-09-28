@@ -231,44 +231,45 @@ onMounted(() => {
 <style scoped>
 .withdraw-page {
   min-height: 100vh;
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
   padding-bottom: 100px;
 }
 :deep(.van-nav-bar) {
-  background: #1a1a1a;
+  background: transparent;
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
-  color: #f0f0f0 !important;
+  color: #f2e0b8 !important;
 }
 .withdraw-content {
   padding: 12px;
 }
 .balance-card {
-  background: linear-gradient(135deg, #2a2a3e, #1a1a2e);
-  border-radius: 12px;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
   padding: 16px;
   margin-bottom: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #3a3a4e;
 }
 .balance-label {
   display: block;
   font-size: 12px;
-  color: #888;
+  color: #8a7a5a;
   margin-bottom: 4px;
 }
 .balance-value {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
-  color: #e8b860;
+  color: #ffffff;
 }
 .all-btn {
   font-size: 13px;
-  color: #e8b860;
-  border: 1px solid #e8b860;
-  padding: 4px 12px;
+  color: #f0d080;
+  border: 1px solid #d4a84b;
+  padding: 4px 14px;
   border-radius: 12px;
   cursor: pointer;
 }
@@ -278,7 +279,7 @@ onMounted(() => {
 .section-title {
   font-size: 14px;
   font-weight: 600;
-  color: #f0f0f0;
+  color: #f2e0b8;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
@@ -286,7 +287,7 @@ onMounted(() => {
 }
 .add-link {
   font-size: 12px;
-  color: #e8b860;
+  color: #f0d080;
   font-weight: normal;
   cursor: pointer;
 }
@@ -296,19 +297,19 @@ onMounted(() => {
 }
 .method-tab {
   flex: 1;
-  background: #1a1a1a;
-  border: 2px solid transparent;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  border: 1px solid rgba(255,255,255,0.12);
   border-radius: 10px;
   padding: 14px;
   text-align: center;
   font-size: 14px;
-  color: #aaa;
+  color: #8a7a5a;
   cursor: pointer;
 }
 .method-tab.active {
-  border-color: #e8b860;
-  color: #e8b860;
-  background: rgba(232, 184, 96, 0.05);
+  border-color: #d4a84b;
+  color: #f0d080;
 }
 .account-list {
   display: flex;
@@ -319,25 +320,26 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 10px;
   padding: 14px;
-  border: 2px solid transparent;
+  border: 1px solid rgba(255,255,255,0.12);
   cursor: pointer;
 }
 .account-item.active {
-  border-color: #e8b860;
+  border-color: #d4a84b;
 }
 .account-name {
   font-size: 14px;
-  color: #e0e0e0;
+  color: #f0e6d0;
   font-weight: 500;
   min-width: 80px;
 }
 .account-number {
   flex: 1;
   font-size: 13px;
-  color: #888;
+  color: #8a7a5a;
 }
 .empty-account {
   padding: 20px;
@@ -345,15 +347,17 @@ onMounted(() => {
 .amount-input-wrap {
   display: flex;
   align-items: center;
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
   padding: 0 16px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid rgba(255,255,255,0.12);
 }
 .amount-currency {
   font-size: 18px;
-  color: #e8b860;
+  color: #ffffff;
   margin-right: 8px;
+  font-weight: 600;
 }
 .amount-input {
   flex: 1;
@@ -361,8 +365,9 @@ onMounted(() => {
   background: transparent;
   border: none;
   outline: none;
-  font-size: 18px;
-  color: #f0f0f0;
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 600;
 }
 .amount-input::placeholder {
   color: #555;
@@ -373,18 +378,19 @@ onMounted(() => {
   justify-content: space-between;
   margin-top: 8px;
   font-size: 12px;
-  color: #888;
+  color: #8a7a5a;
 }
 .amount-tip {
   font-size: 11px;
-  color: #666;
+  color: #8a7a5a;
   margin-top: 6px;
 }
 .pwd-input-wrap {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
   padding: 0 16px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid rgba(255,255,255,0.12);
 }
 .pwd-input {
   width: 100%;
@@ -393,7 +399,7 @@ onMounted(() => {
   border: none;
   outline: none;
   font-size: 16px;
-  color: #f0f0f0;
+  color: #ffffff;
   letter-spacing: 8px;
 }
 .submit-section {
@@ -404,16 +410,17 @@ onMounted(() => {
   max-width: 480px;
   margin: 0 auto;
   padding: 12px 16px;
-  background: #1a1a1a;
-  border-top: 1px solid #333;
+  background: linear-gradient(180deg, rgba(13,10,6,0.9), #0d0a06);
+  border-top: 1px solid rgba(255,255,255,0.08);
   padding-bottom: calc(12px + env(safe-area-inset-bottom));
 }
 .submit-btn {
-  background: linear-gradient(135deg, #e8b860, #c99a3e) !important;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
   border: none !important;
-  color: #1a1a1a !important;
+  color: #3a2610 !important;
   font-weight: 600 !important;
   height: 46px !important;
+  border-radius: 10px !important;
 }
 .submit-btn:disabled {
   opacity: 0.4;

@@ -179,25 +179,27 @@ onMounted(() => {
 <style scoped>
 .recharge-page {
   min-height: 100vh;
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
   padding-bottom: 100px;
 }
 :deep(.van-nav-bar) {
-  background: #1a1a1a;
+  background: transparent;
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
-  color: #f0f0f0 !important;
+  color: #f2e0b8 !important;
 }
 .recharge-content {
   padding: 12px;
 }
 .balance-tip {
-  background: #1a1a1a;
-  border-radius: 10px;
-  padding: 12px 16px;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 14px 16px;
   margin-bottom: 12px;
   font-size: 13px;
-  color: #e8b860;
+  color: #f2e0b8;
 }
 .section {
   margin-bottom: 16px;
@@ -205,7 +207,7 @@ onMounted(() => {
 .section-title {
   font-size: 14px;
   font-weight: 600;
-  color: #f0f0f0;
+  color: #f2e0b8;
   margin-bottom: 10px;
   padding-left: 4px;
 }
@@ -218,28 +220,30 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
   padding: 14px;
-  border: 2px solid transparent;
+  border: 1px solid rgba(255,255,255,0.12);
   cursor: pointer;
 }
 .method-item.active {
-  border-color: #e8b860;
-  background: rgba(232, 184, 96, 0.05);
+  border-color: #d4a84b;
+  background: linear-gradient(rgba(212,168,75,0.15) 0%, rgba(212,168,75,0.02) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 .method-item.disabled {
   opacity: 0.4;
 }
 .method-icon {
   font-size: 24px;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #222;
-  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
   flex-shrink: 0;
 }
 .method-info {
@@ -250,12 +254,12 @@ onMounted(() => {
 }
 .method-name {
   font-size: 14px;
-  color: #e0e0e0;
+  color: #f0e6d0;
   font-weight: 500;
 }
 .method-range {
   font-size: 11px;
-  color: #666;
+  color: #8a7a5a;
 }
 .amount-quick {
   display: grid;
@@ -264,32 +268,36 @@ onMounted(() => {
   margin-bottom: 12px;
 }
 .amount-chip {
-  background: #1a1a1a;
-  border: 1px solid #2a2a2a;
-  border-radius: 8px;
-  padding: 10px;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 12px;
   text-align: center;
   font-size: 14px;
-  color: #ccc;
+  color: #d0c4a8;
   cursor: pointer;
 }
 .amount-chip.active {
-  border-color: #e8b860;
-  color: #e8b860;
-  background: rgba(232, 184, 96, 0.05);
+  border-color: #d4a84b;
+  color: #f0d080;
+  background: linear-gradient(rgba(212,168,75,0.15) 0%, rgba(212,168,75,0.02) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 .amount-input-wrap {
   display: flex;
   align-items: center;
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
+              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
   padding: 0 16px;
-  border: 1px solid #2a2a2a;
+  border: 1px solid rgba(255,255,255,0.12);
 }
 .amount-currency {
   font-size: 18px;
-  color: #e8b860;
+  color: #ffffff;
   margin-right: 8px;
+  font-weight: 600;
 }
 .amount-input {
   flex: 1;
@@ -297,8 +305,9 @@ onMounted(() => {
   background: transparent;
   border: none;
   outline: none;
-  font-size: 18px;
-  color: #f0f0f0;
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 600;
 }
 .amount-input::placeholder {
   color: #555;
@@ -306,7 +315,7 @@ onMounted(() => {
 }
 .amount-tip {
   font-size: 11px;
-  color: #666;
+  color: #8a7a5a;
   margin-top: 8px;
   padding-left: 4px;
 }
@@ -318,22 +327,25 @@ onMounted(() => {
   max-width: 480px;
   margin: 0 auto;
   padding: 12px 16px;
-  background: #1a1a1a;
-  border-top: 1px solid #333;
+  background: linear-gradient(180deg, rgba(13,10,6,0.9), #0d0a06);
+  border-top: 1px solid rgba(255,255,255,0.08);
   padding-bottom: calc(12px + env(safe-area-inset-bottom));
 }
 .submit-btn {
-  background: linear-gradient(135deg, #e8b860, #c99a3e) !important;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
   border: none !important;
-  color: #1a1a1a !important;
+  color: #3a2610 !important;
   font-weight: 600 !important;
   height: 46px !important;
+  border-radius: 10px !important;
 }
 .submit-btn:disabled {
   opacity: 0.4;
 }
 .pay-popup {
   padding: 20px;
+  background: #1a1208;
+  border-radius: 16px 16px 0 0;
 }
 .pay-header {
   display: flex;
@@ -344,7 +356,7 @@ onMounted(() => {
 .pay-title {
   font-size: 18px;
   font-weight: 600;
-  color: #f0f0f0;
+  color: #f2e0b8;
 }
 .pay-amount {
   text-align: center;
@@ -353,13 +365,13 @@ onMounted(() => {
 .pay-label {
   display: block;
   font-size: 13px;
-  color: #888;
+  color: #8a7a5a;
   margin-bottom: 8px;
 }
 .pay-value {
   font-size: 36px;
   font-weight: 700;
-  color: #e8b860;
+  color: #ffffff;
 }
 .pay-qr {
   text-align: center;
@@ -374,7 +386,7 @@ onMounted(() => {
 }
 .qr-tip {
   font-size: 13px;
-  color: #888;
+  color: #8a7a5a;
   margin-top: 12px;
 }
 .pay-info-text {
@@ -383,17 +395,18 @@ onMounted(() => {
 }
 .pay-info-text p {
   font-size: 13px;
-  color: #aaa;
+  color: #b0a080;
   margin: 6px 0;
 }
 .pay-actions {
   margin-top: 16px;
 }
 .pay-confirm-btn {
-  background: linear-gradient(135deg, #e8b860, #c99a3e) !important;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
   border: none !important;
-  color: #1a1a1a !important;
+  color: #3a2610 !important;
   font-weight: 600 !important;
   height: 46px !important;
+  border-radius: 10px !important;
 }
 </style>
