@@ -538,15 +538,18 @@ onMounted(() => {
   cursor: pointer;
 }
 .quick-icon-wrap {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(255,255,255,0.06);
+  border-radius: 12px;
+  margin-bottom: 6px;
 }
 .quick-icon-label {
   font-size: 11px;
-  color: #b0a080;
+  color: #d0c4a8;
 }
 
 /* 菜单列表 - 暗黑玻璃质感 */

@@ -95,9 +95,10 @@
       <div class="game-content">
         <!-- Tab切换 -->
         <div class="game-tabs">
-          <span class="game-tab active">热门</span>
-          <span class="game-tab">最近游戏</span>
-          <span class="game-tab">收藏</span>
+          <span class="game-tab active">PG电子</span>
+          <span class="game-tab">CQ9电子</span>
+          <span class="game-tab">JDB电子</span>
+          <span class="game-tab">PP电子</span>
         </div>
 
         <!-- 游戏网格 -->
@@ -462,14 +463,22 @@ onMounted(() => {
 }
 .game-tabs {
   display: flex;
-  gap: 16px;
-  margin-bottom: 10px;
+  gap: 14px;
+  margin-bottom: 12px;
   padding: 0 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.game-tabs::-webkit-scrollbar {
+  display: none;
 }
 .game-tab {
   font-size: 13px;
   color: #8a7a5a;
   cursor: pointer;
+  white-space: nowrap;
+  padding: 4px 0;
+  transition: all 0.2s;
 }
 .game-tab.active {
   color: #f0d080;
@@ -479,7 +488,7 @@ onMounted(() => {
 .game-tab.active::after {
   content: '';
   position: absolute;
-  bottom: -4px;
+  bottom: -2px;
   left: 0;
   right: 0;
   height: 2px;
