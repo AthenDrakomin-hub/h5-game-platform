@@ -56,7 +56,7 @@
       </div>
       <div class="action-icons">
         <div class="action-icon" @click="goPage('/casino')">
-          <GoldIcon name="gift" :size="22" />
+          <GoldIcon name="gamepad" :size="22" />
           <span>试玩</span>
         </div>
         <div class="action-icon" @click="goPage('/user/recharge')">
@@ -95,10 +95,9 @@
       <div class="game-content">
         <!-- Tab切换 -->
         <div class="game-tabs">
-          <span class="game-tab active">PG电子</span>
-          <span class="game-tab">CQ9电子</span>
-          <span class="game-tab">JDB电子</span>
-          <span class="game-tab">PP电子</span>
+          <span class="game-tab active">热门</span>
+          <span class="game-tab">最近游戏</span>
+          <span class="game-tab">收藏</span>
         </div>
 
         <!-- 游戏网格 -->
