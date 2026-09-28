@@ -50,7 +50,7 @@
           >
             <span class="account-name">{{ acc.bankName || acc.network }}</span>
             <span class="account-number">{{ acc.cardNumber || acc.address }}</span>
-            <van-icon v-if="selectedAccount === acc.id" name="checked" color="#e8b860" />
+            <van-icon v-if="selectedAccount === acc.id" name="checked" color="#f0d080" />
           </div>
         </div>
         <div v-else class="empty-account">

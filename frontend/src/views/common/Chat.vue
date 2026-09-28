@@ -171,7 +171,7 @@ onMounted(() => {
   background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left), :deep(.van-nav-bar__right) {
-  color: #f0f0f0 !important;
+  color: #f2e0b8 !important;
 }
 .chat-content {
   flex: 1;
@@ -213,7 +213,7 @@ onMounted(() => {
   background: linear-gradient(135deg, #f0d080, #d4a84b);
 }
 .user-avatar {
-  background: #333;
+  background: rgba(255,255,255,0.1);
   color: #f0d080;
 }
 .message-bubble {
@@ -241,7 +241,7 @@ onMounted(() => {
   color: #d0c4a8;
 }
 .message-bubble.user p {
-  color: #1a1a1a;
+  color: #3a2610;
 }
 .message-time {
   display: block;
@@ -259,7 +259,7 @@ onMounted(() => {
 .typing-dots span {
   width: 6px;
   height: 6px;
-  background: #888;
+  background: rgba(255,255,255,0.2);
   border-radius: 50%;
   animation: typing 1.4s infinite;
 }
@@ -287,7 +287,7 @@ onMounted(() => {
 .quick-item {
   font-size: 12px;
   color: #f0d080;
-  background: rgba(232, 184, 96, 0.1);
+  background: rgba(240, 208, 128, 0.1);
   border: 1px solid rgba(232, 184, 96, 0.3);
   padding: 6px 12px;
   border-radius: 14px;
@@ -305,7 +305,7 @@ onMounted(() => {
 .chat-input {
   flex: 1;
   height: 38px;
-  background: #2a2a2a;
+  background: rgba(255,255,255,0.06);
   border: none;
   border-radius: 19px;
   padding: 0 16px;

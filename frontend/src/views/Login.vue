@@ -566,11 +566,11 @@ onMounted(() => {
   flex-shrink: 0;
 }
 .checkbox.checked {
-  background: linear-gradient(135deg, #e8b860, #c99a3e);
-  border-color: #e8b860;
+  background: linear-gradient(135deg, #f0d080, #d4a84b);
+  border-color: #f0d080;
 }
 .protocol-link {
-  color: #e8b860;
+  color: #f0d080;
 }
 .action-btn {
   margin-top: 8px !important;
@@ -604,7 +604,7 @@ onMounted(() => {
   cursor: pointer;
 }
 .forgot-link {
-  color: #e8b860;
+  color: #f0d080;
 }
 .popup-secondary-btns {
   display: flex;
@@ -633,7 +633,7 @@ onMounted(() => {
 .modal-title {
   font-size: 18px;
   font-weight: 600;
-  color: #f0f0f0;
+  color: #f2e0b8;
   margin: 0;
 }
 .modal-close-btn {
@@ -655,7 +655,7 @@ onMounted(() => {
   margin-bottom: 8px;
 }
 .modal-confirm-btn {
-  background: linear-gradient(135deg, #e8b860, #c99a3e) !important;
+  background: linear-gradient(135deg, #f0d080, #d4a84b) !important;
   border: none !important;
   color: #1a1a1a !important;
 }

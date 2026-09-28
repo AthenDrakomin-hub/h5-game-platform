@@ -79,7 +79,7 @@ onMounted(() => loadTrend())
 <style scoped>
 .trend-page { min-height: 100vh; background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%); }
 :deep(.van-nav-bar), :deep(.van-tabs) { background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6)); }
-:deep(.van-nav-bar__title), :deep(.van-icon-arrow-left), :deep(.van-tab) { color: #f0f0f0 !important; }
+:deep(.van-nav-bar__title), :deep(.van-icon-arrow-left), :deep(.van-tab) { color: #f2e0b8 !important; }
 :deep(.van-tab--active) { color: #f0d080 !important; }
 .trend-content { padding-bottom: 20px; }
 .trend-stats { display: flex; justify-content: space-around; padding: 16px; background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6)); margin-bottom: 8px; }

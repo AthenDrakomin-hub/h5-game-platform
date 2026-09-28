@@ -29,7 +29,7 @@ defineProps({
   background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
-  color: #f0f0f0 !important;
+  color: #f2e0b8 !important;
 }
 .placeholder-content {
   display: flex;
@@ -46,7 +46,7 @@ defineProps({
 }
 .placeholder-title {
   font-size: 20px;
-  color: #f0f0f0;
+  color: #f2e0b8;
   margin: 0 0 12px 0;
 }
 .placeholder-desc {
@@ -55,7 +55,7 @@ defineProps({
   margin: 0 0 30px 0;
 }
 .placeholder-btn {
-  background: linear-gradient(135deg, #e8b860, #c99a3e) !important;
+  background: linear-gradient(135deg, #f0d080, #d4a84b) !important;
   border: none !important;
   color: #1a1a1a !important;
   font-weight: 600 !important;

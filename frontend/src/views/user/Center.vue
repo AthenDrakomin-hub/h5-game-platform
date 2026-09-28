@@ -129,56 +129,63 @@
           <GoldIcon name="gift" :size="24" />
         </div>
         <span class="menu-text">福利中心</span>
-        <GoldIcon name="arrow" :size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/rebate')">
         <div class="menu-icon-wrap">
           <GoldIcon name="clock" :size="24" />
         </div>
         <span class="menu-text">实时返水</span>
-        <GoldIcon name="arrow" :size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/orders?type=recharge')">
         <div class="menu-icon-wrap">
           <GoldIcon name="credit" :size="24" />
         </div>
         <span class="menu-text">充值记录</span>
-        <GoldIcon name="arrow" :size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/orders?type=withdraw')">
         <div class="menu-icon-wrap">
           <GoldIcon name="bankcard" :size="24" />
         </div>
         <span class="menu-text">提现记录</span>
-        <GoldIcon name="arrow" :size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/switch-record')">
         <div class="menu-icon-wrap">
           <GoldIcon name="swap" :size="24" />
         </div>
         <span class="menu-text">转换记录</span>
-        <GoldIcon name="arrow" :size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/profit-loss-report')">
         <div class="menu-icon-wrap">
           <GoldIcon name="colume" :size="24" />
         </div>
         <span class="menu-text">盈亏记录</span>
-        <GoldIcon name="arrow" :size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
       </div>
       <div class="menu-list-item" @click="goAppDownload">
         <div class="menu-icon-wrap">
           <GoldIcon name="download" :size="24" />
         </div>
         <span class="menu-text">APP下载</span>
-        <GoldIcon name="arrow" :size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
+      </div>
+      <div class="menu-list-item" @click="goPage('/chat')">
+        <div class="menu-icon-wrap">
+          <GoldIcon name="headset" :size="24" />
+        </div>
+        <span class="menu-text">在线客服</span>
+        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/feedback')">
         <div class="menu-icon-wrap">
           <GoldIcon name="edit" :size="24" />
         </div>
         <span class="menu-text">有奖反馈</span>
-        <GoldIcon name="arrow" :size="14" color="#555" />
+        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
       </div>
     </div>
 

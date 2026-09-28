@@ -40,19 +40,20 @@ function goHome() {
 }
 .nf-title {
   font-size: 22px;
-  color: #FFFFFF;
+  color: #f2e0b8;
   margin: 0 0 10px 0;
 }
 .nf-desc {
   font-size: 14px;
-  color: #8B949E;
+  color: #8a7a5a;
   margin: 0 0 30px 0;
 }
 .nf-btn {
-  background: linear-gradient(135deg, #00D4AA, #00A896) !important;
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%) !important;
   border: none !important;
-  color: #fff !important;
+  color: #3a2610 !important;
   font-weight: 600 !important;
   width: 180px;
+  border-radius: 10px !important;
 }
 </style>

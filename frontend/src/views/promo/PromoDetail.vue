@@ -104,7 +104,7 @@ onMounted(() => {
   background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
-  color: #f0f0f0 !important;
+  color: #f2e0b8 !important;
 }
 .loading-wrap {
   padding: 60px;
@@ -146,7 +146,7 @@ onMounted(() => {
 }
 .detail-divider {
   height: 1px;
-  background: #2a2a2a;
+  background: rgba(255,255,255,0.06);
   margin-bottom: 16px;
 }
 .detail-content-html {

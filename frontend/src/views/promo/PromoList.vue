@@ -3,13 +3,13 @@
     <van-nav-bar title="优惠活动" left-arrow @click-left="$router.back()" />
 
     <!-- 分类Tab -->
-    <van-tabs v-model:active="activeCategory" color="#e8b860" class="promo-tabs">
+    <van-tabs v-model:active="activeCategory" color="#f0d080" class="promo-tabs">
       <van-tab v-for="cat in categories" :key="cat.id" :title="cat.name" :name="cat.id" />
     </van-tabs>
 
     <div class="promo-content">
       <div v-if="loading" class="loading-wrap">
-        <van-loading color="#e8b860">加载中...</van-loading>
+        <van-loading color="#f0d080">加载中...</van-loading>
       </div>
       <div v-else class="promo-cards">
         <div

@@ -24,7 +24,7 @@
       <!-- 游戏列表 -->
       <div class="game-list-area">
         <div v-if="loading" class="loading-wrap">
-          <van-loading color="#e8b860">加载中...</van-loading>
+          <van-loading color="#f0d080">加载中...</van-loading>
         </div>
         <div v-else class="game-grid">
           <div

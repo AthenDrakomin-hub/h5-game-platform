@@ -46,7 +46,7 @@
               <span class="method-name">{{ method.name }}</span>
               <span class="method-range">{{ method.minAmount }}-{{ method.maxAmount }}元</span>
             </div>
-            <van-icon v-if="selectedMethod === method.id" name="checked" color="#e8b860" size="18" />
+            <van-icon v-if="selectedMethod === method.id" name="checked" color="#f0d080" size="18" />
           </div>
         </div>
       </div>
