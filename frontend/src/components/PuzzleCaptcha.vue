@@ -14,7 +14,7 @@
         :style="{ transform: `translateX(${sliderX}px)` }"
       />
       <div v-if="loading" class="captcha-loading">
-        <van-loading color="#e8b860" />加载中...
+        <van-loading color="#f0d080" />加载中...
       </div>
       <div v-if="infoText" class="captcha-info" :class="{ fail: infoFail }">
         {{ infoText }}
@@ -212,7 +212,7 @@ onMounted(() => {
 <style scoped>
 .puzzle-captcha {
   padding: 16px;
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
 }
 .captcha-header {
@@ -224,7 +224,7 @@ onMounted(() => {
 .captcha-title {
   font-size: 16px;
   font-weight: 600;
-  color: #f0f0f0;
+  color: #f2e0b8;
 }
 .captcha-close {
   font-size: 18px;
@@ -259,7 +259,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.7);
-  color: #e8b860;
+  color: #f0d080;
   font-size: 13px;
   gap: 8px;
 }
@@ -281,7 +281,7 @@ onMounted(() => {
   position: relative;
   margin-top: 12px;
   height: 40px;
-  background: #2a2a2a;
+  background: rgba(255,255,255,0.06);
   border-radius: 20px;
   overflow: hidden;
 }
@@ -290,7 +290,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   height: 100%;
-  color: #666;
+  color: #6a5a40;
   font-size: 13px;
 }
 .captcha-slider-btn {
@@ -299,12 +299,12 @@ onMounted(() => {
   left: 0;
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #e8b860, #c99a3e);
+  background: linear-gradient(135deg, #f0d080, #d4a84b);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #1a1a1a;
+  color: #3a2610;
   cursor: grab;
   box-shadow: 0 2px 8px rgba(232, 184, 96, 0.4);
   user-select: none;

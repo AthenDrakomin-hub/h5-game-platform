@@ -1,6 +1,13 @@
 <template>
   <div class="splash-page">
-    <img src="/splash.svg" alt="NOVA" class="splash-svg" />
+    <div class="splash-content">
+      <img src="/assets/logo.png" alt="NOVA" class="splash-logo" />
+      <div class="splash-loading">
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -29,11 +36,58 @@ onMounted(async () => {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: #0A1628;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 50%, #0d0a06 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.splash-svg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+.splash-logo {
+  width: 180px;
+  height: auto;
+  object-fit: contain;
+  animation: logoFadeIn 0.8s ease-out;
+}
+.splash-loading {
+  display: flex;
+  gap: 8px;
+}
+.loading-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #f0d080, #d4a84b);
+  animation: dotBounce 1.2s ease-in-out infinite;
+}
+.loading-dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.loading-dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes dotBounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
 }
 </style>

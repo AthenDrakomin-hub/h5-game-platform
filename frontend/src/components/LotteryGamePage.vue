@@ -13,14 +13,14 @@
         <span class="issue-num">{{ currentIssue?.issue || '--' }}</span>
       </div>
       <div class="countdown">
-        <van-icon name="clock-o" color="#e8b860" />
+        <van-icon name="clock-o" color="#f0d080" />
         <span class="countdown-text">{{ formatCountdown(countdown) }}</span>
       </div>
     </div>
 
     <div class="game-content">
       <!-- 玩法Tab -->
-      <van-tabs v-model:active="activePlayType" color="#e8b860" sticky offset-top="44px" class="play-tabs">
+      <van-tabs v-model:active="activePlayType" color="#f0d080" sticky offset-top="44px" class="play-tabs">
         <van-tab v-for="play in playTypes" :key="play.id" :title="play.name" :name="play.id">
           <div class="play-content">
             <!-- 选号区 -->
@@ -275,18 +275,18 @@ onUnmounted(() => {
 <style scoped>
 .lottery-game-page {
   min-height: 100vh;
-  background: #0d0d0d;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
   padding-bottom: 70px;
 }
 :deep(.van-nav-bar) {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
-  color: #f0f0f0 !important;
+  color: #f2e0b8 !important;
 }
 .nav-balance {
   font-size: 13px;
-  color: #e8b860;
+  color: #f0d080;
   cursor: pointer;
 }
 .issue-bar {
@@ -294,7 +294,7 @@ onUnmounted(() => {
   justify-content: space-between;
   align-items: center;
   padding: 10px 16px;
-  background: #151515;
+  background: rgba(0,0,0,0.2);
   border-bottom: 1px solid #222;
 }
 .issue-info {
@@ -304,11 +304,11 @@ onUnmounted(() => {
 }
 .issue-label {
   font-size: 12px;
-  color: #888;
+  color: #8a7a5a;
 }
 .issue-num {
   font-size: 15px;
-  color: #e8b860;
+  color: #f0d080;
   font-weight: 600;
 }
 .countdown {
@@ -318,7 +318,7 @@ onUnmounted(() => {
 }
 .countdown-text {
   font-size: 14px;
-  color: #e8b860;
+  color: #f0d080;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
@@ -326,13 +326,13 @@ onUnmounted(() => {
   padding: 0 0 12px;
 }
 :deep(.play-tabs .van-tabs__nav) {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.play-tabs .van-tab) {
-  color: #888;
+  color: #8a7a5a;
 }
 :deep(.play-tabs .van-tab--active) {
-  color: #e8b860;
+  color: #f0d080;
 }
 .play-content {
   padding: 12px;
@@ -340,7 +340,7 @@ onUnmounted(() => {
 .panel-title {
   font-size: 14px;
   font-weight: 600;
-  color: #f0f0f0;
+  color: #f2e0b8;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -349,12 +349,12 @@ onUnmounted(() => {
   content: '';
   width: 3px;
   height: 12px;
-  background: #e8b860;
+  background: #f0d080;
   border-radius: 2px;
   margin-right: 6px;
 }
 .betting-panel {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
   padding: 12px;
   margin-bottom: 12px;
@@ -374,17 +374,17 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #2a2a2a;
+  background: rgba(255,255,255,0.06);
   border-radius: 50%;
   font-size: 14px;
-  color: #ccc;
+  color: #d0c4a8;
   cursor: pointer;
   transition: all 0.15s;
   border: 2px solid transparent;
 }
 .number-ball.selected {
-  background: linear-gradient(135deg, #e8b860, #c99a3e);
-  color: #1a1a1a;
+  background: linear-gradient(135deg, #f0d080, #d4a84b);
+  color: #3a2610;
   font-weight: 700;
   border-color: #fff;
   transform: scale(1.05);
@@ -393,7 +393,7 @@ onUnmounted(() => {
   transform: scale(0.95);
 }
 .history-panel {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
   padding: 12px;
 }
@@ -409,7 +409,7 @@ onUnmounted(() => {
 }
 .history-issue {
   font-size: 11px;
-  color: #666;
+  color: #6a5a40;
   min-width: 80px;
 }
 .history-numbers {
@@ -423,10 +423,10 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #2a2a2a;
+  background: rgba(255,255,255,0.06);
   border-radius: 50%;
   font-size: 10px;
-  color: #e8b860;
+  color: #f0d080;
 }
 .bet-action-bar {
   position: fixed;
@@ -439,7 +439,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 12px;
   padding: 10px 16px;
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-top: 1px solid #333;
   z-index: 100;
   padding-bottom: calc(10px + env(safe-area-inset-bottom));
@@ -452,32 +452,32 @@ onUnmounted(() => {
 }
 .bet-count {
   font-size: 12px;
-  color: #aaa;
+  color: #8a7a5a;
 }
 .bet-amount {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 12px;
-  color: #aaa;
+  color: #8a7a5a;
 }
 :deep(.bet-amount .van-stepper) {
-  background: #2a2a2a;
+  background: rgba(255,255,255,0.06);
   border-radius: 12px;
 }
 :deep(.bet-amount .van-stepper__minus), :deep(.bet-amount .van-stepper__plus) {
-  background: #333;
-  color: #e8b860;
+  background: rgba(255,255,255,0.1);
+  color: #f0d080;
 }
 :deep(.bet-amount .van-stepper__input) {
-  color: #f0f0f0;
+  color: #f2e0b8;
   background: transparent;
 }
 .bet-btn {
   flex-shrink: 0;
   width: 120px;
   height: 42px !important;
-  background: linear-gradient(135deg, #e8b860, #c99a3e) !important;
+  background: linear-gradient(135deg, #f0d080, #d4a84b) !important;
   border: none !important;
   color: #1a1a1a !important;
   font-weight: 600 !important;

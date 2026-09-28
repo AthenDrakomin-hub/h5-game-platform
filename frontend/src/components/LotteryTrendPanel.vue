@@ -29,7 +29,7 @@
       </table>
     </div>
     <div v-else class="trend-loading">
-      <van-loading color="#e8b860">加载中...</van-loading>
+      <van-loading color="#f0d080">加载中...</van-loading>
     </div>
   </div>
 </template>
@@ -96,7 +96,7 @@ onMounted(() => {
 
 <style scoped>
 .trend-panel {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 12px;
   padding: 12px;
   margin-bottom: 12px;
@@ -110,7 +110,7 @@ onMounted(() => {
 .trend-title {
   font-size: 15px;
   font-weight: 600;
-  color: #f0f0f0;
+  color: #f2e0b8;
 }
 :deep(.van-dropdown-menu) {
   background: transparent;
@@ -121,7 +121,7 @@ onMounted(() => {
   height: 32px;
 }
 :deep(.van-dropdown-item__title) {
-  color: #e8b860;
+  color: #f0d080;
   font-size: 13px;
 }
 .trend-table-wrap {
@@ -134,8 +134,8 @@ onMounted(() => {
   font-size: 11px;
 }
 .trend-table th {
-  background: #2a2a2a;
-  color: #888;
+  background: rgba(255,255,255,0.06);
+  color: #8a7a5a;
   font-weight: 500;
   padding: 6px 2px;
   text-align: center;
@@ -146,16 +146,16 @@ onMounted(() => {
   padding: 6px 2px;
   text-align: center;
   border: 1px solid #2a2a2a;
-  color: #ccc;
+  color: #d0c4a8;
   min-width: 24px;
 }
 .issue-col {
   min-width: 70px !important;
   font-size: 10px;
-  color: #666;
+  color: #6a5a40;
 }
 .cell-hit {
-  background: linear-gradient(135deg, #e8b860, #c99a3e);
+  background: linear-gradient(135deg, #f0d080, #d4a84b);
   color: #1a1a1a !important;
   font-weight: 600;
   border-radius: 50%;

@@ -265,7 +265,7 @@ onMounted(() => {
   gap: 10px;
 }
 .game-card-vertical {
-  background: #1a1a1a;
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;

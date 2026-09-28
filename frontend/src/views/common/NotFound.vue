@@ -24,7 +24,7 @@ function goHome() {
 <style scoped>
 .not-found-page {
   min-height: 100vh;
-  background: #0A1628;
+  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
   display: flex;
   align-items: center;
   justify-content: center;
