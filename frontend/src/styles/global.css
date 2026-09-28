@@ -159,7 +159,7 @@ html, body, #app {
 
 /* 卡片通用样式 */
 .card {
-  background: linear-gradient(135deg, #2a1f10 0%, #1a130a 100%);
+  background: linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border: 1px solid rgba(212, 168, 75, 0.12);
   border-radius: 14px;
   padding: 16px;

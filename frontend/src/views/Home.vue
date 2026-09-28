@@ -9,7 +9,7 @@
     <div class="home-banner">
       <van-swipe :autoplay="3000" indicator-color="#d4a84b" class="banner-swipe">
         <van-swipe-item v-for="(banner, i) in banners" :key="banner.id || i" @click="goLink(banner.link)">
-          <div class="banner-slide" :style="banner.image ? '' : `background:${banner.bg || 'linear-gradient(135deg,#2a1f10,#1a130a)'}`">
+          <div class="banner-slide" :style="banner.image ? '' : `background:${banner.bg || 'linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6))'}`">
             <img v-if="banner.image" :src="banner.image" :alt="banner.title" class="banner-img" />
             <template v-else>
               <div class="banner-title">{{ banner.title || '欢迎来到新星娱乐' }}</div>

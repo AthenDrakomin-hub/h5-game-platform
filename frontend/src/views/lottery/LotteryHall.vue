@@ -16,7 +16,7 @@
           :class="{ active: activeCategory === cat.id }"
           @click="activeCategory = cat.id"
         >
-          <span class="cat-icon">{{ cat.icon }}</span>
+          <GoldIcon :name="cat.icon" :size="22" class="cat-icon" />
           <span class="cat-name">{{ cat.name }}</span>
         </div>
       </div>
@@ -53,14 +53,15 @@
 import { ref, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { lotteryApi } from '@/api/lottery'
+import GoldIcon from '@/components/GoldIcon.vue'
 
 const router = useRouter()
 
 const categories = ref([
-  { id: 'pk10', name: 'PK10', icon: '🏎️' },
-  { id: 'ssc', name: '时时彩', icon: '🎰' },
-  { id: 'lhc', name: '六合彩', icon: '🎱' },
-  { id: 'pc28', name: '28彩', icon: '🎲' }
+  { id: 'pk10', name: 'PK10', icon: 'bolt' },
+  { id: 'ssc', name: '时时彩', icon: 'lottery' },
+  { id: 'lhc', name: '六合彩', icon: 'trophy' },
+  { id: 'pc28', name: '28彩', icon: 'gamepad' }
 ])
 
 const activeCategory = ref('pk10')

@@ -29,7 +29,7 @@
             :class="{ active: withdrawType === 'usdt' }"
             @click="withdrawType = 'usdt'"
           >
-            💰 USDT
+            <img src="/assets/crypto/usdt.svg" style="width:18px;height:18px;vertical-align:middle;margin-right:4px" />USDT
           </div>
         </div>
       </div>

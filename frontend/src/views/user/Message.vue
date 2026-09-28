@@ -14,7 +14,7 @@
           @click="readMessage(msg)"
         >
           <div class="msg-icon" :class="msg.type">
-            {{ typeIcon(msg.type) }}
+            <GoldIcon :name="typeIcon(msg.type)" :size="20" />
           </div>
           <div class="msg-content">
             <div class="msg-title-row">
@@ -37,13 +37,14 @@
 import { ref, onMounted } from 'vue'
 import { userApi } from '@/api/user'
 import dayjs from 'dayjs'
+import GoldIcon from '@/components/GoldIcon.vue'
 
 const messages = ref([])
 const loading = ref(false)
 
 function typeIcon(type) {
-  const map = { recharge: '💰', win: '🎉', system: '📢', promo: '🎁' }
-  return map[type] || '💬'
+  const map = { recharge: 'coin', win: 'gift', system: 'envelop', promo: 'coupon' }
+  return map[type] || 'chat'
 }
 
 function formatTime(time) {

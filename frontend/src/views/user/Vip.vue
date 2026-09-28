@@ -4,7 +4,7 @@
     <div class="vip-content">
       <!-- 当前等级卡片 -->
       <div class="vip-card-current">
-        <div class="vip-crown">👑</div>
+        <div class="vip-crown"><GoldIcon name="crown" :size="32" /></div>
         <div class="vip-level-info">
           <span class="vip-level-name">{{ vipInfo?.currentName || '普通会员' }}</span>
           <span class="vip-level-num">VIP{{ vipInfo?.currentLevel || 1 }}</span>
@@ -50,6 +50,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { userApi } from '@/api/user'
+import GoldIcon from '@/components/GoldIcon.vue'
 
 const vipInfo = ref(null)
 
@@ -86,7 +87,7 @@ onMounted(() => {
   padding: 12px;
 }
 .vip-card-current {
-  background: linear-gradient(135deg, #2a1f0f, #1a1508);
+  background: linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
   border: 1px solid #d4a84b;
   border-radius: 16px;
   padding: 20px;

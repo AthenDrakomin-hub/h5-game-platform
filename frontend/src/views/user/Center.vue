@@ -398,7 +398,7 @@ onMounted(() => {
   min-width: 24px;
   height: 18px;
   padding: 0 6px;
-  background: linear-gradient(135deg, #d4a84b, #a07828);
+  background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
   border-radius: 9px;
   cursor: pointer;
 }
