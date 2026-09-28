@@ -3,6 +3,7 @@ package com.h5.controller.user;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.h5.common.BusinessException;
+import com.h5.common.ParamValidator;
 import com.h5.common.Result;
 import com.h5.common.UserContext;
 import com.h5.entity.Order;
@@ -13,10 +14,12 @@ import com.h5.mapper.UserMapper;
 import com.h5.service.BalanceService;
 import com.h5.service.payment.PaymentMethodService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -29,6 +32,10 @@ public class PaymentController {
     @Autowired private UserMapper userMapper;
     @Autowired private BalanceService balanceService;
     @Autowired private PaymentMethodService paymentMethodService;
+
+    /** 单日提现限额（可通过配置覆盖） */
+    @Value("${withdraw.daily-limit:50000}")
+    private BigDecimal dailyWithdrawLimit;
 
     /**
      * 充值方式列表（从数据库 payment_methods 表读取）
@@ -60,8 +67,8 @@ public class PaymentController {
         if (user == null) throw new BusinessException(401, "用户不存在");
         if (user.getIsTrial() == 1) throw new BusinessException("试玩账号不支持充值，请先注册正式账号");
 
-        BigDecimal amount = new BigDecimal(params.get("amount").toString());
-        String method = params.get("method") != null ? params.get("method").toString() : "alipay";
+        BigDecimal amount = ParamValidator.requireBigDecimal(params, "amount", "充值金额");
+        String method = ParamValidator.optionalString(params, "method", "alipay");
 
         // 从支付方式表获取配置
         PaymentMethod pm = paymentMethodService.getByCode(method);
@@ -114,9 +121,41 @@ public class PaymentController {
         if (user == null) throw new BusinessException(401, "用户不存在");
         if (user.getIsTrial() == 1) throw new BusinessException("试玩账号不支持提现");
 
-        BigDecimal amount = new BigDecimal(params.get("amount").toString());
-        String method = params.get("method") != null ? params.get("method").toString() : "bank";
-        String account = params.get("account") != null ? params.get("account").toString() : "";
+        BigDecimal amount = ParamValidator.requireBigDecimal(params, "amount", "提现金额");
+        String method = ParamValidator.optionalString(params, "method", "bank");
+        String account = ParamValidator.optionalString(params, "account", "");
+
+        // 资金密码校验（用户设置了资金密码时必须验证）
+        String fundPassword = params.get("fundPassword") != null ? params.get("fundPassword").toString() : "";
+        if (user.getFundPassword() != null && !user.getFundPassword().isEmpty()) {
+            if (fundPassword.isEmpty()) {
+                throw new BusinessException("请输入资金密码");
+            }
+            // 简单MD5校验（生产环境应使用BCrypt）
+            String hashed = org.springframework.util.DigestUtils.md5DigestAsHex(fundPassword.getBytes());
+            if (!hashed.equals(user.getFundPassword()) && !fundPassword.equals(user.getFundPassword())) {
+                throw new BusinessException("资金密码错误");
+            }
+        }
+
+        // 单日提现限额检查
+        LocalDateTime todayStart = LocalDate.now().atStartOfDay();
+        LocalDateTime tomorrowStart = LocalDate.now().plusDays(1).atStartOfDay();
+        List<Order> todayWithdraws = orderMapper.selectList(
+                new LambdaQueryWrapper<Order>()
+                        .eq(Order::getUserId, userId)
+                        .eq(Order::getType, "withdraw")
+                        .eq(Order::getStatus, "success")
+                        .ge(Order::getCreateTime, todayStart)
+                        .lt(Order::getCreateTime, tomorrowStart)
+        );
+        BigDecimal todayTotal = todayWithdraws.stream()
+                .map(o -> o.getAmount() != null ? o.getAmount() : BigDecimal.ZERO)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        if (todayTotal.add(amount).compareTo(dailyWithdrawLimit) > 0) {
+            throw new BusinessException("今日提现额度已用完，剩余可提: "
+                    + dailyWithdrawLimit.subtract(todayTotal) + "元");
+        }
 
         // 从支付方式表获取配置
         PaymentMethod pm = paymentMethodService.getByCode(method);

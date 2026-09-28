@@ -78,5 +78,25 @@ INSERT INTO payment_methods (name, code, type, category, icon, min_amount, max_a
 ('USDT-TRC20', 'usdt_trc20', 'crypto', 'both', '/uploads/icons/usdt.svg', 100.00, 500000.00, 0.0050, 'TExxxxxxxxxxxxxxxxxxxxxxxxxxxxx', 1, 'TRC20', 1, 4),
 ('USDT-ERC20', 'usdt_erc20', 'crypto', 'both', '/uploads/icons/usdt.svg', 100.00, 500000.00, 0.0050, '0xExxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', 1, 'ERC20', 1, 5);
 
+-- ============================================================
+-- 索引优化（v2.1）
+-- ============================================================
+-- users: invite_code改唯一索引, 新增invited_by索引
+ALTER TABLE users DROP INDEX IF EXISTS idx_invite_code;
+ALTER TABLE users ADD UNIQUE KEY uk_invite_code (invite_code);
+ALTER TABLE users ADD INDEX IF NOT EXISTS idx_invited_by (invited_by);
+
+-- orders: order_no改唯一索引, 新增user_id+status复合索引
+ALTER TABLE orders DROP INDEX IF EXISTS idx_order_no;
+ALTER TABLE orders ADD UNIQUE KEY uk_order_no (order_no);
+ALTER TABLE orders ADD INDEX IF NOT EXISTS idx_user_id_status (user_id, status);
+
+-- transactions: type索引改为user_id+type复合索引
+ALTER TABLE transactions DROP INDEX IF EXISTS idx_type;
+ALTER TABLE transactions ADD INDEX IF NOT EXISTS idx_user_id_type (user_id, type);
+
+-- bets: 新增status索引
+ALTER TABLE bets ADD INDEX IF NOT EXISTS idx_status (status);
+
 -- 升级完成
-SELECT 'v2 upgrade completed' AS status;
+SELECT 'v2.1 upgrade completed' AS status;

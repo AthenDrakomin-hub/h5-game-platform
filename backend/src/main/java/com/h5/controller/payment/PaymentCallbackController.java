@@ -1,6 +1,7 @@
 package com.h5.controller.payment;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.h5.entity.Order;
 import com.h5.mapper.OrderMapper;
 import com.h5.service.BalanceService;
@@ -99,6 +100,8 @@ public class PaymentCallbackController {
 
     /**
      * 确认充值订单到账
+     * 并发安全：使用状态机乐观锁 UPDATE ... WHERE status='pending'
+     * 高并发下只有一个请求能更新成功，其余请求影响行数=0直接跳过
      */
     private String confirmOrder(String orderNo, String method) {
         if (orderNo == null || orderNo.isEmpty()) {
@@ -124,11 +127,20 @@ public class PaymentCallbackController {
             return "fail: invalid order status";
         }
 
-        // 更新订单状态
-        order.setStatus("success");
-        order.setAuditTime(LocalDateTime.now());
-        order.setRemark("三方支付自动到账(" + method + ")");
-        orderMapper.updateById(order);
+        // 状态机乐观锁：只有status=pending时才能更新为success
+        UpdateWrapper<Order> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("order_no", orderNo)
+                .eq("status", "pending")
+                .set("status", "success")
+                .set("audit_time", LocalDateTime.now())
+                .set("remark", "三方支付自动到账(" + method + ")");
+        int rows = orderMapper.update(null, updateWrapper);
+
+        // 影响行数=0说明已被其他并发请求处理，幂等跳过
+        if (rows == 0) {
+            log.info("订单已被并发处理，跳过: {}", orderNo);
+            return "success";
+        }
 
         // 加余额 + 写流水
         balanceService.addBalance(

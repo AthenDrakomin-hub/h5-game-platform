@@ -77,6 +77,8 @@ public class BalanceService {
         writeTransaction(userId, type, amount.negate(), balanceBefore,
                 updated.getBalance(), refId, refNo, description);
 
+        log.info("[余额扣减] userId={} amount={} type={} refNo={} before={} after={} desc={}",
+                userId, amount, type, refNo, balanceBefore, updated.getBalance(), description);
         return updated;
     }
 
@@ -103,6 +105,8 @@ public class BalanceService {
         writeTransaction(userId, type, amount, balanceBefore,
                 updated.getBalance(), refId, refNo, description);
 
+        log.info("[余额增加] userId={} amount={} type={} refNo={} before={} after={} desc={}",
+                userId, amount, type, refNo, balanceBefore, updated.getBalance(), description);
         return updated;
     }
 
@@ -136,6 +140,8 @@ public class BalanceService {
         writeTransaction(userId, "withdraw", amount.negate(), balanceBefore,
                 updated.getBalance(), null, refNo, "提现申请冻结");
 
+        log.info("[余额冻结] userId={} amount={} refNo={} before={} after={} frozen={}",
+                userId, amount, refNo, balanceBefore, updated.getBalance(), updated.getFrozenBalance());
         return updated;
     }
 

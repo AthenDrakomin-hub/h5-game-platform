@@ -12,6 +12,7 @@ export const config = {
     secret: process.env.WEBHOOK_SECRET || '',
   },
   miniAppUrl: process.env.MINI_APP_URL || 'https://your-h5-domain.com',
+  logoUrl: process.env.LOGO_URL || (process.env.MINI_APP_URL || 'https://your-h5-domain.com') + '/logo.svg',
   apiBaseUrl: process.env.API_BASE_URL || 'http://127.0.0.1:8888/api',
   internalSecret: process.env.BOT_INTERNAL_SECRET || '',
   redisUrl: process.env.REDIS_URL || '',  // Redis 连接URL（配置后会话存储用Redis，否则用内存）

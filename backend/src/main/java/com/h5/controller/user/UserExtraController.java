@@ -3,10 +3,12 @@ package com.h5.controller.user;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.h5.common.BusinessException;
+import com.h5.common.ParamValidator;
 import com.h5.common.Result;
 import com.h5.common.UserContext;
 import com.h5.entity.*;
 import com.h5.mapper.*;
+import com.h5.service.payment.UsdtTrc20Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +32,8 @@ public class UserExtraController {
     @Autowired private PaymentMethodMapper paymentMethodMapper;
     @Autowired private UserMapper userMapper;
     @Autowired private TransactionMapper transactionMapper;
+    @Autowired(required = false) private UsdtTrc20Service usdtTrc20Service;
+    @Autowired private BetMapper betMapper;
 
     // ==================== 卡密充值 ====================
     @GetMapping("/card-secret/meta")
@@ -316,16 +320,24 @@ public class UserExtraController {
     public Result<Map<String, Object>> createUsdtOrder(@RequestBody Map<String, Object> params) {
         Long userId = UserContext.getUserId();
         String orderNo = "USDT" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + new Random().nextInt(10000);
-        BigDecimal amount = new BigDecimal(params.get("amount") != null ? params.get("amount").toString() : "0");
+        BigDecimal amount = ParamValidator.requireBigDecimal(params, "amount", "充值金额");
 
-        // 获取USDT收款地址
-        List<PaymentMethod> methods = paymentMethodMapper.selectList(
-                new LambdaQueryWrapper<PaymentMethod>()
-                        .eq(PaymentMethod::getType, "usdt")
-                        .eq(PaymentMethod::getStatus, 1)
-                        .last("LIMIT 1")
-        );
-        String address = methods.isEmpty() ? "TExxxxxxxxxxxxxxxxxxxxxxxxxxxxx" : methods.get(0).getAddress();
+        // 获取USDT收款地址：优先地址池轮换，fallback到payment_methods
+        String address = null;
+        if (usdtTrc20Service != null) {
+            try {
+                address = usdtTrc20Service.allocateAddress();
+            } catch (Exception ignored) { /* 地址池不可用时fallback */ }
+        }
+        if (address == null || address.isEmpty()) {
+            List<PaymentMethod> methods = paymentMethodMapper.selectList(
+                    new LambdaQueryWrapper<PaymentMethod>()
+                            .eq(PaymentMethod::getType, "usdt")
+                            .eq(PaymentMethod::getStatus, 1)
+                            .last("LIMIT 1")
+            );
+            address = methods.isEmpty() ? "TExxxxxxxxxxxxxxxxxxxxxxxxxxxxx" : methods.get(0).getAddress();
+        }
 
         Order order = new Order();
         order.setOrderNo(orderNo);
@@ -343,6 +355,55 @@ public class UserExtraController {
         data.put("address", address);
         data.put("amount", amount);
         data.put("status", "pending");
+        return Result.success(data);
+    }
+
+    // ==================== 通用列表（访问记录/礼物记录/最近游戏/我的收藏） ====================
+    @GetMapping("/user/simple-list")
+    public Result<Map<String, Object>> simpleList(
+            @RequestParam String type,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "20") int pageSize) {
+        Long userId = UserContext.getUserId();
+        List<Map<String, Object>> list = new ArrayList<>();
+
+        switch (type) {
+            case "recent":
+                // 最近游戏：从bets表取最近投注的彩种（去重）
+                List<Bet> recentBets = betMapper.selectList(
+                        new LambdaQueryWrapper<Bet>()
+                                .eq(Bet::getUserId, userId)
+                                .orderByDesc(Bet::getCreateTime)
+                                .last("LIMIT 50")
+                );
+                Set<String> seen = new HashSet<>();
+                for (Bet bet : recentBets) {
+                    if (seen.add(bet.getLotteryCode())) {
+                        Map<String, Object> item = new HashMap<>();
+                        item.put("id", bet.getId());
+                        item.put("name", bet.getLotteryCode());
+                        item.put("desc", "最近投注: " + bet.getPeriod());
+                        item.put("icon", "/uploads/lottery/" + bet.getLotteryCode() + ".svg");
+                        item.put("amount", bet.getAmount());
+                        item.put("type", "neutral");
+                        list.add(item);
+                    }
+                    if (list.size() >= pageSize) break;
+                }
+                break;
+            case "access":
+            case "gift":
+            case "favorite":
+            default:
+                // 功能待开发，返回空列表
+                break;
+        }
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("list", list);
+        data.put("total", list.size());
+        data.put("page", page);
+        data.put("pageSize", pageSize);
         return Result.success(data);
     }
 

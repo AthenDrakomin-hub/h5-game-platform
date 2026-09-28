@@ -41,8 +41,9 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { showToast } from 'vant'
+import request from '@/api/request'
 
 const startTime = ref('10:00')
 const endTime = ref('22:00')
@@ -51,20 +52,51 @@ const joinedCount = ref(128)
 const myCount = ref(0)
 const maxCount = ref(3)
 const records = ref([])
+const loading = ref(false)
 
 const canGrab = computed(() => myCount.value < maxCount.value)
 
-const grabRedPacket = () => {
-  const amount = (Math.random() * 10 + 1).toFixed(2)
-  records.value.unshift({
-    id: Date.now(),
-    username: '我',
-    amount: amount,
-    time: new Date().toLocaleTimeString()
-  })
-  myCount.value++
-  showToast(`抢到 ¥${amount}`)
+const loadInfo = async () => {
+  try {
+    const res = await request({ url: '/wap/red-packet/info', method: 'get' })
+    const d = res.data || {}
+    startTime.value = d.startTime || '10:00'
+    endTime.value = d.endTime || '22:00'
+    prizePool.value = d.prizePool || '888.00'
+    maxCount.value = d.maxCount || 3
+    myCount.value = d.myCount || 0
+  } catch (e) { /* 降级用默认值 */ }
 }
+
+const loadRecords = async () => {
+  try {
+    const res = await request({ url: '/wap/red-packet/records', method: 'get', params: { page: 1, pageSize: 20 } })
+    records.value = res.data?.list || []
+  } catch (e) { records.value = [] }
+}
+
+const grabRedPacket = async () => {
+  if (loading.value || !canGrab.value) return
+  loading.value = true
+  try {
+    const res = await request({ url: '/wap/red-packet/grab', method: 'post' })
+    const amount = res.data?.amount || '0.00'
+    records.value.unshift({
+      id: Date.now(),
+      username: '我',
+      amount: amount,
+      time: new Date().toLocaleString()
+    })
+    myCount.value++
+    showToast(`抢到 ¥${amount}`)
+  } catch (e) {
+    showToast(e.response?.data?.message || '抢包失败')
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(() => { loadInfo(); loadRecords() })
 </script>
 
 <style scoped>

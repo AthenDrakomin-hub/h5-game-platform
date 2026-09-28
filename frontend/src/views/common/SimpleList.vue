@@ -1,31 +1,62 @@
 <template>
   <div class="list-page">
     <van-nav-bar :title="title" left-arrow @click-left="$router.back()" />
-    <div class="list-content">
+    <div class="list-content" v-loading="loading">
       <div v-for="item in items" :key="item.id" class="list-item">
         <div class="item-left">
-          <span class="item-icon">{{ item.icon }}</span>
+          <img v-if="item.icon && item.icon.startsWith('/')" :src="item.icon" class="item-icon-img" />
+          <span v-else class="item-icon">{{ item.icon || '📋' }}</span>
           <div class="item-info">
             <span class="item-name">{{ item.name }}</span>
             <span class="item-desc">{{ item.desc }}</span>
           </div>
         </div>
-        <span class="item-amount" :class="item.type">{{ item.amount }}</span>
+        <span v-if="item.amount" class="item-amount" :class="item.type">{{ item.amount }}</span>
       </div>
-      <van-empty v-if="items.length === 0" :description="emptyText" />
+      <van-empty v-if="!loading && items.length === 0" :description="emptyText" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import request from '@/api/request'
 
 const route = useRoute()
+const loading = ref(false)
+const items = ref([])
+
 const title = computed(() => route.meta?.title || '列表')
 const emptyText = computed(() => '暂无' + (route.meta?.title || '') + '记录')
 
-const items = ref([])
+// 根据路由path映射列表类型
+const listType = computed(() => {
+  const path = route.path
+  if (path.includes('access')) return 'access'
+  if (path.includes('gift')) return 'gift'
+  if (path.includes('recent')) return 'recent'
+  if (path.includes('favorites') || path.includes('favorite')) return 'favorite'
+  return 'recent'
+})
+
+const loadData = async () => {
+  loading.value = true
+  try {
+    const res = await request({
+      url: '/wap/user/simple-list',
+      method: 'get',
+      params: { type: listType.value, page: 1, pageSize: 20 }
+    })
+    items.value = res.data?.list || []
+  } catch (e) {
+    items.value = []
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(() => loadData())
 </script>
 
 <style scoped>
@@ -36,6 +67,7 @@ const items = ref([])
 .list-item { display: flex; align-items: center; justify-content: space-between; padding: 14px; background: #1a1a1a; border-radius: 10px; margin-bottom: 8px; }
 .item-left { display: flex; align-items: center; gap: 12px; }
 .item-icon { font-size: 28px; }
+.item-icon-img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; }
 .item-info { display: flex; flex-direction: column; }
 .item-name { color: #f0f0f0; font-size: 14px; font-weight: 600; }
 .item-desc { color: #888; font-size: 12px; margin-top: 2px; }

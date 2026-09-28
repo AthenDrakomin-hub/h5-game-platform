@@ -33,7 +33,8 @@ CREATE TABLE IF NOT EXISTS users (
     deleted TINYINT DEFAULT 0 COMMENT '逻辑删除',
     INDEX idx_username (username),
     INDEX idx_phone (phone),
-    INDEX idx_invite_code (invite_code),
+    UNIQUE KEY uk_invite_code (invite_code),
+    INDEX idx_invited_by (invited_by),
     INDEX idx_role (role),
     INDEX idx_create_time (create_time)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
@@ -99,7 +100,8 @@ CREATE TABLE IF NOT EXISTS orders (
     update_time DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deleted TINYINT DEFAULT 0,
     INDEX idx_user_id (user_id),
-    INDEX idx_order_no (order_no),
+    UNIQUE KEY uk_order_no (order_no),
+    INDEX idx_user_id_status (user_id, status),
     INDEX idx_type_status (type, status),
     INDEX idx_create_time (create_time)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单表';
@@ -120,7 +122,7 @@ CREATE TABLE IF NOT EXISTS transactions (
     create_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     deleted TINYINT DEFAULT 0,
     INDEX idx_user_id (user_id),
-    INDEX idx_type (type),
+    INDEX idx_user_id_type (user_id, type),
     INDEX idx_create_time (create_time)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='交易流水';
 
@@ -181,6 +183,7 @@ CREATE TABLE IF NOT EXISTS bets (
     deleted TINYINT DEFAULT 0,
     INDEX idx_user_id (user_id),
     INDEX idx_lottery_period (lottery_code, period),
+    INDEX idx_status (status),
     INDEX idx_create_time (create_time)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='投注记录';
 

@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.h5.common.BusinessException;
 import com.h5.common.Result;
+import com.h5.common.UserContext;
 import com.h5.entity.User;
 import com.h5.mapper.UserMapper;
+import com.h5.service.AdminLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,7 @@ import java.util.*;
 public class AdminUserController {
 
     @Autowired private UserMapper userMapper;
+    @Autowired private AdminLogService adminLogService;
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @GetMapping("/list")
@@ -57,8 +60,10 @@ public class AdminUserController {
         Integer status = Integer.valueOf(params.get("status").toString());
         User user = userMapper.selectById(id);
         if (user == null) throw new BusinessException("用户不存在");
+        String before = "status=" + user.getStatus();
         user.setStatus(status);
         userMapper.updateById(user);
+        writeAdminLog("update_user_status", "user", id, before, "status=" + status);
         return Result.success();
     }
 
@@ -69,6 +74,7 @@ public class AdminUserController {
         String type = params.get("type") != null ? params.get("type").toString() : "add";
         User user = userMapper.selectById(id);
         if (user == null) throw new BusinessException("用户不存在");
+        BigDecimal before = user.getBalance();
         if ("add".equals(type)) {
             user.setBalance(user.getBalance().add(amount));
         } else {
@@ -76,6 +82,9 @@ public class AdminUserController {
             user.setBalance(user.getBalance().subtract(amount));
         }
         userMapper.updateById(user);
+        writeAdminLog("adjust_balance", "user", id,
+                "balance=" + before + ",type=" + type + ",amount=" + amount,
+                "balance=" + user.getBalance());
         return Result.success();
     }
 
@@ -88,6 +97,7 @@ public class AdminUserController {
         if (user == null) throw new BusinessException("用户不存在");
         user.setPassword(encoder.encode(newPassword));
         userMapper.updateById(user);
+        writeAdminLog("reset_password", "user", id, "password=***", "password=***");
         return Result.success();
     }
 
@@ -97,8 +107,21 @@ public class AdminUserController {
         Integer vipLevel = Integer.valueOf(params.get("vipLevel").toString());
         User user = userMapper.selectById(id);
         if (user == null) throw new BusinessException("用户不存在");
+        Integer before = user.getVipLevel();
         user.setVipLevel(vipLevel);
         userMapper.updateById(user);
+        writeAdminLog("set_vip", "user", id, "vipLevel=" + before, "vipLevel=" + vipLevel);
         return Result.success();
+    }
+
+    /** 记录管理员操作日志 */
+    private void writeAdminLog(String action, String targetType, Long targetId,
+                               String beforeData, String afterData) {
+        try {
+            Long adminId = UserContext.getUserId();
+            User admin = adminId != null ? userMapper.selectById(adminId) : null;
+            String adminName = admin != null ? admin.getUsername() : "admin";
+            adminLogService.log(adminId, adminName, action, targetType, targetId, beforeData, afterData);
+        } catch (Exception ignored) { /* 日志记录失败不影响主流程 */ }
     }
 }

@@ -1,5 +1,32 @@
 import axios from 'axios'
-import { showFailToast } from 'vant'
+import { showFailToast, showLoadingToast, closeToast } from 'vant'
+
+// 全局loading计数器（支持并发请求共用一个loading）
+let loadingCount = 0
+let loadingInstance = null
+
+function showLoading(message = '加载中...') {
+  if (loadingCount === 0) {
+    loadingInstance = showLoadingToast({
+      message,
+      forbidClick: true,
+      duration: 0
+    })
+  }
+  loadingCount++
+}
+
+function hideLoading() {
+  loadingCount--
+  if (loadingCount <= 0) {
+    loadingCount = 0
+    if (loadingInstance) {
+      loadingInstance.close()
+      loadingInstance = null
+    }
+    closeToast()
+  }
+}
 
 const request = axios.create({
   baseURL: import.meta.env.VITE_API_BASE || '/wap',
@@ -14,6 +41,10 @@ const request = axios.create({
 // 请求拦截器
 request.interceptors.request.use(
   config => {
+    // 支持 config.loading = true 或 config.loading = '加载中...' 启用全局loading
+    if (config.loading) {
+      showLoading(typeof config.loading === 'string' ? config.loading : '加载中...')
+    }
     const token = localStorage.getItem('token')
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
@@ -31,7 +62,10 @@ request.interceptors.request.use(
     }
     return config
   },
-  error => Promise.reject(error)
+  error => {
+    hideLoading()
+    return Promise.reject(error)
+  }
 )
 
 /**
@@ -68,6 +102,7 @@ function normalizeResponse(res) {
 // 响应拦截器
 request.interceptors.response.use(
   response => {
+    if (response.config.loading) hideLoading()
     const res = response.data
     const { ok, data, message, code } = normalizeResponse(res)
 
@@ -94,6 +129,7 @@ request.interceptors.response.use(
     })
   },
   error => {
+    if (error.config?.loading) hideLoading()
     if (error.response) {
       const status = error.response.status
       if (status === 401) {

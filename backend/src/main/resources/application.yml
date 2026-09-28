@@ -3,6 +3,17 @@ server:
   servlet:
     context-path: /api
 
+# API文档 (生产环境可通过 springdoc.api-docs.enabled=false 关闭)
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+
 spring:
   application:
     name: h5-backend

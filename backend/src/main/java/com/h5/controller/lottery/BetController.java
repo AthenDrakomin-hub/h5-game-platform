@@ -3,6 +3,7 @@ package com.h5.controller.lottery;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.h5.common.BusinessException;
+import com.h5.common.ParamValidator;
 import com.h5.common.Result;
 import com.h5.common.UserContext;
 import com.h5.entity.Bet;
@@ -38,14 +39,14 @@ public class BetController {
         User user = userMapper.selectById(userId);
         if (user == null) throw new BusinessException(401, "用户不存在");
 
-        String lotteryCode = params.get("lotteryCode") != null ? params.get("lotteryCode").toString() : "";
-        String period = params.get("period") != null ? params.get("period").toString() : "";
-        String playType = params.get("playType") != null ? params.get("playType").toString() : "";
-        String numbers = params.get("numbers") != null ? params.get("numbers").toString() : "";
-        BigDecimal amount = new BigDecimal(params.get("amount") != null ? params.get("amount").toString() : "0");
-        int count = params.get("count") != null ? Integer.parseInt(params.get("count").toString()) : 1;
+        String lotteryCode = ParamValidator.requireString(params, "lotteryCode", "彩种代码");
+        String period = ParamValidator.requireString(params, "period", "期号");
+        String playType = ParamValidator.optionalString(params, "playType", "");
+        String numbers = ParamValidator.optionalString(params, "numbers", "");
+        BigDecimal amount = ParamValidator.requireBigDecimal(params, "amount", "投注金额");
+        int count = ParamValidator.optionalInt(params, "count", 1);
+        if (count < 1) throw new BusinessException(400, "投注倍数必须大于0");
 
-        if (amount.compareTo(BigDecimal.ZERO) <= 0) throw new BusinessException("投注金额必须大于0");
         BigDecimal totalAmount = amount.multiply(new BigDecimal(count));
 
         String betNo = "B" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")) + new Random().nextInt(10000);

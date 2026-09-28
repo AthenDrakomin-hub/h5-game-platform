@@ -1,31 +1,45 @@
 <template>
   <div class="simple-page">
     <van-nav-bar :title="title" left-arrow @click-left="$router.back()" />
-    <div class="simple-content">
+    <div class="simple-content" v-loading="loading">
       <div class="content-card" v-html="content"></div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import request from '@/api/request'
 
 const route = useRoute()
+const loading = ref(false)
+const content = ref('<h3>加载中...</h3>')
 const title = computed(() => route.meta?.title || '详情')
 
-const content = computed(() => {
+const loadDetail = async () => {
   const id = route.params.id
-  const faqs = {
-    '1': '<h3>如何充值？</h3><p>进入"我的-充值"，选择支付方式（USDT/银行卡/三方支付），输入金额后按提示完成付款。USDT充值自动到账，其他方式需客服审核。</p>',
-    '2': '<h3>如何提现？</h3><p>进入"我的-提现"，绑定银行卡或USDT地址后申请提现。提现需先设置资金密码，审核通过后到账。每日免费提现1次。</p>',
-    '3': '<h3>开奖时间？</h3><p>各彩种按固定周期开奖：PC蛋蛋每5分钟一期，PK10每5分钟一期，时时彩每5分钟一期，六合彩按官方开奖时间。具体以页面倒计时为准。</p>',
-    '4': '<h3>中奖后多久到账？</h3><p>开奖后系统自动结算，中奖金额实时到账余额，可在"交易记录"中查看。</p>',
-    '5': '<h3>忘记密码怎么办？</h3><p>登录页点击"忘记密码"，通过绑定手机号或联系客服重置密码。资金密码需联系客服验证身份后重置。</p>',
-    '6': '<h3>账号被封禁怎么办？</h3><p>如账号被封禁，请联系在线客服申诉。涉及违规操作（套利、欺诈等）的账号将永久封禁。</p>'
+  if (!id) {
+    content.value = '<h3>帮助中心</h3><p>如需更多帮助，请联系在线客服。</p>'
+    return
   }
-  return faqs[id] || '<h3>帮助中心</h3><p>如需更多帮助，请联系在线客服，我们将竭诚为您服务。</p><p><strong>客服时间：</strong>全天24小时</p><p><strong>响应时间：</strong>平均5分钟内</p>'
-})
+  loading.value = true
+  try {
+    const res = await request({ url: `/wap/help/detail/${id}`, method: 'get' })
+    const faq = res.data
+    if (faq) {
+      content.value = `<h3>${faq.question}</h3><p>${faq.answer}</p>`
+    } else {
+      content.value = '<h3>帮助中心</h3><p>内容不存在或已删除。</p>'
+    }
+  } catch (e) {
+    content.value = '<h3>帮助中心</h3><p>加载失败，请稍后重试。</p>'
+  } finally {
+    loading.value = false
+  }
+}
+
+onMounted(() => loadDetail())
 </script>
 
 <style scoped>

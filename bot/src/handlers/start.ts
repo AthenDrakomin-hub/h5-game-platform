@@ -2,6 +2,7 @@ import { Telegraf } from 'telegraf';
 import { BotContext, requireAuth } from '../middlewares/auth';
 import { mainMenuKeyboard } from '../keyboards/main';
 import { welcomeMessage, errorMessage } from '../utils/format';
+import { config } from '../config';
 
 export function registerStartHandler(bot: Telegraf<BotContext>) {
   bot.start(async (ctx) => {
@@ -10,7 +11,7 @@ export function registerStartHandler(bot: Telegraf<BotContext>) {
     try {
       const session = ctx.session!;
       await ctx.replyWithPhoto(
-        { url: 'https://your-h5-domain.com/logo.svg' },
+        { url: config.logoUrl },
         {
           caption: welcomeMessage(session.nickname, session.balance, session.vipLevel),
           parse_mode: 'Markdown',
