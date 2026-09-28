@@ -10,7 +10,7 @@
       <!-- 优惠活动横幅 -->
       <div class="promo-banner" @click="$router.push('/promo')">
         <div class="promo-banner-item">
-          <div class="promo-banner-icon">🎁</div>
+          <div class="promo-banner-icon"><GoldIcon name="gift" :size="20" /></div>
           <div class="promo-banner-text">
             <span class="promo-banner-title">首存奖励</span>
             <span class="promo-banner-desc">首次存款享100%加成</span>
@@ -18,7 +18,7 @@
         </div>
         <div class="promo-banner-divider"></div>
         <div class="promo-banner-item">
-          <div class="promo-banner-icon">💰</div>
+          <div class="promo-banner-icon"><GoldIcon name="coin" :size="20" /></div>
           <div class="promo-banner-text">
             <span class="promo-banner-title">每日返利</span>
             <span class="promo-banner-desc">流水越高返利越多</span>

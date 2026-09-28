@@ -44,7 +44,7 @@
 
     <!-- 娱乐城提示条 -->
     <div class="casino-notice">
-      <span class="notice-icon">🎰</span>
+      <GoldIcon name="gamepad" :size="16" class="notice-icon" />
       <span class="notice-text">欢迎来到娱乐城，精彩游戏等你来玩！</span>
     </div>
 
