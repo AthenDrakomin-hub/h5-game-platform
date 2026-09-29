@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { showFailToast, showLoadingToast, closeToast } from 'vant'
+import { haptic } from '@/utils/telegram'
 
 // 全局loading计数器（支持并发请求共用一个loading）
 let loadingCount = 0
@@ -113,6 +114,7 @@ request.interceptors.response.use(
     // 业务错误
     if (!response.config.skipErrorToast && message) {
       showFailToast(message)
+      haptic.error()
     }
 
     // 未登录/Token 过期
@@ -145,10 +147,12 @@ request.interceptors.response.use(
       } else if (status >= 500) {
         if (!error.config?.skipErrorToast) {
           showFailToast('服务器异常，请稍后重试')
+          haptic.error()
         }
       } else {
         if (!error.config?.skipErrorToast) {
           showFailToast(error.response.data?.message || error.response.data?.msg || '请求失败')
+          haptic.error()
         }
       }
     } else if (error.code === 'ECONNABORTED') {

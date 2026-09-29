@@ -3,13 +3,13 @@ server:
   servlet:
     context-path: /api
 
-# API文档 (生产环境可通过 springdoc.api-docs.enabled=false 关闭)
+# 生产环境关闭 Swagger（开发通过 SPRINGDOC_ENABLED=true 打开）
 springdoc:
   api-docs:
-    enabled: true
+    enabled: ${SPRINGDOC_ENABLED:false}
     path: /v3/api-docs
   swagger-ui:
-    enabled: true
+    enabled: ${SPRINGDOC_ENABLED:false}
     path: /swagger-ui.html
     tags-sorter: alpha
     operations-sorter: alpha
@@ -19,9 +19,9 @@ spring:
     name: h5-backend
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/h5_game?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    username: root
-    password: root
+    url: ${DB_URL:jdbc:mysql://127.0.0.1:3306/h5_game?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
     hikari:
       maximum-pool-size: 20
       minimum-idle: 5
@@ -56,8 +56,9 @@ mybatis-plus:
       logic-not-delete-value: 0
 
 # JWT 配置
+# 生产必须通过 JWT_SECRET 环境变量注入强随机值；下方默认值仅用于本地开发，禁止用于生产
 jwt:
-  secret: h5-game-secret-key-2024-please-change-in-production-0123456789
+  secret: ${JWT_SECRET:dev-only-insecure-secret-change-me-please-0123456789}
   expiration: 86400000  # 24小时
   header: Authorization
   prefix: "Bearer "
@@ -78,10 +79,26 @@ draw:
       timeout: 5000
 
 # 管理员初始化配置
+# ADMIN_PASSWORD 留空时，首次启动随机生成强密码并只打印一次到日志（见 AdminDataInitializer）
 admin:
   init:
-    username: admin
-    password: yefeng
+    username: ${ADMIN_USERNAME:admin}
+    password: ${ADMIN_PASSWORD:}
+
+# 认证入口开关
+# 生产默认 false：C 端只允许 Telegram initData 登录，关闭账号密码/注册/试玩
+app:
+  auth:
+    allow-password-login: ${ALLOW_PASSWORD_LOGIN:false}
+  cors:
+    # 逗号分隔的允许来源；本地开发可设 http://localhost:5173
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:https://h5.goodspage.cn}
+
+# 后端 → Bot 通知（本机调用，不对外）
+bot:
+  notify:
+    url: ${BOT_NOTIFY_URL:http://127.0.0.1:3001/api/bot/notify/send}
+    secret: ${BOT_INTERNAL_SECRET:}
 
 # Telegram Bot Token（用于 Mini App initData 签名验证）
 telegram:

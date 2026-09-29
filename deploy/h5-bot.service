@@ -1,0 +1,18 @@
+[Unit]
+Description=H5 Game Telegram Bot
+After=network.target h5-backend.service
+Wants=h5-backend.service
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/opt/h5-game/bot
+EnvironmentFile=/opt/h5-game/.env
+ExecStart=/usr/bin/node /opt/h5-game/bot/dist/index.js
+Restart=always
+RestartSec=5
+StandardOutput=append:/opt/h5-game/logs/bot.log
+StandardError=append:/opt/h5-game/logs/bot.error.log
+
+[Install]
+WantedBy=multi-user.target

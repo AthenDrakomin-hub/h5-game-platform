@@ -1,0 +1,19 @@
+[Unit]
+Description=H5 Game Backend (Spring Boot)
+After=network.target mysql.service redis.service
+Wants=mysql.service
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/opt/h5-game/backend
+EnvironmentFile=/opt/h5-game/.env
+ExecStart=/usr/bin/java -jar /opt/h5-game/backend/h5-backend-1.0.0.jar --spring.profiles.active=prod
+ExecStop=/bin/kill -SIGTERM $MAINPID
+Restart=always
+RestartSec=5
+StandardOutput=append:/opt/h5-game/logs/backend.log
+StandardError=append:/opt/h5-game/logs/backend.error.log
+
+[Install]
+WantedBy=multi-user.target

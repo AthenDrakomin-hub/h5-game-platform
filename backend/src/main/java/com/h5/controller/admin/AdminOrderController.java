@@ -11,6 +11,8 @@ import com.h5.mapper.OrderMapper;
 import com.h5.mapper.UserMapper;
 import com.h5.service.AdminLogService;
 import com.h5.service.BalanceService;
+import com.h5.service.BotNotifyService;
+import com.h5.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +28,7 @@ public class AdminOrderController {
     @Autowired private UserMapper userMapper;
     @Autowired private BalanceService balanceService;
     @Autowired private AdminLogService adminLogService;
+    @Autowired private BotNotifyService botNotifyService;
 
     @GetMapping("/list")
     public Result<Map<String, Object>> list(
@@ -73,7 +76,7 @@ public class AdminOrderController {
         orderMapper.updateById(order);
 
         // 使用 BalanceService 安全加余额（乐观锁 + 自动写流水）
-        balanceService.addBalance(
+        User updated = balanceService.addBalance(
                 order.getUserId(),
                 order.getAmount(),
                 "recharge",
@@ -81,6 +84,13 @@ public class AdminOrderController {
                 order.getOrderNo(),
                 "充值到账(" + order.getMethodName() + ")"
         );
+
+        // 通知用户 Telegram
+        botNotifyService.sendToUser(order.getUserId(), "recharge", BotNotifyService.data(
+                "amount", order.getAmount(),
+                "payType", order.getMethodName(),
+                "balance", updated.getBalance()
+        ));
 
         // 记录操作日志
         adminLogService.log(UserContext.getUserId(), UserContext.getUsername(),
@@ -133,6 +143,12 @@ public class AdminOrderController {
         // 使用 BalanceService 确认冻结扣减（只扣 frozen_balance，乐观锁）
         balanceService.confirmFreeze(order.getUserId(), order.getAmount());
 
+        botNotifyService.sendToUser(order.getUserId(), "withdraw_success", BotNotifyService.data(
+                "amount", order.getAmount(),
+                "account", order.getAccount() != null ? order.getAccount() : "",
+                "balance", 0
+        ));
+
         adminLogService.log(UserContext.getUserId(), UserContext.getUsername(),
                 "approve_withdraw", "order", id,
                 "{\"status\":\"" + beforeStatus + "\"}",
@@ -160,6 +176,11 @@ public class AdminOrderController {
 
         // 使用 BalanceService 解冻退回（frozen → balance，乐观锁 + 自动写流水）
         balanceService.unfreezeAndRefund(order.getUserId(), order.getAmount(), order.getOrderNo());
+
+        botNotifyService.sendToUser(order.getUserId(), "system", BotNotifyService.data(
+                "content", "您的提现申请 " + order.getOrderNo() + " 已被拒绝"
+                        + (reason.isEmpty() ? "" : "，原因：" + reason) + "，金额已退回余额。"
+        ));
 
         adminLogService.log(UserContext.getUserId(), UserContext.getUsername(),
                 "reject_withdraw", "order", id,

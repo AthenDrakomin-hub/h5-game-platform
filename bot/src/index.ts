@@ -47,20 +47,24 @@ async function main() {
     const app = express();
     app.use(express.json());
 
-    // Telegram Webhook 端点
+    // Telegram Webhook 端点（校验 secret token，防止伪造更新）
     app.post('/bot/webhook', (req, res) => {
+      if (!config.webhook.secret || req.get('X-Telegram-Bot-Api-Secret-Token') !== config.webhook.secret) {
+        return res.sendStatus(401);
+      }
       bot.handleUpdate(req.body);
       res.sendStatus(200);
     });
 
-    // 内部通知 API
+    // 内部通知 API（仅本机后端调用）
     const notifyApp = createNotifyServer(bot, notifyService);
     app.use(notifyApp);
 
-    app.listen(config.webhook.port, () => {
-      console.log(`✅ Bot Webhook 服务已启动: http://0.0.0.0:${config.webhook.port}`);
+    // 只监听 127.0.0.1，公网通过 nginx /bot/webhook 反代
+    app.listen(config.webhook.port, '127.0.0.1', () => {
+      console.log(`✅ Bot Webhook 服务已启动: http://127.0.0.1:${config.webhook.port}`);
       console.log(`   Webhook URL: ${config.webhook.url}`);
-      console.log(`   通知 API: http://0.0.0.0:${config.webhook.port}/api/bot/notify`);
+      console.log(`   通知 API: http://127.0.0.1:${config.webhook.port}/api/bot/notify`);
     });
 
     // 设置 Webhook
@@ -74,12 +78,11 @@ async function main() {
       console.error('❌ Webhook 设置失败:', err);
     }
   } else {
-    // ===== Long Polling 模式（开发/调试用） =====
-    // 同时启动内部通知 API（端口 +1）
+    // ===== Long Polling 模式（仅开发用） =====
     const notifyApp = createNotifyServer(bot, notifyService);
     const notifyPort = config.webhook.port + 1;
-    notifyApp.listen(notifyPort, () => {
-      console.log(`✅ 通知 API 已启动: http://0.0.0.0:${notifyPort}/api/bot/notify`);
+    notifyApp.listen(notifyPort, '127.0.0.1', () => {
+      console.log(`✅ 通知 API 已启动: http://127.0.0.1:${notifyPort}/api/bot/notify`);
     });
 
     bot.launch({

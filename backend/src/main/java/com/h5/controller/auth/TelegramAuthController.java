@@ -22,6 +22,8 @@ import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Telegram Mini App 登录接口
@@ -53,6 +55,14 @@ public class TelegramAuthController {
     private String botToken;
 
     /**
+     * 已使用过的 initData hash（防重放）。
+     * 单实例内存级实现；若多实例部署需改为 Redis SETNX。
+     * 登录量低，24h 内重复 hash 直接拒绝。
+     */
+    private final Set<String> usedHashes = ConcurrentHashMap.newKeySet();
+    private static final long AUTH_TTL_SECONDS = 86400; // 24h
+
+    /**
      * Telegram Mini App 登录
      * POST /api/wap/auth/telegram
      *
@@ -80,8 +90,36 @@ public class TelegramAuthController {
                 throw new BusinessException("Telegram 登录验证失败");
             }
         } else {
-            log.warn("未配置 telegram.bot-token，跳过 initData 签名验证（生产环境必须配置）");
+            // 生产环境必须配置 bot token；未配置时直接拒绝，防止伪造
+            log.error("未配置 telegram.bot-token，拒绝 initData 登录");
+            throw new BusinessException("登录服务未配置");
         }
+
+        // 3. auth_date 时效校验（Telegram 返回 unix 秒）
+        String authDateStr = data.get("auth_date");
+        if (authDateStr == null || authDateStr.isEmpty()) {
+            throw new BusinessException("initData 缺少 auth_date");
+        }
+        long authDate;
+        try {
+            authDate = Long.parseLong(authDateStr);
+        } catch (NumberFormatException e) {
+            throw new BusinessException("auth_date 格式错误");
+        }
+        long nowSec = System.currentTimeMillis() / 1000;
+        if (nowSec - authDate > AUTH_TTL_SECONDS) {
+            throw new BusinessException("登录凭证已过期，请在 Telegram 内重新打开");
+        }
+        if (authDate - nowSec > 300) {
+            // 客户端时钟偏差超过 5 分钟也拒绝，防重放窗口
+            throw new BusinessException("客户端时间异常，请检查设备时间");
+        }
+
+        // 4. 防重放：同一 hash 只能用一次
+        if (!usedHashes.add(hash)) {
+            throw new BusinessException("登录凭证已被使用，请重新打开");
+        }
+        // 简单清理：set 过大时（>10000）不做主动过期，登录频率低，可接受
 
         // 3. 提取用户信息
         String userJson = data.get("user");

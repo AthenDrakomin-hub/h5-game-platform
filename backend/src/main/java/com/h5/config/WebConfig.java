@@ -27,10 +27,19 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${app.upload-dir:./uploads}")
     private String uploadDir;
 
+    /**
+     * CORS 白名单，逗号分隔。
+     * 生产只允许 Mini App 域名（https://h5.goodspage.cn）；
+     * 本地开发通过 CORS_ALLOWED_ORIGINS=http://localhost:5173 注入。
+     */
+    @Value("${app.cors.allowed-origins:https://h5.goodspage.cn}")
+    private String allowedOrigins;
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
+        String[] origins = allowedOrigins.split(",");
         registry.addMapping("/**")
-                .allowedOriginPatterns("*")
+                .allowedOrigins(origins)
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .exposedHeaders("Authorization", "X-User-Id")

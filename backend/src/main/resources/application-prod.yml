@@ -60,11 +60,11 @@ draw:
       api-url: ${DRAW_MARKSIX6_URL:https://api3.marksix6.net/lottery_api.php}
       timeout: 5000
 
-# 管理员初始化
+# 管理员初始化（ADMIN_PASSWORD 留空则首次启动随机生成并打印一次）
 admin:
   init:
     username: ${ADMIN_USERNAME:admin}
-    password: ${ADMIN_PASSWORD:yefeng}
+    password: ${ADMIN_PASSWORD:}
 
 # USDT 自动到账
 usdt:

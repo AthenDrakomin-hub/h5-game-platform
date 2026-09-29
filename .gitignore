@@ -48,3 +48,6 @@ coverage/
 .eslintcache
 .tools/
 web-root/
+backend/config/application.yml
+backend/application.yml
+/opt/

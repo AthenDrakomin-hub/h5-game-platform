@@ -7,11 +7,19 @@ import router from './router'
 import './styles/variables.css'
 import './styles/global.css'
 import { initTelegram, isTelegram, getThemeParams, applyTelegramTheme } from './utils/telegram'
+import TelegramOnlyGuide from './components/TelegramOnlyGuide.vue'
 
-// 开发环境启动 MSW
 async function bootstrap() {
-  // Telegram Mini App 初始化（环境变量开启且在 Telegram 客户端内）
   const tgEnabled = import.meta.env.VITE_TELEGRAM_ENABLED === 'true'
+
+  // 生产环境必须在 Telegram 内打开；非 Telegram 环境直接渲染引导页，不启动 App
+  if (tgEnabled && !isTelegram) {
+    console.warn('[bootstrap] 非 Telegram 环境，渲染引导页')
+    createApp(TelegramOnlyGuide).mount('#app')
+    return
+  }
+
+  // Telegram Mini App 初始化
   if (tgEnabled && isTelegram) {
     initTelegram()
     applyTelegramTheme(getThemeParams())
