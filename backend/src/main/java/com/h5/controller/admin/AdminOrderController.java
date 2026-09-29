@@ -145,7 +145,7 @@ public class AdminOrderController {
 
         botNotifyService.sendToUser(order.getUserId(), "withdraw_success", BotNotifyService.data(
                 "amount", order.getAmount(),
-                "account", order.getAccount() != null ? order.getAccount() : "",
+                "account", order.getUserAccount() != null ? order.getUserAccount() : "",
                 "balance", 0
         ));
 
