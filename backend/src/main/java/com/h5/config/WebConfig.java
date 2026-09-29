@@ -71,8 +71,10 @@ public class WebConfig implements WebMvcConfigurer {
                         "/wap/promotion/detail/**",
                         // 管理端登录（登录时无 token）
                         "/admin/auth/login",
-                        // Bot 自动注册（Bot 内部调用）
+                        // Bot 自动注册（Bot 内部调用，Controller 内有 X-Bot-Secret 校验）
                         "/bot/auth/register",
+                        // 第三方支付异步回调（Controller 内有签名校验，无需 JWT）
+                        "/payment/callback/**",
                         "/wap/payment-methods/recharge-methods",
                         "/wap/payment-methods/withdraw-methods",
                         // 静态资源

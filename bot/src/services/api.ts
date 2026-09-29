@@ -27,6 +27,16 @@ class ApiService {
     headers: { 'Content-Type': 'application/json' },
   });
 
+  constructor() {
+    // 所有 bot → 后端内部调用统一带共享密钥（register 等无 JWT 的接口靠它鉴权）
+    this.client.interceptors.request.use((cfg) => {
+      if (config.internalSecret) {
+        cfg.headers['X-Bot-Secret'] = config.internalSecret;
+      }
+      return cfg;
+    });
+  }
+
   /** 带用户鉴权的请求 */
   async authRequest<T = any>(
     method: 'get' | 'post',
