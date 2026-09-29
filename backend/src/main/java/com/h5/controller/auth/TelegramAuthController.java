@@ -213,9 +213,12 @@ public class TelegramAuthController {
                         dataCheckString.append(e.getKey()).append("=").append(e.getValue());
                     });
 
-            // 计算签名
+            // Telegram 官方算法:
+            //   secret_key = HMAC_SHA256(key="WebAppData", msg=bot_token)
+            //   hash       = HMAC_SHA256(key=secret_key, msg=data_check_string)
+            // 注意 hmacSha256(key, data) 的参数顺序，不能反
             SecretKeySpec keySpec = new SecretKeySpec(
-                    hmacSha256(botToken.getBytes(StandardCharsets.UTF_8), "WebAppData".getBytes(StandardCharsets.UTF_8)),
+                    hmacSha256("WebAppData".getBytes(StandardCharsets.UTF_8), botToken.getBytes(StandardCharsets.UTF_8)),
                     "HmacSHA256"
             );
             Mac mac = Mac.getInstance("HmacSHA256");
