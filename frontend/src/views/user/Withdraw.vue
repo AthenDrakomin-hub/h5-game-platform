@@ -241,7 +241,7 @@ onMounted(() => {
 <style scoped>
 .withdraw-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%);
+  background: var(--app-bg);
   padding-bottom: 100px;
 }
 :deep(.van-nav-bar) {
@@ -255,8 +255,7 @@ onMounted(() => {
   padding-bottom: 90px;
 }
 .balance-card {
-  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
-              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: var(--card-bg);
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.12);
   padding: 16px;
@@ -308,8 +307,7 @@ onMounted(() => {
 }
 .method-tab {
   flex: 1;
-  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
-              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: var(--card-bg);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 10px;
   padding: 14px;
@@ -331,8 +329,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
-              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: var(--card-bg);
   border-radius: 10px;
   padding: 14px;
   border: 1px solid rgba(255,255,255,0.12);
@@ -358,8 +355,7 @@ onMounted(() => {
 .amount-input-wrap {
   display: flex;
   align-items: center;
-  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
-              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: var(--card-bg);
   border-radius: 12px;
   padding: 0 16px;
   border: 1px solid rgba(255,255,255,0.12);
@@ -397,8 +393,7 @@ onMounted(() => {
   margin-top: 6px;
 }
 .pwd-input-wrap {
-  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
-              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: var(--card-bg);
   border-radius: 12px;
   padding: 0 16px;
   border: 1px solid rgba(255,255,255,0.12);

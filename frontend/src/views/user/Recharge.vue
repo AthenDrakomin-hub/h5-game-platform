@@ -210,7 +210,7 @@ onMounted(() => {
 <style scoped>
 .recharge-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%);
+  background: var(--app-bg);
   padding-bottom: 100px;
 }
 :deep(.van-nav-bar) {
@@ -223,8 +223,7 @@ onMounted(() => {
   padding: 12px;
 }
 .balance-tip {
-  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
-              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: var(--card-bg);
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,0.12);
   padding: 14px 16px;
@@ -236,8 +235,7 @@ onMounted(() => {
 .promo-banner {
   display: flex;
   align-items: center;
-  background: linear-gradient(rgba(212,168,75,0.12) 0%, rgba(212,168,75,0.02) 26%),
-              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: var(--card-bg);
   border-radius: 14px;
   border: 1px solid rgba(212,168,75,0.25);
   padding: 12px 14px;
@@ -294,8 +292,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
-              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: var(--card-bg);
   border-radius: 12px;
   padding: 14px;
   border: 1px solid rgba(255,255,255,0.12);
@@ -303,8 +300,7 @@ onMounted(() => {
 }
 .method-item.active {
   border-color: #d4a84b;
-  background: linear-gradient(rgba(212,168,75,0.15) 0%, rgba(212,168,75,0.02) 26%),
-              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: var(--card-bg);
 }
 .method-item.disabled {
   opacity: 0.4;
@@ -347,8 +343,7 @@ onMounted(() => {
   margin-bottom: 12px;
 }
 .amount-chip {
-  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
-              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: var(--card-bg);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 10px;
   padding: 12px;
@@ -360,14 +355,12 @@ onMounted(() => {
 .amount-chip.active {
   border-color: #d4a84b;
   color: #f0d080;
-  background: linear-gradient(rgba(212,168,75,0.15) 0%, rgba(212,168,75,0.02) 26%),
-              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: var(--card-bg);
 }
 .amount-input-wrap {
   display: flex;
   align-items: center;
-  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
-              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: var(--card-bg);
   border-radius: 12px;
   padding: 0 16px;
   border: 1px solid rgba(255,255,255,0.12);

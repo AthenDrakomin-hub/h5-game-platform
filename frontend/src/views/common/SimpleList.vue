@@ -60,11 +60,11 @@ onMounted(() => loadData())
 </script>
 
 <style scoped>
-.list-page { min-height: 100vh; background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%); }
-:deep(.van-nav-bar) { background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6)); }
+.list-page { min-height: 100vh; background: var(--app-bg); }
+:deep(.van-nav-bar) { background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), var(--card-bg); }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) { color: var(--gold-1) !important; }
 .list-content { padding: 12px; }
-.list-item { display: flex; align-items: center; justify-content: space-between; padding: 14px; background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6)); border-radius: 10px; margin-bottom: 8px; }
+.list-item { display: flex; align-items: center; justify-content: space-between; padding: 14px; background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), var(--card-bg); border-radius: 10px; margin-bottom: 8px; }
 .item-left { display: flex; align-items: center; gap: 12px; }
 .item-icon { font-size: 28px; }
 .item-icon-img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; }

@@ -357,8 +357,7 @@ onMounted(() => {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 30%),
-              linear-gradient(145deg, rgba(39, 30, 21, 0.92), rgba(19, 15, 12, 0.94));
+  background: var(--card-bg);
   display: flex;
   align-items: center;
   justify-content: center;

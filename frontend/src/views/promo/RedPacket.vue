@@ -100,7 +100,7 @@ onMounted(() => { loadInfo(); loadRecords() })
 </script>
 
 <style scoped>
-.redpacket-page { min-height: 100vh; background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%); }
+.redpacket-page { min-height: 100vh; background: var(--app-bg); }
 :deep(.van-nav-bar) { background: transparent; }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) { color: var(--gold-1) !important; }
 .redpacket-content { padding: 20px; }

@@ -89,7 +89,7 @@ onMounted(() => {
 <style scoped>
 .promo-list-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%);
+  background: var(--app-bg);
   padding-bottom: 60px;
 }
 :deep(.van-nav-bar) {
@@ -123,8 +123,7 @@ onMounted(() => {
   gap: 12px;
 }
 .promo-card {
-  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%),
-              linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: var(--card-bg);
   border-radius: 14px;
   overflow: hidden;
   cursor: pointer;

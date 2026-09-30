@@ -93,10 +93,10 @@ onMounted(() => {
 <style scoped>
 .bank-cards-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%);
+  background: var(--app-bg);
 }
 :deep(.van-nav-bar) {
-  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), var(--card-bg);
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left), :deep(.van-nav-bar__right) {
   color: var(--gold-1) !important;
@@ -119,7 +119,7 @@ onMounted(() => {
   gap: 12px;
 }
 .bank-card {
-  background: linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: var(--card-bg);
   border-radius: 14px;
   padding: 16px;
   border: 1px solid #3a3a4e;

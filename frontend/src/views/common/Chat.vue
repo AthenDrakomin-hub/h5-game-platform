@@ -163,12 +163,12 @@ onMounted(() => {
 <style scoped>
 .chat-page {
   height: 100vh;
-  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%);
+  background: var(--app-bg);
   display: flex;
   flex-direction: column;
 }
 :deep(.van-nav-bar) {
-  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), var(--card-bg);
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left), :deep(.van-nav-bar__right) {
   color: var(--gold-1) !important;
@@ -185,7 +185,7 @@ onMounted(() => {
 .system-tip span {
   font-size: 11px;
   color: #6a5a40;
-  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), var(--card-bg);
   padding: 4px 12px;
   border-radius: 10px;
 }
@@ -223,7 +223,7 @@ onMounted(() => {
   position: relative;
 }
 .message-bubble.agent {
-  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), var(--card-bg);
   border: 1px solid rgba(255,255,255,0.12);
   border-top-left-radius: 4px;
 }
@@ -298,7 +298,7 @@ onMounted(() => {
   align-items: center;
   gap: 10px;
   padding: 10px 12px;
-  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
+  background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), var(--card-bg);
   border-top: 1px solid rgba(255,255,255,0.1);
   padding-bottom: calc(10px + env(safe-area-inset-bottom));
 }
