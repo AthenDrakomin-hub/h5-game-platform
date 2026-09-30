@@ -100,9 +100,9 @@ onMounted(() => { loadInfo(); loadRecords() })
 </script>
 
 <style scoped>
-.redpacket-page { min-height: 100vh; background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%); }
+.redpacket-page { min-height: 100vh; background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%); }
 :deep(.van-nav-bar) { background: transparent; }
-:deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) { color: #f2e0b8 !important; }
+:deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) { color: var(--gold-1) !important; }
 .redpacket-content { padding: 20px; }
 .redpacket-header { text-align: center; padding: 30px 0; }
 .redpacket-icon { font-size: 80px; margin-bottom: 16px; }
@@ -116,7 +116,7 @@ onMounted(() => { loadInfo(); loadRecords() })
 .record-section { margin-top: 30px; }
 .record-section h3 { color: #f0d080; margin-bottom: 12px; }
 .record-item { display: flex; justify-content: space-between; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 8px; margin-bottom: 8px; }
-.record-user { color: #d0c4a8; }
+.record-user { color: var(--gold-1); }
 .record-amount { color: #f0d080; font-weight: 600; }
 .record-time { color: #6a5a40; font-size: 12px; }
 </style>

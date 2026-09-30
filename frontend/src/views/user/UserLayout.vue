@@ -14,6 +14,6 @@
 <style scoped>
 .user-layout {
   min-height: 100vh;
-  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
+  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%);
 }
 </style>

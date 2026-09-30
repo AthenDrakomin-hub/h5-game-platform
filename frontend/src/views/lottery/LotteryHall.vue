@@ -101,7 +101,7 @@ onMounted(() => {
 <style scoped>
 .lottery-hall {
   min-height: 100vh;
-  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
+  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%);
   display: flex;
   flex-direction: column;
 }
@@ -109,7 +109,7 @@ onMounted(() => {
   background: transparent !important;
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left), :deep(.van-nav-bar__right) {
-  color: #f2e0b8 !important;
+  color: var(--gold-1) !important;
 }
 .hall-content {
   display: flex;
@@ -140,7 +140,7 @@ onMounted(() => {
 }
 .cat-name {
   font-size: 12px;
-  color: #8a7a5a;
+  color: var(--text-hint);
 }
 .category-item.active .cat-name {
   color: #f0d080;
@@ -200,7 +200,7 @@ onMounted(() => {
 }
 .game-name {
   font-size: 15px;
-  color: #f2e0b8;
+  color: var(--gold-1);
   font-weight: 500;
 }
 .game-status {
@@ -208,6 +208,6 @@ onMounted(() => {
   color: #f0d080;
 }
 .game-status.maintenance {
-  color: #8a7a5a;
+  color: var(--text-hint);
 }
 </style>

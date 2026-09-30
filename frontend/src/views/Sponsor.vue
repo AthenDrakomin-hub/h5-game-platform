@@ -47,13 +47,13 @@
 <style scoped>
 .sponsor-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
+  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%);
 }
 :deep(.van-nav-bar) {
   background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
-  color: #f2e0b8 !important;
+  color: var(--gold-1) !important;
 }
 .sponsor-content {
   padding: 20px 16px;
@@ -73,7 +73,7 @@
 }
 .sponsor-hero p {
   font-size: 14px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   margin: 0;
 }
 .sponsor-list {
@@ -91,12 +91,12 @@
 }
 .sponsor-item-info h3 {
   font-size: 15px;
-  color: #f2e0b8;
+  color: var(--gold-1);
   margin: 0 0 4px 0;
 }
 .sponsor-item-info p {
   font-size: 12px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   margin: 0;
 }
 .sponsor-contact {
@@ -117,6 +117,6 @@
 }
 .sponsor-footer p {
   font-size: 11px;
-  color: #8a7a5a;
+  color: var(--text-hint);
 }
 </style>

@@ -89,20 +89,20 @@ onMounted(() => {
 <style scoped>
 .promo-list-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
+  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%);
   padding-bottom: 60px;
 }
 :deep(.van-nav-bar) {
   background: transparent !important;
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
-  color: #f2e0b8 !important;
+  color: var(--gold-1) !important;
 }
 :deep(.promo-tabs .van-tabs__nav) {
   background: transparent;
 }
 :deep(.promo-tabs .van-tab) {
-  color: #8a7a5a;
+  color: var(--text-hint);
 }
 :deep(.promo-tabs .van-tab--active) {
   color: #f0d080;
@@ -151,7 +151,7 @@ onMounted(() => {
 .promo-title {
   font-size: 15px;
   font-weight: 600;
-  color: #f2e0b8;
+  color: var(--gold-1);
 }
 .promo-status {
   font-size: 10px;
@@ -162,7 +162,7 @@ onMounted(() => {
 }
 .promo-status.ended {
   background: rgba(128, 128, 128, 0.15);
-  color: #8a7a5a;
+  color: var(--text-hint);
 }
 .promo-desc {
   font-size: 12px;

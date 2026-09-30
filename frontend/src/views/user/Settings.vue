@@ -159,13 +159,13 @@ onMounted(() => {
 <style scoped>
 .settings-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
+  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%);
 }
 :deep(.van-nav-bar) {
   background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
-  color: #f2e0b8 !important;
+  color: var(--gold-1) !important;
 }
 .settings-content {
   padding: 12px;
@@ -191,11 +191,11 @@ onMounted(() => {
 .item-label {
   flex: 1;
   font-size: 14px;
-  color: #d0c4a8;
+  color: var(--gold-1);
 }
 .item-value {
   font-size: 13px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   margin-right: 8px;
 }
 :deep(.van-switch) {
@@ -216,7 +216,7 @@ onMounted(() => {
 }
 .profile-popup, .about-popup {
   padding: 20px;
-  background: linear-gradient(180deg, #1a1208, #0d0a06);
+  background: linear-gradient(180deg, var(--app-bg-2), var(--app-bg));
 }
 .popup-header {
   display: flex;
@@ -227,7 +227,7 @@ onMounted(() => {
 .popup-title {
   font-size: 17px;
   font-weight: 600;
-  color: #f2e0b8;
+  color: var(--gold-1);
 }
 .profile-info {
   display: flex;
@@ -240,10 +240,10 @@ onMounted(() => {
   font-size: 14px;
 }
 .profile-row span:first-child {
-  color: #8a7a5a;
+  color: var(--text-hint);
 }
 .profile-row span:last-child {
-  color: #f2e0b8;
+  color: var(--gold-1);
 }
 .about-content {
   text-align: center;
@@ -256,7 +256,7 @@ onMounted(() => {
 }
 .about-content .version {
   margin-top: 20px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   font-size: 12px;
 }
 </style>

@@ -65,13 +65,13 @@ onMounted(() => {
 <style scoped>
 .sub-games-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
+  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%);
 }
 :deep(.van-nav-bar) {
   background: linear-gradient(rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 26%), linear-gradient(145deg, rgba(31,26,21,0.82), rgba(11,10,8,0.6));
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
-  color: #f2e0b8 !important;
+  color: var(--gold-1) !important;
 }
 .sub-games-content {
   padding: 12px;
@@ -105,7 +105,7 @@ onMounted(() => {
   display: block;
   padding: 6px 4px;
   font-size: 11px;
-  color: #d0c4a8;
+  color: var(--gold-1);
   text-align: center;
   white-space: nowrap;
   overflow: hidden;

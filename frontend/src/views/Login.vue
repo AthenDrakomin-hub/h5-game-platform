@@ -434,12 +434,12 @@ onMounted(() => {
 <style scoped>
 .login-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
+  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%);
 }
 .login-popup-mode {
   min-height: auto;
   padding-bottom: 20px;
-  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 100%);
+  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 100%);
 }
 .header-bg {
   background: linear-gradient(180deg, rgba(42,31,16,0.6) 0%, transparent 100%);
@@ -483,7 +483,7 @@ onMounted(() => {
 }
 .site-slogan {
   font-size: 13px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   margin: 0;
 }
 .auth-tabs {
@@ -498,7 +498,7 @@ onMounted(() => {
 }
 .auth-tab {
   font-size: 16px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   cursor: pointer;
   padding: 4px 0;
   position: relative;
@@ -552,7 +552,7 @@ onMounted(() => {
   gap: 8px;
   padding: 4px 4px 16px;
   font-size: 13px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   cursor: pointer;
 }
 .checkbox {
@@ -600,7 +600,7 @@ onMounted(() => {
 }
 .footer-link {
   font-size: 13px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   cursor: pointer;
 }
 .forgot-link {
@@ -616,7 +616,7 @@ onMounted(() => {
 }
 .popup-secondary-btn {
   font-size: 12px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   cursor: pointer;
 }
 .agreement-popup-content {
@@ -633,12 +633,12 @@ onMounted(() => {
 .modal-title {
   font-size: 18px;
   font-weight: 600;
-  color: #f2e0b8;
+  color: var(--gold-1);
   margin: 0;
 }
 .modal-close-btn {
   font-size: 20px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   cursor: pointer;
 }
 .modal-content {

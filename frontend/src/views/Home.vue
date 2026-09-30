@@ -314,7 +314,7 @@ onMounted(() => { loadData() })
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.banner-sub { font-size: 13px; color: #f2e0b8; margin-top: 8px; }
+.banner-sub { font-size: 13px; color: var(--gold-1); margin-top: 8px; }
 
 /* ===== 大奖双行跑马灯 ===== */
 .big-prize-section {

@@ -241,14 +241,14 @@ onMounted(() => {
 <style scoped>
 .withdraw-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
+  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%);
   padding-bottom: 100px;
 }
 :deep(.van-nav-bar) {
   background: transparent;
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
-  color: #f2e0b8 !important;
+  color: var(--gold-1) !important;
 }
 .withdraw-content {
   padding: 12px;
@@ -268,7 +268,7 @@ onMounted(() => {
 .balance-label {
   display: block;
   font-size: 12px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   margin-bottom: 4px;
 }
 .balance-value {
@@ -290,7 +290,7 @@ onMounted(() => {
 .section-title {
   font-size: 14px;
   font-weight: 600;
-  color: #f2e0b8;
+  color: var(--gold-1);
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
@@ -315,7 +315,7 @@ onMounted(() => {
   padding: 14px;
   text-align: center;
   font-size: 14px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   cursor: pointer;
 }
 .method-tab.active {
@@ -343,14 +343,14 @@ onMounted(() => {
 }
 .account-name {
   font-size: 14px;
-  color: #f0e6d0;
+  color: var(--gold-1);
   font-weight: 500;
   min-width: 80px;
 }
 .account-number {
   flex: 1;
   font-size: 13px;
-  color: #8a7a5a;
+  color: var(--text-hint);
 }
 .empty-account {
   padding: 20px;
@@ -381,7 +381,7 @@ onMounted(() => {
   font-weight: 600;
 }
 .amount-input::placeholder {
-  color: #8a7a5a;
+  color: var(--text-hint);
   font-size: 14px;
 }
 .amount-info {
@@ -389,11 +389,11 @@ onMounted(() => {
   justify-content: space-between;
   margin-top: 8px;
   font-size: 12px;
-  color: #8a7a5a;
+  color: var(--text-hint);
 }
 .amount-tip {
   font-size: 11px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   margin-top: 6px;
 }
 .pwd-input-wrap {
@@ -421,7 +421,7 @@ onMounted(() => {
   max-width: 480px;
   margin: 0 auto;
   padding: 12px 16px;
-  background: linear-gradient(180deg, rgba(13,10,6,0.9), #0d0a06);
+  background: linear-gradient(180deg, rgba(13,10,6,0.9), var(--app-bg));
   border-top: 1px solid rgba(255,255,255,0.08);
   padding-bottom: calc(12px + env(safe-area-inset-bottom));
 }
@@ -448,12 +448,12 @@ onMounted(() => {
 .notes-title {
   font-size: 13px;
   font-weight: 600;
-  color: #f2e0b8;
+  color: var(--gold-1);
   margin-bottom: 8px;
 }
 .notes-item {
   font-size: 11px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   line-height: 1.8;
 }
 </style>

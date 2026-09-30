@@ -24,7 +24,7 @@
             <span class="promo-banner-desc">流水越高返利越多</span>
           </div>
         </div>
-        <GoldIcon name="arrow" :size="14" color="#8a7a5a" class="promo-banner-arrow" />
+        <GoldIcon name="arrow" :size="14" color="var(--text-hint)" class="promo-banner-arrow" />
       </div>
 
       <!-- 充值方式 -->
@@ -210,14 +210,14 @@ onMounted(() => {
 <style scoped>
 .recharge-page {
   min-height: 100vh;
-  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
+  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 30%, var(--app-bg) 100%);
   padding-bottom: 100px;
 }
 :deep(.van-nav-bar) {
   background: transparent;
 }
 :deep(.van-nav-bar__title), :deep(.van-icon-arrow-left) {
-  color: #f2e0b8 !important;
+  color: var(--gold-1) !important;
 }
 .recharge-content {
   padding: 12px;
@@ -230,7 +230,7 @@ onMounted(() => {
   padding: 14px 16px;
   margin-bottom: 12px;
   font-size: 13px;
-  color: #f2e0b8;
+  color: var(--gold-1);
 }
 /* 优惠活动横幅 */
 .promo-banner {
@@ -263,7 +263,7 @@ onMounted(() => {
 }
 .promo-banner-desc {
   font-size: 10px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   margin-top: 2px;
 }
 .promo-banner-divider {
@@ -281,7 +281,7 @@ onMounted(() => {
 .section-title {
   font-size: 14px;
   font-weight: 600;
-  color: #f2e0b8;
+  color: var(--gold-1);
   margin-bottom: 10px;
   padding-left: 4px;
 }
@@ -333,12 +333,12 @@ onMounted(() => {
 }
 .method-name {
   font-size: 14px;
-  color: #f0e6d0;
+  color: var(--gold-1);
   font-weight: 500;
 }
 .method-range {
   font-size: 11px;
-  color: #8a7a5a;
+  color: var(--text-hint);
 }
 .amount-quick {
   display: grid;
@@ -354,7 +354,7 @@ onMounted(() => {
   padding: 12px;
   text-align: center;
   font-size: 14px;
-  color: #d0c4a8;
+  color: var(--gold-1);
   cursor: pointer;
 }
 .amount-chip.active {
@@ -389,12 +389,12 @@ onMounted(() => {
   font-weight: 600;
 }
 .amount-input::placeholder {
-  color: #8a7a5a;
+  color: var(--text-hint);
   font-size: 14px;
 }
 .amount-tip {
   font-size: 11px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   margin-top: 8px;
   padding-left: 4px;
 }
@@ -406,7 +406,7 @@ onMounted(() => {
   max-width: 480px;
   margin: 0 auto;
   padding: 12px 16px;
-  background: linear-gradient(180deg, rgba(13,10,6,0.9), #0d0a06);
+  background: linear-gradient(180deg, rgba(13,10,6,0.9), var(--app-bg));
   border-top: 1px solid rgba(255,255,255,0.08);
   padding-bottom: calc(12px + env(safe-area-inset-bottom));
 }
@@ -423,7 +423,7 @@ onMounted(() => {
 }
 .pay-popup {
   padding: 20px;
-  background: #1a1208;
+  background: var(--app-bg-2);
   border-radius: 16px 16px 0 0;
 }
 .pay-header {
@@ -435,7 +435,7 @@ onMounted(() => {
 .pay-title {
   font-size: 18px;
   font-weight: 600;
-  color: #f2e0b8;
+  color: var(--gold-1);
 }
 .pay-amount {
   text-align: center;
@@ -444,7 +444,7 @@ onMounted(() => {
 .pay-label {
   display: block;
   font-size: 13px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   margin-bottom: 8px;
 }
 .pay-value {
@@ -465,7 +465,7 @@ onMounted(() => {
 }
 .qr-tip {
   font-size: 13px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   margin-top: 12px;
 }
 .pay-info-text {
@@ -474,7 +474,7 @@ onMounted(() => {
 }
 .pay-info-text p {
   font-size: 13px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   margin: 6px 0;
 }
 .pay-actions {

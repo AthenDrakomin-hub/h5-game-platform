@@ -129,63 +129,63 @@
           <GoldIcon name="gift" :size="24" />
         </div>
         <span class="menu-text">福利中心</span>
-        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
+        <GoldIcon name="arrow" :size="14" color="var(--text-hint)" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/rebate')">
         <div class="menu-icon-wrap">
           <GoldIcon name="clock" :size="24" />
         </div>
         <span class="menu-text">实时返水</span>
-        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
+        <GoldIcon name="arrow" :size="14" color="var(--text-hint)" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/orders?type=recharge')">
         <div class="menu-icon-wrap">
           <GoldIcon name="credit" :size="24" />
         </div>
         <span class="menu-text">充值记录</span>
-        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
+        <GoldIcon name="arrow" :size="14" color="var(--text-hint)" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/orders?type=withdraw')">
         <div class="menu-icon-wrap">
           <GoldIcon name="bankcard" :size="24" />
         </div>
         <span class="menu-text">提现记录</span>
-        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
+        <GoldIcon name="arrow" :size="14" color="var(--text-hint)" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/switch-record')">
         <div class="menu-icon-wrap">
           <GoldIcon name="swap" :size="24" />
         </div>
         <span class="menu-text">转换记录</span>
-        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
+        <GoldIcon name="arrow" :size="14" color="var(--text-hint)" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/profit-loss-report')">
         <div class="menu-icon-wrap">
           <GoldIcon name="colume" :size="24" />
         </div>
         <span class="menu-text">盈亏记录</span>
-        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
+        <GoldIcon name="arrow" :size="14" color="var(--text-hint)" />
       </div>
       <div class="menu-list-item" @click="goAppDownload">
         <div class="menu-icon-wrap">
           <GoldIcon name="download" :size="24" />
         </div>
         <span class="menu-text">APP下载</span>
-        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
+        <GoldIcon name="arrow" :size="14" color="var(--text-hint)" />
       </div>
       <div class="menu-list-item" @click="goPage('/chat')">
         <div class="menu-icon-wrap">
           <GoldIcon name="headset" :size="24" />
         </div>
         <span class="menu-text">在线客服</span>
-        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
+        <GoldIcon name="arrow" :size="14" color="var(--text-hint)" />
       </div>
       <div class="menu-list-item" @click="goPage('/user/feedback')">
         <div class="menu-icon-wrap">
           <GoldIcon name="edit" :size="24" />
         </div>
         <span class="menu-text">有奖反馈</span>
-        <GoldIcon name="arrow" :size="14" color="#8a7a5a" />
+        <GoldIcon name="arrow" :size="14" color="var(--text-hint)" />
       </div>
     </div>
 
@@ -307,8 +307,9 @@ onMounted(() => {
 <style scoped>
 .user-center {
   min-height: 100vh;
-  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
-  padding-bottom: 70px;
+  background: var(--app-bg);
+  padding-top: var(--safe-top);
+  padding-bottom: calc(70px + var(--safe-bottom));
 }
 
 /* 顶部导航 */
@@ -323,7 +324,7 @@ onMounted(() => {
 .top-title {
   font-size: 18px;
   font-weight: 500;
-  color: #f2e0b8;
+  color: var(--gold-1);
   letter-spacing: 1px;
 }
 .top-actions {
@@ -333,13 +334,12 @@ onMounted(() => {
   gap: 18px;
 }
 
-/* 资料+资产合并卡片 - 暗黑玻璃质感 */
+/* 资料+资产合并卡片 */
 .profile-assets-card {
   margin: 8px 12px 12px;
-  background: linear-gradient(rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 26%),
-              linear-gradient(145deg, rgba(31, 26, 21, 0.82) 0%, rgba(11, 10, 8, 0.6) 100%);
+  background: var(--card-bg);
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--card-border);
   overflow: hidden;
 }
 
@@ -367,7 +367,7 @@ onMounted(() => {
 .avatar-level {
   font-size: 14px;
   font-weight: 500;
-  color: #f2e0b8;
+  color: var(--gold-1);
 }
 .avatar-guest {
   background: rgba(255, 255, 255, 0.05);
@@ -384,7 +384,7 @@ onMounted(() => {
 }
 .user-sub {
   font-size: 11px;
-  color: #8a7a5a;
+  color: var(--text-hint);
 }
 .profile-right {
   display: flex;
@@ -420,7 +420,7 @@ onMounted(() => {
 }
 .assets-label {
   font-size: 12px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   display: flex;
   align-items: center;
   gap: 4px;
@@ -449,7 +449,7 @@ onMounted(() => {
 }
 .yesterday-profit {
   font-size: 11px;
-  color: #8a7a5a;
+  color: var(--text-hint);
   margin-top: 4px;
   display: flex;
   align-items: center;
@@ -477,7 +477,7 @@ onMounted(() => {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* 两个大卡片 - 暗黑玻璃质感 */
+/* 两个大卡片 */
 .big-cards-row {
   display: flex;
   gap: 10px;
@@ -485,10 +485,9 @@ onMounted(() => {
 }
 .big-card {
   flex: 1;
-  background: linear-gradient(rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 26%),
-              linear-gradient(145deg, rgba(30, 24, 18, 0.72) 0%, rgba(10, 9, 8, 0.5) 100%);
+  background: var(--card-bg);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--card-border);
   padding: 16px 14px;
   display: flex;
   align-items: center;
@@ -509,21 +508,20 @@ onMounted(() => {
 .big-card-title {
   font-size: 14px;
   font-weight: 600;
-  color: #f0e6d0;
+  color: var(--gold-1);
   margin-bottom: 2px;
 }
 .big-card-sub {
   font-size: 11px;
-  color: #8a7a5a;
+  color: var(--text-hint);
 }
 
-/* 快捷菜单 - 暗黑玻璃质感 */
+/* 快捷菜单 */
 .quick-menu-block {
   margin: 0 12px 12px;
-  background: linear-gradient(rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 26%),
-              linear-gradient(145deg, rgba(30, 24, 18, 0.72) 0%, rgba(10, 9, 8, 0.5) 100%);
+  background: var(--card-bg);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--card-border);
   padding: 18px 0;
 }
 .quick-icons-row {
@@ -549,16 +547,15 @@ onMounted(() => {
 }
 .quick-icon-label {
   font-size: 11px;
-  color: #d0c4a8;
+  color: var(--gold-1);
 }
 
-/* 菜单列表 - 暗黑玻璃质感 */
+/* 菜单列表 */
 .menu-list-block {
   margin: 0 12px 12px;
-  background: linear-gradient(rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 26%),
-              linear-gradient(145deg, rgba(30, 24, 18, 0.72) 0%, rgba(10, 9, 8, 0.5) 100%);
+  background: var(--card-bg);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--card-border);
   overflow: hidden;
 }
 .menu-list-item {
@@ -582,7 +579,7 @@ onMounted(() => {
 .menu-text {
   flex: 1;
   font-size: 14px;
-  color: #d0c4a8;
+  color: var(--gold-1);
 }
 
 /* 退出登录 */

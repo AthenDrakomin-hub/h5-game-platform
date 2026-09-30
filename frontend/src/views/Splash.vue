@@ -36,7 +36,7 @@ onMounted(async () => {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 50%, #0d0a06 100%);
+  background: linear-gradient(180deg, var(--app-bg-2) 0%, var(--app-bg) 50%, var(--app-bg) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
