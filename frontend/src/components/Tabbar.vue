@@ -90,7 +90,9 @@ function goLogin() {
   left: 0;
   right: 0;
   display: flex;
-  background: linear-gradient(180deg, #1a130a 0%, #0d0a06 100%);
+  height: 65px;
+  padding-top: 4px;
+  background: #0d0a06;
   border-top: 1px solid rgba(255,255,255,0.08);
   padding-bottom: env(safe-area-inset-bottom);
   z-index: 100;
@@ -126,12 +128,12 @@ function goLogin() {
   transform: translateY(-1px);
 }
 .tabbar-text {
-  font-size: 10px;
-  color: #8a7a5a;
+  font-size: 11px;
+  color: rgba(231, 212, 174, 0.68);
   margin-top: 3px;
 }
 .tabbar-item.active .tabbar-text {
-  color: #f0d080;
+  color: rgb(242, 224, 184);
   font-weight: 600;
 }
 </style>
