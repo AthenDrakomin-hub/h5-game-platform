@@ -3,7 +3,7 @@
     <!-- 顶部 Header：左空、中 logo、右空（Telegram 内顶部安全区） -->
     <div class="top-header">
       <div class="header-left"></div>
-      <img src="/assets/logo.png" alt="NOVA" class="logo-center" />
+      <img src="/assets/common/logo.png" alt="NOVA" class="logo-center" />
       <div class="header-right"></div>
     </div>
 
@@ -19,7 +19,7 @@
             </template>
           </div>
         </van-swipe-item>
-        <van-swipe-item v-if="banners.length === 0" v-for="i in 3" :key="'local-'+i">
+        <van-swipe-item v-if="banners.length === 0" v-for="i in 5" :key="'local-'+i">
           <div class="banner-slide">
             <img :src="`/assets/banners/banner${i}.png`" :alt="`banner${i}`" class="banner-img" />
           </div>
@@ -91,7 +91,7 @@
             >
               <div class="game-image">
                 <img v-if="game.icon" :src="game.icon" :alt="game.name" class="game-img" />
-                <img v-else :src="`/assets/games/game${(game.id % 6) + 1}.png`" :alt="game.name" class="game-img" />
+                <img v-else :src="`/assets/games/game${(game.id % 6) + 1}.webp`" :alt="game.name" class="game-img" />
               </div>
               <div class="game-name">{{ game.name }}</div>
             </div>
@@ -112,7 +112,7 @@
               @click="goPage('/casino')"
             >
               <div class="game-image">
-                <img :src="`/assets/games/game${(g.id % 6) + 1}.png`" :alt="g.name" class="game-img" />
+                <img :src="`/assets/games/game${(g.id % 6) + 1}.webp`" :alt="g.name" class="game-img" />
               </div>
               <div class="game-name">{{ g.name }}</div>
             </div>
@@ -133,7 +133,7 @@
               @click="goPage('/casino')"
             >
               <div class="game-image">
-                <img :src="`/assets/games/game${(g.id % 6) + 1}.png`" :alt="g.name" class="game-img" />
+                <img :src="`/assets/games/game${(g.id % 6) + 1}.webp`" :alt="g.name" class="game-img" />
               </div>
               <div class="game-name">{{ g.name }}</div>
             </div>

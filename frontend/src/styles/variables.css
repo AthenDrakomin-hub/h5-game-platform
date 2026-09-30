@@ -1,75 +1,79 @@
 :root {
-  /* Vant 主题覆盖 - 深棕金色调 */
+  /* ===== hjd998 复刻：全局设计 token（从参考站实测计算样式提取） ===== */
+  /* 背景：纯黑 */
+  --app-bg: #000;
+  --app-bg-2: #0a0805;
+  --app-bg-3: #14100a;
+
+  /* 金色阶梯（参考站精确色值） */
+  --gold-1: rgb(245, 230, 198);   /* section 标题 / 游戏名 */
+  --gold-2: rgb(242, 224, 184);   /* tabbar 文字 */
+  --gold-3: rgb(239, 214, 156);   /* section tab */
+  --gold-4: rgb(229, 201, 139);   /* 大奖金额 */
+  --gold-5: rgba(244, 226, 189, 0.9); /* 大奖标题 */
+  --gold-6: rgba(247, 235, 209, 0.9); /* 大奖用户名 */
+  --gold-btn: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
+  --gold-bar: linear-gradient(180deg, #f0d080, #d4a84b);
+
+  /* 文字 */
+  --text-primary: #fff;
+  --text-secondary: var(--gold-1);
+  --text-hint: rgba(231, 212, 174, 0.68);
+
+  /* 卡片 */
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-radius: 12px;
+
+  /* 安全区 */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* ===== Vant 主题覆盖（基于上述 token） ===== */
   --van-primary-color: #d4a84b;
-  --van-primary-color-dark: #b8923a;
-  --van-success-color: #f0d080;
-  --van-danger-color: #ee0a24;
-  --van-warning-color: #ff976a;
-  --van-text-color: #f2e0b8;
-  --van-text-color-2: #d0c4a8;
-  --van-text-color-3: #8a7a5a;
-  --van-background: #0d0a06;
-  --van-background-2: #1a1208;
-  --van-background-3: #2a1f10;
-  --van-border-color: rgba(255,255,255,0.12);
+  --van-text-color: var(--text-primary);
+  --van-text-color-2: var(--text-secondary);
+  --van-text-color-3: var(--text-hint);
+  --van-background: var(--app-bg);
+  --van-background-2: var(--app-bg-2);
+  --van-background-3: var(--app-bg-3);
+  --van-border-color: var(--card-border);
   --van-border-color-light: rgba(255,255,255,0.06);
   --van-nav-bar-background: transparent;
-  --van-nav-bar-title-text-color: #f2e0b8;
-  --van-tabbar-background: #0d0a06;
-  --van-tabbar-item-active-color: #f0d080;
-  --van-tabbar-item-inactive-color: #8a7a5a;
-  --van-popup-background: linear-gradient(180deg, #1a1208, #0d0a06);
+  --van-nav-bar-title-text-color: var(--gold-1);
+  --van-tabbar-background: var(--app-bg);
+  --van-tabbar-item-active-color: var(--gold-2);
+  --van-tabbar-item-inactive-color: var(--text-hint);
+  --van-popup-background: var(--app-bg-2);
   --van-cell-background: transparent;
-  --van-cell-text-color: #d0c4a8;
-  --van-field-input-text-color: #f0e8d8;
-  --van-field-label-color: #8a7a5a;
-  --van-button-primary-background: linear-gradient(180deg, #f0d080 0%, #d4a84b 50%, #b8923a 100%);
+  --van-cell-text-color: var(--text-secondary);
+  --van-field-input-text-color: #fff;
+  --van-field-label-color: var(--text-hint);
+  --van-button-primary-background: var(--gold-btn);
   --van-button-primary-border-color: transparent;
   --van-button-primary-color: #3a2610;
-  --van-button-danger-background: linear-gradient(135deg, #ee0a24, #c4081c);
   --van-toast-background: rgba(0, 0, 0, 0.85);
   --van-toast-text-color: #fff;
-  --van-dialog-background: linear-gradient(180deg, #1a1208, #0d0a06);
-  --van-dialog-header-font-weight: 600;
+  --van-dialog-background: var(--app-bg-2);
   --van-overlay-background: rgba(0, 0, 0, 0.7);
-  --van-action-bar-background: #0d0a06;
-  --van-safe-area-bottom: env(safe-area-inset-bottom);
+  --van-action-bar-background: var(--app-bg);
+  --van-safe-area-bottom: var(--safe-bottom);
 
-  /* Telegram 主题变量（由 JS 动态注入） */
-  --tg-bg-color: #0d0a06;
-  --tg-text-color: #f2e0b8;
-  --tg-hint-color: #8a7a5a;
-  --tg-link-color: #f0d080;
-  --tg-button-color: #d4a84b;
-  --tg-button-text-color: #3a2610;
-  --tg-secondary-bg-color: #1a1208;
+  /* Telegram 主题变量（JS 动态注入） */
+  --tg-bg-color: #000;
+  --tg-text-color: #fff;
+  --tg-hint-color: var(--text-hint);
+  --tg-link-color: var(--gold-3);
 }
 
-/* Telegram Mini App 环境：用 Telegram 主题色覆盖背景/文字，保留品牌金调主色 */
+/* Telegram Mini App 环境：Telegram 主题色覆盖 */
 .telegram-env {
   --van-background: var(--tg-bg-color);
-  --van-background-2: var(--tg-secondary-bg-color);
-  --van-background-3: var(--tg-secondary-bg-color);
+  --van-background-2: var(--tg-bg-color);
   --van-text-color: var(--tg-text-color);
-  --van-text-color-2: var(--tg-hint-color);
-  --van-text-color-3: var(--tg-hint-color);
-  --van-nav-bar-background: var(--tg-secondary-bg-color);
-  --van-nav-bar-title-text-color: var(--tg-text-color);
-  --van-tabbar-background: var(--tg-secondary-bg-color);
-  --van-cell-background: var(--tg-secondary-bg-color);
-  --van-cell-text-color: var(--tg-text-color);
-  --van-field-input-text-color: var(--tg-text-color);
-  --van-field-label-color: var(--tg-hint-color);
-  --van-popup-background: var(--tg-secondary-bg-color);
-  --van-dialog-background: var(--tg-secondary-bg-color);
-}
-
-.telegram-env .wap-desktop-shell {
-  background: var(--tg-bg-color);
-}
-
-.telegram-env .app-root {
-  background: var(--tg-bg-color);
+  --van-cell-background: var(--tg-bg-color);
+  --van-popup-background: var(--tg-bg-color);
+  --van-dialog-background: var(--tg-bg-color);
 }
 
 * {
@@ -81,9 +85,9 @@
 
 html, body {
   width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
-  color: #d0c4a8;
+  min-height: 100vh;
+  background: var(--app-bg);
+  color: var(--text-primary);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 14px;
   line-height: 1.5;
@@ -95,79 +99,33 @@ html, body {
   min-height: 100vh;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; vertical-align: middle; }
 
-img {
-  max-width: 100%;
-  vertical-align: middle;
-}
-
-/* 桌面端居中壳 */
+/* 桌面端居中壳（Telegram 外的预览环境） */
 .wap-desktop-shell {
   position: relative;
   width: 100%;
   max-width: 480px;
   min-height: 100vh;
   margin: 0 auto;
-  background: linear-gradient(180deg, #1a1208 0%, #0d0a06 30%, #0d0a06 100%);
+  background: var(--app-bg);
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
   overflow-x: hidden;
 }
 
 @media (min-width: 481px) {
-  body {
-    background: #0a0805;
-  }
+  body { background: #0a0805; }
 }
 
-/* 滚动条隐藏 */
-::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
-}
+::-webkit-scrollbar { display: none; width: 0; height: 0; }
 
 /* 通用工具类 */
-.ellipsis {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.ellipsis-2 {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.text-gold {
-  color: #F0C75E;
-}
-
-.text-red {
-  color: #ee0a24;
-}
-
-.text-green {
-  color: #07c160;
-}
-
-.text-gray {
-  color: #8a7a5a;
-}
+.ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ellipsis-2 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.text-gold { color: var(--gold-4); }
+.text-red { color: #ee0a24; }
+.text-green { color: #07c160; }
+.text-gray { color: var(--text-hint); }
