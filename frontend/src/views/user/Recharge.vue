@@ -381,6 +381,10 @@ onMounted(() => {
   color: #ffffff;
   font-weight: 600;
 }
+.amount-input-wrap:focus-within {
+  border-color: var(--gold-3);
+  box-shadow: 0 0 0 3px rgba(212,168,75,0.15);
+}
 .amount-input::placeholder {
   color: var(--text-hint);
   font-size: 14px;
