@@ -69,12 +69,22 @@ async function loadPromos() {
   loading.value = true
   try {
     const data = await promoApi.getList()
-    promos.value = data.list || []
+    promos.value = data.list?.length ? data.list : getDefaultPromos()
   } catch (e) {
-    promos.value = []
+    promos.value = getDefaultPromos()
   } finally {
     loading.value = false
   }
+}
+
+function getDefaultPromos() {
+  return [
+    { id: 1, title: '新人首存100%加成', description: '首次充值享100%奖励，最高5000元！', image: '/assets/banners/banner1.png', category: 'newbie', status: 'active', startDate: '2026-09-01', endDate: '2026-12-31' },
+    { id: 2, title: '每日返利 流水越高越多', description: '每日根据投注流水返还0.5%-2%', image: '/assets/banners/banner2.png', category: 'daily', status: 'active', startDate: '2026-09-01', endDate: '2026-12-31' },
+    { id: 3, title: '充值500送100', description: '单笔充值满500元额外送100元彩金', image: '/assets/banners/banner3.png', category: 'deposit', status: 'active', startDate: '2026-09-15', endDate: '2026-10-15' },
+    { id: 4, title: 'VIP专属周薪', description: 'VIP3以上每周领取专属薪资奖励', image: '/assets/banners/banner4.png', category: 'vip', status: 'active', startDate: '2026-09-01', endDate: '2026-12-31' },
+    { id: 5, title: '邀请好友得红包', description: '邀请好友注册充值，双方各得50元', image: '/assets/banners/banner5.png', category: 'invite', status: 'active', startDate: '2026-09-01', endDate: '2026-12-31' },
+  ]
 }
 
 function goDetail(id) {
