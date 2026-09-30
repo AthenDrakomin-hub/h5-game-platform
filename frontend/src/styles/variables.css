@@ -129,3 +129,21 @@ img { max-width: 100%; vertical-align: middle; }
 .text-red { color: #ee0a24; }
 .text-green { color: #07c160; }
 .text-gray { color: var(--text-hint); }
+
+/* 全局 section-title 金色竖条（对齐 hjd998） */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--gold-1);
+}
+.section-title::before {
+  content: '';
+  width: 4px;
+  height: 18px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--gold-3), var(--gold-5));
+  flex-shrink: 0;
+}
