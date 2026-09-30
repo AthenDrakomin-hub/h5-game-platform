@@ -72,12 +72,36 @@ async function loadGames() {
   loading.value = true
   try {
     const data = await lotteryApi.getGameList(activeCategory.value)
-    games.value = data
+    games.value = data?.length ? data : getDefaultGames(activeCategory.value)
   } catch (e) {
-    games.value = []
+    games.value = getDefaultGames(activeCategory.value)
   } finally {
     loading.value = false
   }
+}
+
+function getDefaultGames(cat) {
+  const map = {
+    pk10: [
+      { code: 'pk10-1', name: '北京赛车PK10', icon: '🏁', status: 'online' },
+      { code: 'pk10-2', name: '幸运飞艇PK10', icon: '🚀', status: 'online' },
+      { code: 'pk10-3', name: '澳洲幸运10', icon: '🦘', status: 'online' },
+    ],
+    ssc: [
+      { code: 'ssc-1', name: '重庆时时彩', icon: '🎲', status: 'online' },
+      { code: 'ssc-2', name: '新疆时时彩', icon: '🃏', status: 'online' },
+      { code: 'ssc-3', name: '天津时时彩', icon: '⭐', status: 'maintenance' },
+    ],
+    lhc: [
+      { code: 'lhc-1', name: '香港六合彩', icon: '🐎', status: 'online' },
+      { code: 'lhc-2', name: '澳门六合彩', icon: '🎯', status: 'online' },
+    ],
+    pc28: [
+      { code: 'pc28-1', name: 'PC28加拿大', icon: '🍀', status: 'online' },
+      { code: 'pc28-2', name: 'PC28新加坡', icon: '🌴', status: 'online' },
+    ],
+  }
+  return map[cat] || map.pk10
 }
 
 function goGame(game) {
@@ -117,8 +141,8 @@ onMounted(() => {
   overflow: hidden;
 }
 .category-sidebar {
-  width: 80px;
-  background: rgba(0,0,0,0.2);
+  width: 100px;
+  background: var(--card-bg);
   flex-shrink: 0;
 }
 .category-item {
@@ -127,12 +151,12 @@ onMounted(() => {
   align-items: center;
   padding: 16px 8px;
   cursor: pointer;
-  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
   transition: all 0.2s;
 }
 .category-item.active {
-  background: linear-gradient(90deg, rgba(212,168,75,0.12), transparent);
-  border-left-color: #d4a84b;
+  background: linear-gradient(90deg, rgba(212,168,75,0.15), transparent);
+  border-right-color: var(--gold-3);
 }
 .cat-icon {
   font-size: 22px;
